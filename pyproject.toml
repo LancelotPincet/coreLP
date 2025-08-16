@@ -1,0 +1,25 @@
+[project]
+name = "pythonlp"
+version = "0.1.0"
+description = "Developpment workspace of Lancelot PINCET"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies =  [
+  "devlp",
+]
+
+[tool.uv]
+environments = [
+  "sys_platform == 'linux' and platform_machine == 'x86_64'",
+  "sys_platform == 'win32' and platform_machine == 'AMD64'",
+]
+
+[tool.uv.sources]
+devlp = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+    "devLP",
+    "libsLP/*",
+    "scriptsLP/*",
+]

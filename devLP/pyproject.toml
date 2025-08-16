@@ -1,0 +1,23 @@
+[project]
+name = "devlp"
+version = "0.1.0"
+description = "Automation scripts for python developpment"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [ "toml", "pywin32", "nbconvert",]
+[[project.authors]]
+name = "LancelotPincet"
+email = "40608570+LancelotPincet@users.noreply.github.com"
+
+[build-system]
+requires = [ "uv_build>=0.8.8,<0.9.0",]
+build-backend = "uv_build"
+
+[project.scripts]
+create_pyauto = "devlp:create_pyauto"
+create_batauto = "devlp:create_batauto"
+make_shortcuts = "devlp:make_shortcuts"
+get_icon = "devlp:get_icon"
+git_push = "devlp:git_push"
+git_pull = "devlp:git_pull"
+clear_notebooks = "devlp:clear_notebooks"

@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Author        : Lancelot PINCET
+Email         : lancelot.pincet@free.fr
+Date          : template_date
+Version       : 0.1.0
+Description   : template_description
+"""
+
+
+
+# %% Libraries
+from devlp import path
+
+
+
+# %% Main function
+def main() :
+    print('\nRunning template_name :')
+
+    # TODO
+    print('     Hello world!')
+
+    # End
+    print('template_name finished!\n')
+
+
+
+# %% Main function run
+if __name__ == "__main__":
+    main()
