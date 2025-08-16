@@ -26,12 +26,12 @@ def main() :
         if target.exists() :
             if target.is_symlink() :
                 os.remove(target)
-                os.symlink(path, target, target_is_directory=True)
+                os.symlink(path.parent, target, target_is_directory=True)
                 print('     pythonLP symlink recreated in the user folder')
             else :
                 print('     pythonLP symlink cannot be created in user folder, a folder with same name already exist')
         else :
-            os.symlink(path, target, target_is_directory=True)
+            os.symlink(path.parent, target, target_is_directory=True)
             print('     pythonLP symlink created in the user folder')
 
     # Admin rights
