@@ -12,6 +12,8 @@ Description   : Pulls all changes from GitHub
 
 # %% Libraries
 from devlp import path
+import subprocess
+import sys
 
 
 
@@ -19,8 +21,21 @@ from devlp import path
 def main() :
     print('\nRunning git_pull :')
 
-    # TODO
-    print('     Hello world!')
+    # Git pull
+    print('     Git pull')
+    result = subprocess.run("git pull origin main", cwd=path.parent, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    stdout, code = result.stdout.strip(), result.returncode
+
+    # Check if pull failed
+    if code != 0:
+        print("     pythonLP pull failed... :(")
+        sys.exit(code)
+    
+    # Check if already up to date
+    if "Already up to date" in stdout or "Already up-to-date" in stdout:
+        print("     pythonLP already up to date. :P")
+    else:
+        print("     pythonLP download succeeded! :D")
 
     # End
     print('git_pull finished!\n')
