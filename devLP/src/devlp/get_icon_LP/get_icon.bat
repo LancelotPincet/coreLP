@@ -25,6 +25,6 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-uv run get_icon.py
+uv run get_icon
 uv run make_shortcuts
 pause

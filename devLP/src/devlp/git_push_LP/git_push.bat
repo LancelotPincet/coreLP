@@ -25,6 +25,6 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-uv run clear_notebooks.py
-uv run git_push.py
+uv run clear_notebooks
+uv run git_push
 pause

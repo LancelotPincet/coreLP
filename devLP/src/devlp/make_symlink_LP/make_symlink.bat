@@ -25,5 +25,5 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-uv run clear_notebooks
+uv run make_symlink
 pause
