@@ -23,12 +23,13 @@ def main() :
 
     # Git pull
     print('     Git pull')
-    result = subprocess.run("git pull origin main", cwd=path.parent, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    stdout, code = result.stdout.strip(), result.returncode
+    result = subprocess.run(["git", "pull", "origin", "main"], cwd=path.parent, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    stdout, stderr, code = result.stdout.strip(), result.stderr.strip(), result.returncode
 
     # Check if pull failed
     if code != 0:
         print("     pythonLP pull failed... :(")
+        print(stderr)
         sys.exit(code)
     
     # Check if already up to date

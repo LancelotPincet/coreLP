@@ -24,7 +24,7 @@ def main() :
     # Git add
     print('     Git add')
     try :
-        subprocess.run("git add .", cwd=path.parent, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(["git", "add", "."], cwd=path.parent, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     except subprocess.CalledProcessError as e:
         print('     Git add failed :(')
         sys.exit(1)
@@ -32,7 +32,7 @@ def main() :
     # Git commit
     print('     Git commit')
     try :
-        subprocess.run("git commit -m auto-commit", cwd=path.parent, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(["git", "commit", "-m", "auto-commit"], cwd=path.parent, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     except subprocess.CalledProcessError as e:
         print('     No changes to commit :P')
         return 
@@ -40,7 +40,7 @@ def main() :
     # Git commit
     print('     Git push')
     try :
-        subprocess.run("git push origin main", cwd=path.parent, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(["git", "push", "origin", "main"], cwd=path.parent, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     except subprocess.CalledProcessError as e:
         print('     Git push failed :(')
         sys.exit(1)
