@@ -45,7 +45,7 @@ def main() :
         print('     Git push failed :(')
         sys.exit(1)
     
-    print('      pythonLP upload succeeded :D')
+    print('     pythonLP upload succeeded :D')
 
     # End
     print('git_push finished!\n')
