@@ -139,7 +139,7 @@ def main() :
     string = string.replace("template_lowername", name.lower())
     with open(dev_path / 'upload_newversion.bat', "w") as file :
         file.write(string)
-    print('Added tools for creating new version')
+    print('     Added tools for creating new version')
 
     # Create a github repo
     subprocess.run(["gh", "repo", "create", name, "--private"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
