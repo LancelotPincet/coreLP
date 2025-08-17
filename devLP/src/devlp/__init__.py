@@ -4,7 +4,6 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : 2025-08-01
-Version       : 0.1.0
 Description   : Automation scripts for developpments, should only rely on python stlibs.
 """
 

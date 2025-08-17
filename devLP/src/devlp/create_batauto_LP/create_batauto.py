@@ -4,7 +4,6 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : 2025-08-15
-Version       : 0.1.0
 Description   : Creates a bat file for developpment automation
 """
 

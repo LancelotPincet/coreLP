@@ -4,7 +4,6 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : template_date
-Version       : 0.1.0
 Description   : Create new script for template_name
 """
 

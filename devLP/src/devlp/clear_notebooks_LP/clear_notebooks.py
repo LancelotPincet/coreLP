@@ -4,7 +4,6 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : 2025-08-16
-Version       : 0.1.0
 Description   : Clears all outputs from jupyter notebooks (usefull before commiting)
 """
 

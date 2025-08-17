@@ -4,7 +4,6 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : template_moduledate
-Version       : 0.1.0
 Description   : template_moduledescription
 """
 

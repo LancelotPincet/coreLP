@@ -15,6 +15,7 @@ supported-markers = [
 [manifest]
 members = [
     "devlp",
+    "pylp",
     "pythonlp",
 ]
 
@@ -419,6 +420,11 @@ wheels = [
 crypto = [
     { name = "cryptography", marker = "(platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')" },
 ]
+
+[[package]]
+name = "pylp"
+version = "0.1.0"
+source = { editable = "libsLP/pyLP" }
 
 [[package]]
 name = "pynacl"
