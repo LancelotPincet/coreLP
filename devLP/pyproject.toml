@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Automation scripts for python developpment"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [ "toml", "pywin32", "nbconvert",]
+dependencies = [ "toml", "pywin32", "nbconvert", "PyGithub"]
 [[project.authors]]
 name = "LancelotPincet"
 email = "40608570+LancelotPincet@users.noreply.github.com"

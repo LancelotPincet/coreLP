@@ -108,6 +108,7 @@ def main() :
     print('Added tools for adding modules')
 
     # Create a github repo
+    subprocess.run(["uv", "init", "--lib", name], cwd=path.parent / "libsLP", check=True, stdout=subprocess.PIPE)
 
 
     # Add tools to push to repo a new version
