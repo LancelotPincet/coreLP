@@ -37,7 +37,7 @@ def main() :
         print('     No changes to commit :P')
         return 
 
-    # Git commit
+    # Git push
     print('     Git push')
     try :
         subprocess.run(["git", "push", "origin", "main"], cwd=path.parent, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
