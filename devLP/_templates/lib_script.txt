@@ -15,23 +15,12 @@ TODO
 
 
 # %% function
-def template_scriptname(**kwargs) -> None :
+def main(**kwargs) -> None :
     '''
     template_scriptdescription
     '''
     return None
 
-
-
-# %% Class
-class template_scriptname() :
-    '''
-    template_scriptdescription
-    '''
-
-    def __init__(self) :
-        pass
-    
 
 
 # %% Main function run
