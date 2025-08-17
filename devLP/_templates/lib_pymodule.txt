@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Author        : Lancelot PINCET
+Email         : lancelot.pincet@free.fr
+Date          : template_date
+Version       : 0.1.0
+Description   : template_description
+"""
+
+
+
+# %% Libraries
+from devlp import path
+from datetime import datetime
+import os
+import json
+
+
+
+# %% Main function
+def main() :
+    print('\Running add_module :')
+
+    # Ask for script name
+    already_exists = True
+    while already_exists :
+        name = input('     New module name ? >>> ')
+        module_path = path.parent / f'libsLP/template_name/src/template_lowername/{name}_LP'
+        if module_path.exists() :
+            print('     This module already exists :/')
+        else :
+            already_exists = False
+    description = input('     what will the module do ? >>> ')
+    date = datetime.now().strftime("%Y-%m-%d")
+
+    # Print informations
+    print(f'     name : {name}')
+    print(f'     description : {description}')
+    print(f'     date : {date}')
+    os.mkdir(module_path)
+
+    # Write python module
+    with open(path/'_templates/lib_module.txt', "r") as file :
+        string = file.read()
+    string = string.replace('template_modulename', name)
+    string = string.replace('template_moduledate', date)
+    string = string.replace('template_moduledescription', description)
+    with open(module_path/f'{name}.py', "w") as file :
+        file.write(string)
+    print('     Module file written [to complete]')
+
+    # Add module to json file
+    modjson = {}
+    modjson['module'] = f"{name}_LP/{name}"
+    modjson['object'] = name
+    modjson['description'] = description
+    json_path = path.parent / f'libsLP/template_name/src/template_lowername/module.json'
+    with open(json_path, "r") :
+        data = json.load(file)
+    data[name] = modjson
+    with open(json_path, "w") :
+        json.dump(data, file)
+    print("     Module json updated")
+
+    # End
+    print('add_module finished!\n')
+
+
+
+# %% Main function run
+if __name__ == "__main__":
+    main()

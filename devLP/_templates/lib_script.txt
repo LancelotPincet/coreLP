@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Author        : Lancelot PINCET
+Email         : lancelot.pincet@free.fr
+Date          : template_scriptdate
+Version       : 0.1.0
+Description   : template_scriptdescription
+"""
+
+
+
+# %% Libraries
+TODO
+
+
+
+# %% function
+def template_scriptname(/, *, **kwargs) : -> None
+    '''
+    template_scriptdescription
+    '''
+    return None
+
+
+
+# %% Class
+class template_scriptname() :
+    '''
+    template_scriptdescription
+    '''
+
+    def __init__(self) :
+        pass
+    
+
+
+# %% Main function run
+if __name__ == "__main__":
+    main()

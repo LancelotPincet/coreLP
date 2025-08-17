@@ -15,6 +15,7 @@ from devlp import path
 import subprocess
 from datetime import datetime
 import toml
+import json
 import os
 import shutil
 
@@ -70,11 +71,19 @@ def main() :
 
     # Add gitignore file
     shutil.copy(path / '_templates/lib_gitignore.txt', lib_path / ".gitignore")
+    with open(path.parent / '.gitignore', "r") as file :
+        string = file.read()
+    with open(lib_path / ".gitignore", "a") as file :
+        file.write(string)
     print('     Gitignore was added')
     
     # Adding dependencies
-    subprocess.run(["uv", "add", "pyLP"], cwd=lib_path, check=True, stdout=subprocess.PIPE)
+    #subprocess.run(["uv", "add", "pyLP"], cwd=lib_path, check=True, stdout=subprocess.PIPE)
     print('     uv dependencies added')
+
+    # Adding modules json
+    with open(lib_path / f'src/{name.lower()}/modules.json', "w") as file :
+        json.dump({}, file)
 
     # Add scripts
     os.mkdir(lib_path / "scripts")
@@ -83,12 +92,14 @@ def main() :
     with open(path/'_templates/lib_pyscript.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
+    string = string.replace("template_lowername", name.lower())
     with open(lib_path/'scripts/add_script.py', "w") as file :
         file.write(string)
 
     with open(path/'_templates/lib_batscript.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
+    string = string.replace("template_lowername", name.lower())
     with open(lib_path/'_add_script.bat', "w") as file :
         file.write(string)
 
@@ -100,12 +111,14 @@ def main() :
     with open(path/'_templates/lib_pymodule.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
+    string = string.replace("template_lowername", name.lower())
     with open(lib_path/f'src/{name.lower()}/add_module.py', "w") as file :
         file.write(string)
 
     with open(path/'_templates/lib_batmodule.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
+    string = string.replace("template_lowername", name.lower())
     with open(lib_path/'_add_module.bat', "w") as file :
         file.write(string)
 
@@ -115,6 +128,7 @@ def main() :
     with open(path/'_templates/lib_batversion.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
+    string = string.replace("template_lowername", name.lower())
     with open(lib_path/'_upload_newversion.bat', "w") as file :
         file.write(string)
     print('Added tools for creating new version')
