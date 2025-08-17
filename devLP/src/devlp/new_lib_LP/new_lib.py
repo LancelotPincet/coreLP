@@ -134,7 +134,6 @@ def main() :
     print('Added tools for creating new version')
 
     # Create a github repo
-    1/0
     subprocess.run(["gh", "repo", "create", name, "--private"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
     print('     GitHub repository created')
     subprocess.run(["git", "remote", "add", name, f"git@github.com:LancelotPincet/{name}.git"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
