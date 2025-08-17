@@ -19,7 +19,7 @@ import toml
 
 # %% Main function
 def main() :
-    print('\Running add_script :')
+    print('\nRunning add_script :')
 
     # Ask for script name
     already_exists = True

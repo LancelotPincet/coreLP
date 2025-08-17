@@ -1,7 +1,9 @@
 # template_name
 
 Author : Lancelot PINCET
+
 Email : lancelot.pincet@free.fr
+
 Date : template_date
 
 **template_description**

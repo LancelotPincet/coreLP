@@ -19,7 +19,7 @@ import json
 
 # %% Main function
 def main() :
-    print('\Running add_module :')
+    print('\nRunning add_module :')
 
     # Ask for script name
     already_exists = True

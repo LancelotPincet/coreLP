@@ -1,7 +1,9 @@
 # pyLP
 
 Author : Lancelot PINCET
+
 Email : lancelot.pincet@free.fr
+
 Date : 2025-08-17
 
 **Gathers core functions for python programmation**
