@@ -24,7 +24,7 @@ def main() :
     already_exists = True
     while already_exists :
         name = input('     New script name ? >>> ')
-        script_path = path.parent / f'libsLP/template_name/scripts/{name}_LP'
+        script_path = path.parent / f'libsLP/template_name/src/template_lowername/scripts/{name}_LP'
         if script_path.exists() :
             print('     This script already exists :/')
         else :
@@ -48,13 +48,15 @@ def main() :
     string = string.replace('template_scriptdescription', description)
     with open(newpython_path, "w") as file :
         file.write(string)
+    with open(script_path / "__init__.py", "w") as file :
+        file.write("")
     print('     Script file written [to complete]')
 
     # Add script to project
     toml_path = path.parent / f'libsLP/template_name/pyproject.toml'
     with open(toml_path, "r") as file:
         data = toml.load(file)
-    data.setdefault("project", {}).setdefault("scripts", {})[name] = f"template_lowername:{name}"
+    data.setdefault("project", {}).setdefault("scripts", {})[name] = f"template_name.scripts.{name}_LP.{name}:main"
     with open(toml_path, "w") as file:
         toml.dump(data, file)
     print(f'     Script was added to project')

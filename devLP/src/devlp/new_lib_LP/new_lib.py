@@ -69,11 +69,7 @@ def main() :
     print('     License was added')
 
     # Add gitignore file
-    shutil.copy(path / '_templates/lib_gitignore.txt', lib_path / ".gitignore")
-    with open(path.parent / '.gitignore', "r") as file :
-        string = file.read()
-    with open(lib_path / ".gitignore", "a") as file :
-        file.write(string)
+    shutil.copy(path.parent / '.gitignore', lib_path / ".gitignore")
     print('     Gitignore was added')
     
     # Adding dependencies
@@ -83,42 +79,55 @@ def main() :
     # Adding modules json
     with open(lib_path / f'src/{name.lower()}/modules.json', "w") as file :
         json.dump({}, file)
+    print('     module json added')
+
+    # Add dev folder
+    dev_path = lib_path / '.dev'
+    os.mkdir(dev_path)
+    print('     dev folder created')
 
     # Add scripts
-    os.mkdir(lib_path / "scripts")
-    shutil.copy(path / '_templates/lib_script.txt', lib_path / "scripts/_template_script.txt")
+    scripts_path = lib_path / f'src/{name.lower()}/scripts'
+    os.mkdir(scripts_path)
+    shutil.copy(path / '_templates/lib_script.txt', scripts_path / "_template_script.txt")
+    with open(scripts_path / '__init__.py', "w") as file :
+        file.write("")
 
     with open(path/'_templates/lib_pyscript.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
     string = string.replace("template_lowername", name.lower())
-    with open(lib_path/'scripts/add_script.py', "w") as file :
+    with open(dev_path / 'add_script.py', "w") as file :
         file.write(string)
 
     with open(path/'_templates/lib_batscript.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
     string = string.replace("template_lowername", name.lower())
-    with open(lib_path/'_add_script.bat', "w") as file :
+    with open(dev_path / 'add_script.bat', "w") as file :
         file.write(string)
 
     print('     Added tools for adding scripts')
 
     # Add modules
-    shutil.copy(path / '_templates/lib_module.txt', lib_path / f"src/{name.lower()}/_template_module.txt")
+    modules_path = lib_path / f'src/{name.lower()}/modules'
+    os.mkdir(modules_path)
+    shutil.copy(path / '_templates/lib_modules.txt', modules_path / "_template_module.txt")
+    with open(modules_path / '__init__.py', "w") as file :
+        file.write("")
 
     with open(path/'_templates/lib_pymodule.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
     string = string.replace("template_lowername", name.lower())
-    with open(lib_path/f'src/{name.lower()}/add_module.py', "w") as file :
+    with open(dev_path / 'add_module.py', "w") as file :
         file.write(string)
 
     with open(path/'_templates/lib_batmodule.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
     string = string.replace("template_lowername", name.lower())
-    with open(lib_path/'_add_module.bat', "w") as file :
+    with open(dev_path / 'add_module.bat', "w") as file :
         file.write(string)
 
     print('     Added tools for adding modules')
@@ -128,7 +137,7 @@ def main() :
         string = file.read()
     string = string.replace("template_name", name)
     string = string.replace("template_lowername", name.lower())
-    with open(lib_path/'_upload_newversion.bat', "w") as file :
+    with open(dev_path / 'upload_newversion.bat', "w") as file :
         file.write(string)
     print('Added tools for creating new version')
 

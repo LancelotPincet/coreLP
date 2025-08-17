@@ -1,6 +1,0 @@
-**/_add_script.bat
-**/add_script.py
-**/_add_module.bat
-**/add_module.py
-**/_upload_newversion.bat
-

@@ -25,7 +25,7 @@ def main() :
     already_exists = True
     while already_exists :
         name = input('     New module name ? >>> ')
-        module_path = path.parent / f'libsLP/template_name/src/template_lowername/{name}_LP'
+        module_path = path.parent / f'libsLP/template_name/src/template_lowername/modules/{name}_LP'
         if module_path.exists() :
             print('     This module already exists :/')
         else :
@@ -47,6 +47,8 @@ def main() :
     string = string.replace('template_moduledescription', description)
     with open(module_path/f'{name}.py', "w") as file :
         file.write(string)
+    with open(module_path / "__init__.py", "w") as file :
+        file.write("")
     print('     Module file written [to complete]')
 
     # Add module to json file
