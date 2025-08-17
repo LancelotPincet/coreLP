@@ -54,11 +54,11 @@ def main() :
     modjson['module'] = f"{name}_LP/{name}"
     modjson['object'] = name
     modjson['description'] = description
-    json_path = path.parent / f'libsLP/template_name/src/template_lowername/module.json'
-    with open(json_path, "r") :
+    json_path = path.parent / f'libsLP/template_name/src/template_lowername/modules.json'
+    with open(json_path, "r") as file :
         data = json.load(file)
     data[name] = modjson
-    with open(json_path, "w") :
+    with open(json_path, "w") as file :
         json.dump(data, file)
     print("     Module json updated")
 

@@ -53,11 +53,11 @@ def main() :
 
     # Add script to project
     toml_path = script_path / 'pyproject.toml'
-    with open(toml_path, "r") as f:
-        data = toml.load(f)
+    with open(toml_path, "r") as file:
+        data = toml.load(file)
     data.setdefault("project", {}).setdefault("scripts", {})[name] = f"template_lowername:{name}"
-    with open(toml_path, "w") as f:
-        toml.dump(data, f)
+    with open(toml_path, "w") as file:
+        toml.dump(data, file)
     print(f'     Script was added to project')
 
     # End
