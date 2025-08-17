@@ -80,7 +80,7 @@ To get a first grasp of template_name, you will need to know a bit of Python. Fo
 #### 1. Imports
 To import `template_name`, just use :
 ```python
-import template_name_lower
+import template_lowername
 ```
 
 #### 2. Basics

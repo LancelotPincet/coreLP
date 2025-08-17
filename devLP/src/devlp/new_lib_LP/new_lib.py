@@ -49,7 +49,7 @@ def main() :
     with open(path/'_templates/lib_readme.txt', "r") as file :
         string = file.read()
     string = string.replace('template_name', name)
-    string = string.replace('template_name_lower', name.lower())
+    string = string.replace('template_lowername', name.lower())
     string = string.replace('template_date', date)
     string = string.replace('template_description', description)
     with open(lib_path/'README.md', "w") as file :
@@ -59,7 +59,7 @@ def main() :
     # Filling Pyproject file
     with open(lib_path/'pyproject.toml', "r") as file :
         data = toml.load(file)
-    data['description'] = description
+    data['project']['description'] = description
     with open(lib_path/'pyproject.toml', "w") as file :
         toml.dump(data, file)
     print('     Pyproject file filled')
@@ -89,7 +89,7 @@ def main() :
     with open(path/'_templates/lib_batscript.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
-    with open(lib_path/'add_script.bat', "w") as file :
+    with open(lib_path/'_add_script.bat', "w") as file :
         file.write(string)
 
     print('     Added tools for adding scripts')
@@ -106,7 +106,7 @@ def main() :
     with open(path/'_templates/lib_batmodule.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
-    with open(lib_path/'add_module.bat', "w") as file :
+    with open(lib_path/'_add_module.bat', "w") as file :
         file.write(string)
 
     print('     Added tools for adding modules')
@@ -115,7 +115,7 @@ def main() :
     with open(path/'_templates/lib_batversion.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
-    with open(lib_path/'upload_newversion.bat', "w") as file :
+    with open(lib_path/'_upload_newversion.bat', "w") as file :
         file.write(string)
     print('Added tools for creating new version')
 
