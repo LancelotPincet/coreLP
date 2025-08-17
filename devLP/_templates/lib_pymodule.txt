@@ -40,12 +40,14 @@ def main() :
     os.mkdir(module_path)
 
     # Write python module
-    with open(path/'_templates/lib_module.txt', "r") as file :
+    python_path = path/'libsLP/template_name/src/template_lowername/modules/template_module.txt'
+    newpython_path = module_path/f'{name}.py'
+    with open(python_path, "r") as file :
         string = file.read()
     string = string.replace('template_modulename', name)
     string = string.replace('template_moduledate', date)
     string = string.replace('template_moduledescription', description)
-    with open(module_path/f'{name}.py', "w") as file :
+    with open(newpython_path, "w") as file :
         file.write(string)
     with open(module_path / "__init__.py", "w") as file :
         file.write("")
