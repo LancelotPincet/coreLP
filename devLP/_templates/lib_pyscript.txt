@@ -52,7 +52,7 @@ def main() :
     print('     Script file written [to complete]')
 
     # Add script to project
-    toml_path = script_path / 'pyproject.toml'
+    toml_path = path.parent / f'libsLP/template_name/pyproject.toml'
     with open(toml_path, "r") as file:
         data = toml.load(file)
     data.setdefault("project", {}).setdefault("scripts", {})[name] = f"template_lowername:{name}"

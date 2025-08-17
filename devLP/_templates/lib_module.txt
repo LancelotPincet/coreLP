@@ -15,7 +15,7 @@ TODO
 
 
 # %% function
-def template_modulename(/, *, **kwargs) : -> None
+def template_modulename(**kwargs) -> None :
     '''
     template_moduledescription
     '''

@@ -1,1 +1,1 @@
-{}
+{"print": {"module": "print_LP/print", "object": "print", "description": "Changes the default print function to add functionalities"}}

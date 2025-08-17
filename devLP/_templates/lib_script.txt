@@ -15,7 +15,7 @@ TODO
 
 
 # %% function
-def template_scriptname(/, *, **kwargs) : -> None
+def template_scriptname(**kwargs) -> None :
     '''
     template_scriptdescription
     '''

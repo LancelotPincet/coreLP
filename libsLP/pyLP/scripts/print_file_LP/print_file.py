@@ -4,7 +4,7 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : 2025-08-17
-Description   : Changes the default print function to add functionalities
+Description   : testingtestin
 """
 
 
@@ -15,18 +15,18 @@ TODO
 
 
 # %% function
-def print(**kwargs) -> None :
+def print_file(**kwargs) -> None :
     '''
-    Changes the default print function to add functionalities
+    testingtestin
     '''
     return None
 
 
 
 # %% Class
-class print() :
+class print_file() :
     '''
-    Changes the default print function to add functionalities
+    testingtestin
     '''
 
     def __init__(self) :
