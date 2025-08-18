@@ -17,6 +17,7 @@ import toml
 import json
 import os
 import shutil
+import requests
 
 
 
@@ -30,7 +31,9 @@ def main() :
         name = input('     New library name ? >>> ')
         lib_path = path.parent / f'libsLP/{name}'
         if lib_path.exists() :
-            print('     This library already exists :/')
+            print('     This library already exists locally :/')
+        elif requests.get(f"https://pypi.org/pypi/{name}/json").status_code == 200 :
+            print('     This library already exists in PyPI :/')
         else :
             already_exists = False
     description = input('     what will the library do ? >>> ')
