@@ -25,5 +25,5 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-uv run libsLP/template_name/src/template_lowername/add_module.py
+uv run libsLP/template_name/.dev/add_module.py
 pause

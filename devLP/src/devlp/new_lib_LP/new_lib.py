@@ -76,7 +76,7 @@ def main() :
     print('     Gitignore was added')
     
     # Adding dependencies
-    #subprocess.run(["uv", "add", "pyLP"], cwd=lib_path, check=True, stdout=subprocess.PIPE)
+    #subprocess.run(["uv", "add", "coreLP"], cwd=lib_path, check=True, stdout=subprocess.PIPE)
     print('     uv dependencies added')
 
     # Adding modules json

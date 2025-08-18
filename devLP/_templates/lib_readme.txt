@@ -123,6 +123,7 @@ todo_tutorials
 
 ## Reference Guide
 
-To finish, we will cover the classes and functions individualy :
+To finish, we will cover the classes and functions individualy.
+
 Reference list :
 
