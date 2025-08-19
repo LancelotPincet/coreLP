@@ -33,7 +33,7 @@ start firefox "https://magelan.cnrs.fr/#/pageAccueil" ^
               "https://www.youtube.com/feed/playlists" ^
               "https://github.com/LancelotPincet?tab=repositories" ^
               "https://chatgpt.com/?model=auto" ^
-              "https://docs.astral.sh/uv/"
+              "https://docs.astral.sh/uv/reference/cli/"
 timeout /t 2 /nobreak >nul
 nircmd win min ititle "Firefox"
 
