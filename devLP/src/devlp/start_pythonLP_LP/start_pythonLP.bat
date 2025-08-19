@@ -25,6 +25,7 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-start "" "pythonLP.code-workspace"
-nircmd wait 5000
+start "" cmd /c "pythonLP.code-workspace"
+nircmd wait 2000
 nircmd win min ititle "pythonLP"
+exit 1
