@@ -25,5 +25,8 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-
+uv run git_pull
+call "%cd%\devLP\src\devlp\start_internet_LP\start_internet.bat"
+call  "%cd%\devLP\src\devlp\start_explorer_LP\start_explorer.bat"
+call  "%cd%\devLP\src\devlp\start_pythonLP_LP\start_pythonLP.bat"
 pause

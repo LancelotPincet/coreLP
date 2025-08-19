@@ -25,5 +25,17 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-start "" "pythonLP.code-workspace"
-exit(1)
+nircmd.exe win close ititle "Firefox"
+nircmd.exe win close ititle "Thunderbird"
+nircmd.exe win close ititle "KeePassXC"
+nircmd.exe win close ititle "pythonLP"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"
+nircmd.exe win close ititle "Explor"

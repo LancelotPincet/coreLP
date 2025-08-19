@@ -25,5 +25,6 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-
+uv run git_push
+call "%cd%\devLP\src\devlp\close_windows_LP\close_windows.bat"
 pause
