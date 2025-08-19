@@ -25,5 +25,4 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-set "filepath=pythonLP.code-workspace"
-start "" "%filepath%"
+explorer "%cd%"

@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Automation scripts for python developpment"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [ "toml", "pywin32", "nbconvert", "requests"]
+dependencies = [ "toml", "pywin32", "nbconvert", "requests",]
 [[project.authors]]
 name = "LancelotPincet"
 email = "40608570+LancelotPincet@users.noreply.github.com"
@@ -24,3 +24,4 @@ clear_notebooks = "devlp:clear_notebooks"
 make_symlink = "devlp:make_symlink"
 new_lib = "devlp:new_lib"
 new_script = "devlp:new_script"
+reset_debug = "devlp:reset_debug"
