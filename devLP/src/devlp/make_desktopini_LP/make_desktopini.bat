@@ -25,11 +25,5 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-uv venv --clear
-uv sync --all-packages
-uv run make_symlink
-uv run make_shortcuts
-uv run reset_debug
-uv run clear_notebooks
 uv run make_desktopini
 pause
