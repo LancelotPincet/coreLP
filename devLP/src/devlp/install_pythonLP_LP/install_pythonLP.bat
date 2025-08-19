@@ -29,4 +29,6 @@ uv venv --clear
 uv sync --all-packages
 uv run make_symlink
 uv run make_shortcuts
+uv run reset_debug
+uv run clear_notebooks
 pause
