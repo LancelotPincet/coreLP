@@ -13,6 +13,7 @@ Description   : Makes shortcuts for .bat files in devlp
 from devlp import path, create_folder, decompress_str
 import base64
 import ctypes
+import os
 from win32com.shell import shell # type: ignore
 import win32com.client
 
@@ -35,6 +36,7 @@ def main() :
     # Create ico folder and get default icon
     icon_folder = create_folder(".icons")
     lnk_folder = create_folder(".links")
+    lib_folder = create_folder(".libs_links")
 
     # Get default icon string
     with open(path / '_templates/icon_pythonLP.txt', 'r') as file :
@@ -66,6 +68,28 @@ def main() :
         shortcut.WorkingDirectory = str(path.parent)
         shortcut.IconLocation = str(icon_path)
         shortcut.save()
+    
+    # Libs shortcuts
+    lib_path = path.parent / "libsLP"
+    lib_list = list(lib_path.iterdir())
+    icon_path = path / "_template/icon_pythonLP.ico"
+    for lib in lib_list :
+        name = lib.name
+        print(f'     - {name} library')
+        os.mkdir(lib_folder / name)
+        folder = lib / ".dev"
+        for bat_path in folder.glob("*.bat") :
+            lnk_path = lib_folder / f"{name}/{bat_path.stem}.lnk"
+                    
+            # Create shortcut
+            Shell = win32com.client.Dispatch("WScript.Shell")
+            shortcut = Shell.CreateShortCut(str(lnk_path))
+            shortcut.TargetPath = r"C:\Windows\System32\cmd.exe"
+            shortcut.Arguments  = f"/c \"{str(bat_path)}\""
+            shortcut.WindowStyle = 1 # 1: Normal, 3: Maximized, 7: Minimized
+            shortcut.WorkingDirectory = str(path.parent)
+            shortcut.IconLocation = str(icon_path)
+            shortcut.save()
     
     # Refresh view
     ctypes.windll.shell32.SHChangeNotify(0x8000000, 0x1000, None, None)

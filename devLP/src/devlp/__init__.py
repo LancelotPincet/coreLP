@@ -24,8 +24,9 @@ path = Path(__file__).absolute().parents[2]
 
 # %% functions
 
-def create_folder(folder) :
-    folder = path / folder
+def create_folder(folder, parent_is_dev=True) :
+    if parent_is_dev :
+        folder = path / folder
 
     # Erase pre-existing folder
     if folder.exists() :

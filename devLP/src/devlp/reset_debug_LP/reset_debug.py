@@ -18,7 +18,7 @@ from devlp import path, create_folder
 def main() :
     print('\nRunning reset_debug :')
 
-    create_folder(path.parent / '.debug')
+    create_folder(path.parent / '.debug', parent_is_dev=False)
     print('     Debug folder created')
 
     # End

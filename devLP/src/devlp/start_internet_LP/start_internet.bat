@@ -25,9 +25,18 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-start firefox "https://github.com/LancelotPincet?tab=repositories" ^
+start KeePassXC
+timeout /t 2 /nobreak >nul
+nircmd win min ititle "KeePassXC"
+
+start firefox "https://magelan.cnrs.fr/#/pageAccueil" ^
               "https://www.youtube.com/feed/playlists" ^
+              "https://github.com/LancelotPincet?tab=repositories" ^
               "https://chatgpt.com/?model=auto" ^
-              "https://docs.astral.sh/uv/" ^
-              "https://magelan.cnrs.fr/#/pageAccueil" ^
-              
+              "https://docs.astral.sh/uv/"
+timeout /t 2 /nobreak >nul
+nircmd win min ititle "Firefox"
+
+start thunderbird
+timeout /t 2 /nobreak >nul
+nircmd win min ititle "Thunderbird"
