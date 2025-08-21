@@ -47,6 +47,8 @@ def main() :
     string = string.replace('template_modulename', name)
     string = string.replace('template_moduledate', date)
     string = string.replace('template_moduledescription', description)
+    string = string.replace('template_modulelib', template_name)
+    string = string.replace('template_modulelowerlib', template_lowername)
     with open(newpython_path, "w") as file :
         file.write(string)
     with open(module_path / "__init__.py", "w") as file :
@@ -61,6 +63,8 @@ def main() :
     string = string.replace('template_modulename', name)
     string = string.replace('template_moduledate', date)
     string = string.replace('template_moduledescription', description)
+    string = string.replace('template_modulelib', template_name)
+    string = string.replace('template_modulelowerlib', template_lowername)
     with open(newpython_path, "w") as file :
         file.write(string)
     print('     Test file written [to complete]')

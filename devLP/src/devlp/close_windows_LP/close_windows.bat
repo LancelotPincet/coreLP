@@ -25,10 +25,16 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+echo.
+echo.Running close_windows
 nircmd.exe win close ititle "Firefox"
+echo.     - closed Firefox
 nircmd.exe win close ititle "Thunderbird"
+echo.     - closed Thunderbird
 nircmd.exe win close ititle "KeePassXC"
+echo.     - closed KeePaxssXC
 nircmd.exe win close ititle "pythonLP"
+echo.     - closed Python IDE
 nircmd.exe win close ititle "Explor"
 nircmd.exe win close ititle "Explor"
 nircmd.exe win close ititle "Explor"
@@ -39,3 +45,6 @@ nircmd.exe win close ititle "Explor"
 nircmd.exe win close ititle "Explor"
 nircmd.exe win close ititle "Explor"
 nircmd.exe win close ititle "Explor"
+echo.     - closed Windows explorer
+echo.close_windows finished!
+echo.

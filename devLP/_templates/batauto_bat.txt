@@ -25,3 +25,8 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+echo.
+echo.Running template_name :
+echo.     - Middle print
+echo.template_name finished!
+echo.

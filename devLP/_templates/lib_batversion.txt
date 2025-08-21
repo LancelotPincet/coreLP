@@ -25,5 +25,21 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+uv run git_push
+echo.
+echo.Running upload_newversion :
 
+git subtree push --prefix=libsLP/template_name template_name main
+echo.     - pushed subtree
+
+cd .\libsLP\template_name
+uv build
+echo.     - project built
+
+uv version --bump minor
+echo.     - version bumped +0.+1.+0
+
+
+echo.upload_newversion finished!
+echo.
 pause

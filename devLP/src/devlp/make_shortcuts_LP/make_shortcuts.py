@@ -10,7 +10,7 @@ Description   : Makes shortcuts for .bat files in devlp
 
 
 # %% Libraries
-from devlp import path, create_folder, decompress_str
+from devlp import path, create_folder, decompress_str, lib_list
 import base64
 import ctypes
 import os
@@ -70,8 +70,6 @@ def main() :
         shortcut.save()
     
     # Libs shortcuts
-    lib_path = path.parent / "libsLP"
-    lib_list = list(lib_path.iterdir())
     icon_path = path / "_template/icon_pythonLP.ico"
     for lib in lib_list :
         name = lib.name

@@ -125,5 +125,12 @@ todo_tutorials
 
 To finish, we will cover the classes and functions individualy.
 
-Reference list :
+### Modules
+todo_modules
 
+### Scripts
+todo_scripts
+
+---
+
+**Thank you for your interest in template_name, and have a wonderful day!**

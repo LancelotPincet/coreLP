@@ -2,24 +2,31 @@
 # -*- coding: utf-8 -*-
 # /// script
 # requires-python = ">=template_scriptversion"
-# dependencies = [pyLP, template_scriptlib]
+# dependencies = [coreLP, template_scriptlib]
 # ///
 """
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : template_scriptdate
+Library       : template_scriptlib
 Description   : template_scriptdescription
 """
 
 
 
+# %% User inputs
+import_path = r'' # Path to the imported data
+export_path = import_path # Path to the exported
+
+
+
 # %% Libraries
-from pylp import main, print
+from corelp import main, print
 from template_scriptlowerlib import *
 
 
 
-# %% function
+# %% Function
 @main()
 def template_scriptname(**kwargs) -> None :
     '''

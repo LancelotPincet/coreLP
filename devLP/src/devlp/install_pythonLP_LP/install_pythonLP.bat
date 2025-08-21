@@ -25,11 +25,22 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-uv venv --clear
-uv sync --all-packages
+echo.
+echo.Installing pythonLP!
+echo.
+echo.Resetting venv :
+uv venv --clear > NUL 2>&1
+echo.     - venv cleared
+uv sync --all-packages > NUL 2>&1
+echo.     - venv synched
+echo.Resetting venv finished
+echo.
 uv run make_symlink
 uv run make_shortcuts
 uv run reset_debug
 uv run clear_notebooks
 uv run make_desktopini
+echo.
+echo.Installed pythonLP!
+echo.
 pause

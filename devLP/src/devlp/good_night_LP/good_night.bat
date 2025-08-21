@@ -25,6 +25,12 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+echo.
+echo.Congrats for your day!
+echo.
 uv run git_push
 call "%cd%\devLP\src\devlp\close_windows_LP\close_windows.bat"
+echo.
+echo.Good night, and enjoy the rest of the evening!
+echo.
 pause

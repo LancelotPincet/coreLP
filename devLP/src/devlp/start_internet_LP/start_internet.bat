@@ -25,9 +25,12 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+echo.
+echo.Running start_internet :
 start KeePassXC
 timeout /t 2 /nobreak >nul
 nircmd win min ititle "KeePassXC"
+echo.     - KeePassXC opened
 
 start firefox "https://magelan.cnrs.fr/#/pageAccueil" ^
               "https://www.youtube.com/feed/playlists" ^
@@ -36,7 +39,12 @@ start firefox "https://magelan.cnrs.fr/#/pageAccueil" ^
               "https://docs.astral.sh/uv/reference/cli/"
 timeout /t 2 /nobreak >nul
 nircmd win min ititle "Firefox"
+echo.     - Firefox opened
 
 start thunderbird
 timeout /t 2 /nobreak >nul
 nircmd win min ititle "Thunderbird"
+echo.     - Thunderbird opened
+
+echo.start_internet finished!
+echo.

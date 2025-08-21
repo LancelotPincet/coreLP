@@ -25,5 +25,9 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+echo.
+echo.Running start_pythonLP :
 start "" "pythonLP.code-workspace"
 exit 1
+echo.start_pythonLP finished!
+echo.

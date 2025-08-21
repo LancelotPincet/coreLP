@@ -4,17 +4,19 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : template_moduledate
+Library       : template_modulelib
+Module        : template_modulename
 Description   : template_moduledescription
 """
 
 
 
 # %% Libraries
-TODO
+from template_modulelowername import *
 
 
 
-# %% function
+# %% Function
 def template_modulename(**kwargs) -> None :
     '''
     template_moduledescription
@@ -36,5 +38,5 @@ class template_modulename() :
 
 # %% Test function run
 if __name__ == "__main__":
-    from pylp import test
+    from corelp import test
     test(__file__)

@@ -77,12 +77,25 @@ def main() :
     
     # Adding dependencies
     #subprocess.run(["uv", "add", "coreLP"], cwd=lib_path, check=True, stdout=subprocess.PIPE)
+    subprocess.run(["uv", "add", "pytest"], cwd=lib_path, check=True, stdout=subprocess.PIPE)
     print('     uv dependencies added')
 
     # Adding modules json
     with open(lib_path / f'src/{name.lower()}/modules.json', "w") as file :
         json.dump({}, file, indent=4, sort_keys=True)
     print('     module json added')
+
+    # Adding init file
+    shutil.copy(path.parent / '.gitignore', lib_path / ".gitignore")
+    with open(path / '_templates/lib_init.txt', "r") as file :
+        string = file.read()
+    string = string.replace('template_name', name)
+    string = string.replace('template_lowername', name.lower())
+    string = string.replace('template_date', date)
+    string = string.replace('template_description', description)
+    with open(lib_path / f'src/{name.lower()}/__init__.py', "w") as file :
+        file.write(string)
+    print('     module __init__ added')
 
     # Add dev folder
     dev_path = lib_path / '.dev'
@@ -142,6 +155,9 @@ def main() :
         file.write(string)
     print('     Added tools for creating new version')
 
+    # Add tools to complete read me file
+    # TODO
+
     # Create a github repo
     subprocess.run(["gh", "repo", "create", name, "--private"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
     print('     GitHub repository created')
@@ -152,9 +168,9 @@ def main() :
     subprocess.run(["git", "commit", "-m", f"New library {name} init"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
     print('     Git commit done')
     subprocess.run(["git", "push", "origin", "main"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
-    print('     Git push done')
+    print('     Git main push done')
     subprocess.run(["git", "subtree", "push", f"--prefix=libsLP/{name}", name, "main"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
-    print('     Git push done')
+    print('     Git subtree push done')
 
 
     # End

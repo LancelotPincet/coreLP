@@ -4,7 +4,7 @@
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
 Date          : 2025-08-01
-Description   : Automation scripts for developpments, should only rely on python stlibs.
+Description   : Automation scripts for developpments.
 """
 
 
@@ -19,6 +19,8 @@ import tkinter as tk
 from tkinter import filedialog
 from pathlib import Path
 path = Path(__file__).absolute().parents[2]
+lib_list = list((path.parent / "libsLP").iterdir())
+script_list = list((path.parent / "scriptsLP").iterdir())
 
 
 

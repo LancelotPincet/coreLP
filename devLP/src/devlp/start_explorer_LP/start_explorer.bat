@@ -25,6 +25,8 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+echo.
+echo.Running start_explorer :
 start explorer
 timeout /t 2 /nobreak >nul
 nircmd clipboard set "pythonLP"
@@ -34,6 +36,7 @@ nircmd sendkeypress ctrl+v
 nircmd wait 100
 nircmd sendkeypress enter
 nircmd wait 100
+echo.     - pythonLP opened
 
 nircmd sendkeypress ctrl+t
 nircmd wait 500
@@ -44,6 +47,7 @@ nircmd sendkeypress ctrl+v
 nircmd wait 100
 nircmd sendkeypress enter
 nircmd wait 100
+echo.     - libsLP opened
 
 nircmd sendkeypress ctrl+t
 nircmd wait 500
@@ -54,6 +58,7 @@ nircmd sendkeypress ctrl+v
 nircmd wait 100
 nircmd sendkeypress enter
 nircmd wait 100
+echo.     - .links opened
 
 nircmd sendkeypress ctrl+t
 nircmd wait 500
@@ -64,7 +69,10 @@ nircmd sendkeypress ctrl+v
 nircmd wait 100
 nircmd sendkeypress enter
 nircmd wait 100
+echo.     - .debug opened
 
 nircmd sendkeypress ctrl+t
 nircmd clipboard set ""
 nircmd win min ititle "Explor"
+echo.start_explorer finished!
+echo.
