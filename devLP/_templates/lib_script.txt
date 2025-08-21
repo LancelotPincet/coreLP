@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# /// script
+# requires-python = ">=template_scriptversion"
+# dependencies = [pyLP, template_scriptlib]
+# ///
 """
 Author        : Lancelot PINCET
 Email         : lancelot.pincet@free.fr
@@ -10,19 +14,22 @@ Description   : template_scriptdescription
 
 
 # %% Libraries
-TODO
+from pylp import main, print
+from template_scriptlowerlib import *
 
 
 
 # %% function
-def main(**kwargs) -> None :
+@main()
+def template_scriptname(**kwargs) -> None :
     '''
     template_scriptdescription
     '''
+    print("Hello world!)
     return None
 
 
 
 # %% Main function run
 if __name__ == "__main__":
-    main()
+    template_scriptname()

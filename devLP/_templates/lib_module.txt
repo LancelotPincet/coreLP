@@ -34,6 +34,7 @@ class template_modulename() :
     
 
 
-# %% Main function run
+# %% Test function run
 if __name__ == "__main__":
-    main()
+    from pylp import test
+    test(__file__)

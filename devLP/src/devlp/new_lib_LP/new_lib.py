@@ -81,7 +81,7 @@ def main() :
 
     # Adding modules json
     with open(lib_path / f'src/{name.lower()}/modules.json', "w") as file :
-        json.dump({}, file)
+        json.dump({}, file, indent=4, sort_keys=True)
     print('     module json added')
 
     # Add dev folder
@@ -92,7 +92,6 @@ def main() :
     # Add scripts
     scripts_path = lib_path / f'src/{name.lower()}/scripts'
     os.mkdir(scripts_path)
-    shutil.copy(path / '_templates/lib_script.txt', scripts_path / "template_script.txt")
     with open(scripts_path / '__init__.py', "w") as file :
         file.write("")
 
@@ -115,7 +114,6 @@ def main() :
     # Add modules
     modules_path = lib_path / f'src/{name.lower()}/modules'
     os.mkdir(modules_path)
-    shutil.copy(path / '_templates/lib_module.txt', modules_path / "template_module.txt")
     with open(modules_path / '__init__.py', "w") as file :
         file.write("")
 
