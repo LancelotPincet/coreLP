@@ -39,8 +39,8 @@ def main() :
     os.mkdir(script_path)
 
     # Write python script
-    python_path = path/'libsLP/coreLP/src/corelp/modules/template_module.txt'
-    newpython_path = script_path/f'{name}.py'
+    python_path = path.parent / 'libsLP/coreLP/src/corelp/modules/template_module.txt'
+    newpython_path = script_path / f'{name}.py'
     with open(python_path, "r") as file :
         string = file.read()
     string = string.replace('template_scriptname', name)

@@ -1,1 +1,1 @@
-{}
+{"print": {"module": "print_LP/print", "object": "print", "description": "Add functionnalities to python print"}}
