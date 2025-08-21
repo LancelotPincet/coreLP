@@ -47,7 +47,7 @@ nircmd wait 100
 
 nircmd sendkeypress ctrl+t
 nircmd wait 500
-nircmd clipboard set ".links"
+nircmd clipboard set "pythonLP/devLP/.links"
 nircmd sendkeypress alt+d
 nircmd wait 100
 nircmd sendkeypress ctrl+v
@@ -57,7 +57,7 @@ nircmd wait 100
 
 nircmd sendkeypress ctrl+t
 nircmd wait 500
-nircmd clipboard set ".debug"
+nircmd clipboard set "pythonLP/.debug"
 nircmd sendkeypress alt+d
 nircmd wait 100
 nircmd sendkeypress ctrl+v
