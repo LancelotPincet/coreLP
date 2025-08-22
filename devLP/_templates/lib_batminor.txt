@@ -25,6 +25,6 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-uv run git_push
-uv run libsLP/template_name/.dev/upload_newversion.py
+cd ./libsLP/template_name
+uv version --bump minor
 pause

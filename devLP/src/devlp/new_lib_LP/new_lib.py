@@ -147,16 +147,33 @@ def main() :
     print('     Added tools for adding modules')
 
     # Add tools to push to repo a new version
+    with open(path/'_templates/lib_pyversion.txt', "r") as file :
+        string = file.read()
+    string = string.replace("template_name", name)
+    string = string.replace("template_lowername", name.lower())
+    with open(dev_path / 'upload_newversion.py', "w") as file :
+        file.write(string)
+
     with open(path/'_templates/lib_batversion.txt', "r") as file :
         string = file.read()
     string = string.replace("template_name", name)
     string = string.replace("template_lowername", name.lower())
     with open(dev_path / 'upload_newversion.bat', "w") as file :
         file.write(string)
+
     print('     Added tools for creating new version')
 
-    # Add tools to complete read me file
-    # TODO
+    # Add tools to bump minor and major version
+    with open(path/'_templates/lib_batmajor.txt', "r") as file :
+        string = file.read()
+    with open(dev_path / 'bump_majorversion.bat', "w") as file :
+        file.write(string)
+    with open(path/'_templates/lib_batminor.txt', "r") as file :
+        string = file.read()
+    with open(dev_path / 'bump_minorversion.bat', "w") as file :
+        file.write(string)
+
+    print('     Added tools for bumping major and minor versions')
 
     # Create a github repo
     subprocess.run(["gh", "repo", "create", name, "--private"], cwd=path.parent, check=True, stdout=subprocess.PIPE)
