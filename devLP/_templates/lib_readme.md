@@ -1,10 +1,14 @@
 # template_name
 
-Author : Lancelot PINCET
-
-Email : lancelot.pincet@free.fr
-
-Date : template_date
+```plaintext
+Date          : template_date
+Author        : Lancelot PINCET
+GitHub        : https://github.com/LancelotPincet/template_name
+HTTPS         : https://github.com/LancelotPincet/template_name.git
+SSH           : git@github.com:LancelotPincet/template_name.git
+PyPI          : https://pypi.org/project/template_name
+Docs          : https://template_name.readthedocs.io
+```
 
 **template_description**
 
@@ -14,15 +18,27 @@ Date : template_date
 
 ---
 
+## MIT License
+
+Intellectual property behind this Library is protected via an [MIT license](LICENSE). This means everyone can *freely* use it in a personnal, academic or commercial manner, if they **keep the copyright name** at the top of the codes.
+
+The library can be redistributed, *with or without modifications*, in open or closed projects. However the **MIT license must be conserved**. For example in a commercial closed project, this means the **copyright and license must be visible somewhere**, like in the documentation or credits.
+
+The license also explains that the **code performances are not warrantied**, and you are responsible for how you are using it. For more information on your rights and obligations please refer to [descriptive websites](https://en.wikipedia.org/wiki/MIT_License), or contact author for approvales.
+
+---
+
 ## Beginner guide
 
 To help you getting started with **template_name**, we'll cover a few important topics :
+
 - [What is template_name](#description)
 - [How to install template_name](#installation)
 - [A quick start with template_name](#quick-start)
 - [How to get help](#getting-help)
 
 ### Description
+
 todo_description  
 
 ### Installation
@@ -31,19 +47,23 @@ todo_description
 As it is simple and has an all-in-one solution, I highly recommend switching your project to uv if you do not use it yet.
 
 #### 1. Install uv
+
 For installation, I recommend using a package manager like `Winget` or `Scoop` on Windows, and `Homebrew` on Linux and macOS.
 
 For using [Winget](https://winstall.app/apps/astral-sh.uv), write in powershell :
+
 ```powershell
 winget install --id=astral-sh.uv  -e
 ```
 
 For using [Scoop](https://scoop.sh/#/apps?q=uv), write in powershell :
+
 ```powershell
 scoop install main/uv
 ```
 
 For using Homebrew, write in bash :
+
 ```bash
 brew install uv
 ```
@@ -51,15 +71,18 @@ brew install uv
 If you still want to install uv using standalone installers or other methods, please refer to their [installation website](https://docs.astral.sh/uv/getting-started/installation/)
 
 #### 2. Create a project using uv
-To create a project with a dependency on **template_name**, just type in your console by filling ```PATH_TO_PROJECT``` :
-```sh
-cd PATH_TO_PROJECT
+
+To create a project with a dependency on **template_name**, just type in your console by filling ```PATH_TO_PROJECT_PARENT``` :
+
+```shell
+cd PATH_TO_PROJECT_PARENT
 uv init my_project
 cd my_project
 ```
 
 Then just add your project dependency to **template_name** :
-```sh
+
+```shell
 uv add template_name
 uv sync
 ```
@@ -68,27 +91,49 @@ Now your virtual environment with **template_name** should appear in your projec
 For more informations on how to manage your projects with uv, please refer to their [project guide](https://docs.astral.sh/uv/guides/projects/) and their [project reference page](https://docs.astral.sh/uv/concepts/projects/)
 
 #### 3. Run your scripts with uv
+
 Once your project is set, you can run any scripts inside the project folder with **template_name** dependency using simple command :
-```sh
+
+```shell
 uv run my_script.py
 ```
 
 For more information on scripts dependencies with uv, please refer to their [script guide](https://docs.astral.sh/uv/guides/scripts/)
+
+#### 4. Get source code
+
+If ever you want to use the source code in local, you can `git clone`the [GitHub repository](https://github.com/LancelotPincet/template_name).
+
+First go to the local directory where you want to save the repository (change `PATH_TO_REPO_PARENT`)
+
+```shell
+cd PATH_TO_REPO_PARENT
+```
+
+Then clone the repository
+
+```shell
+git clone https://github.com/LancelotPincet/template_name.git
+```
 
 ### Quick start
 
 To get a first grasp of template_name, you will need to know a bit of Python. For a refresher, see the [Python tutorial](https://docs.python.org/3/tutorial/)
 
 #### 1. Imports
+
 To import `template_name`, just use :
+
 ```python
 import template_lowername
 ```
 
 #### 2. Basics
+
 todo_basics
 
 #### 3. Simple example
+
 ```python
 todo_example
 ```
@@ -96,27 +141,31 @@ todo_example
 ### Getting help
 
 If you encounter problems or have questions:
+
 - Read the [User Guide](#user-guide)
 - Check the [Reference Guide](#reference-guide)
 - Open an issue on the [GitHub repository](https://github.com/LancelotPincet/template_name)
-- Contact author : lancelot.pincet@free.fr
 
 ---
 
 ## User Guide
 
 In the following, we will cover in-depth explanations, best practices, and more advanced workflows for template_name :
+
 - [What are the main concepts in template_name](#concepts)
 - [An overview of template_name features](#features)
 - [Realistic example and tutorials using template_name](#turorials)
 
 ### Concepts
+
 todo_concepts
 
 ### Features
+
 todo_features
 
 ### Tutorials
+
 todo_tutorials
 
 ---
@@ -126,9 +175,11 @@ todo_tutorials
 To finish, we will cover the classes and functions individualy.
 
 ### Modules
+
 todo_modules
 
 ### Scripts
+
 todo_scripts
 
 ---

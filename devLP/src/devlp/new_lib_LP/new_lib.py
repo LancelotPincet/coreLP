@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Date          : 2025-09-01
 Author        : Lancelot PINCET
-Email         : lancelot.pincet@free.fr
-Date          : 2025-08-16
+GitHub        : https://github.com/LancelotPincet
 Description   : Creates a new library
 """
 
@@ -49,7 +49,7 @@ def main() :
     print('     uv library initiated')
 
     # Filling Readme file
-    with open(path/'_templates/lib_readme.txt', "r") as file :
+    with open(path/'_templates/lib_readme.md', "r") as file :
         string = file.read()
     string = string.replace('template_name', name)
     string = string.replace('template_lowername', name.lower())

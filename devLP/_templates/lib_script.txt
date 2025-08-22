@@ -5,9 +5,9 @@
 # dependencies = [coreLP, template_scriptlib]
 # ///
 """
-Author        : Lancelot PINCET
-Email         : lancelot.pincet@free.fr
 Date          : template_scriptdate
+Author        : Lancelot PINCET
+GitHub        : https://github.com/LancelotPincet
 Library       : template_scriptlib
 Description   : template_scriptdescription
 """
