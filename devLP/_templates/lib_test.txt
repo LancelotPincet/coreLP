@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Date          : template_moduledate
+# Author        : Lancelot PINCET
+# GitHub        : https://github.com/LancelotPincet
+# Library       : template_modulelib
+
 """
-Date          : template_moduledate
-Author        : Lancelot PINCET
-GitHub        : https://github.com/LancelotPincet
-Library       : template_modulelib
-Description   : This file allows to test template_modulename
-Module        : template_moduledescription
+This file allows to test template_modulename
+
+template_modulename : template_moduledescription
 """
 
 

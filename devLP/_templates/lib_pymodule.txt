@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Date          : template_date
+# Author        : Lancelot PINCET
+# GitHub        : https://github.com/LancelotPincet
+
 """
-Date          : template_date
-Author        : Lancelot PINCET
-GitHub        : https://github.com/LancelotPincet
-Description   : template_description
+Create new module for template_name
 """
 
 

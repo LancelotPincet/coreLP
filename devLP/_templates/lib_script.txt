@@ -4,12 +4,14 @@
 # requires-python = ">=template_scriptversion"
 # dependencies = [coreLP, template_scriptlib]
 # ///
+
+# Date          : template_scriptdate
+# Author        : Lancelot PINCET
+# GitHub        : https://github.com/LancelotPincet
+# Library       : template_scriptlib
+
 """
-Date          : template_scriptdate
-Author        : Lancelot PINCET
-GitHub        : https://github.com/LancelotPincet
-Library       : template_scriptlib
-Description   : template_scriptdescription
+template_scriptdescription
 """
 
 

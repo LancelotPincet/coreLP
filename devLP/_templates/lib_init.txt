@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Date          : template_date
+# Author        : Lancelot PINCET
+# GitHub        : https://github.com/LancelotPincet
+# Library       : template_name
+
 """
-Date          : template_date
-Author        : Lancelot PINCET
-GitHub        : https://github.com/LancelotPincet
-Library       : template_name
-Description   : template_description
+template_description
 """
 
 
 
 # %% Lazy imports
 from corelp import getmodule
-__getattr__ = getmodule(__file__)
+__getattr__, __all__ = getmodule(__file__)
 
 
 

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Date          : 2025-09-01
+# Author        : Lancelot PINCET
+# GitHub        : https://github.com/LancelotPincet
+
 """
-Date          : 2025-09-01
-Author        : Lancelot PINCET
-GitHub        : https://github.com/LancelotPincet
-Description   : Clears all outputs from jupyter notebooks (usefull before commiting)
+Clears all outputs from jupyter notebooks (usefull before commiting)
 """
 
 

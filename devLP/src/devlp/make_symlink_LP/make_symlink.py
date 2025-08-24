@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Date          : 2025-09-01
+# Author        : Lancelot PINCET
+# GitHub        : https://github.com/LancelotPincet
 """
-Date          : 2025-09-01
-Author        : Lancelot PINCET
-GitHub        : https://github.com/LancelotPincet
-Description   : Makes a symlink of pythonLP into the user folder
+Makes a symlink of pythonLP into the user folder
 """
 
 
