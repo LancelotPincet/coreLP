@@ -21,7 +21,28 @@ from template_modulelowername import *
 def template_modulename(**kwargs) -> None :
     '''
     template_moduledescription
+    
+    Parameters
+    ----------
+    a : int or float
+        TODO.
+
+    Returns
+    -------
+    int or float
+        TODO.
+
+    Raises
+    ------
+    TypeError
+        TODO.
+
+    Examples
+    --------
+    >>> template_modulename(TODO)
+    TODO
     '''
+
     return None
 
 
@@ -30,11 +51,53 @@ def template_modulename(**kwargs) -> None :
 class template_modulename() :
     '''
     template_moduledescription
+    
+    Parameters
+    ----------
+    a : int or float
+        TODO.
+
+    Attributes
+    ----------
+    _attr : int or float
+        TODO.
+
+    Examples
+    --------
+    >>> template_modulename(TODO)
+    TODO
     '''
 
     def __init__(self) :
         pass
     
+    def method(self) :
+    '''
+    TODO
+    
+    Parameters
+    ----------
+    a : int or float
+        TODO.
+
+    Returns
+    -------
+    int or float
+        TODO.
+
+    Raises
+    ------
+    TypeError
+        TODO.
+
+    Examples
+    --------
+    >>> self.method(TODO)
+    TODO
+    '''
+
+    return None
+
 
 
 # %% Test function run

@@ -21,7 +21,7 @@ from pathlib import Path
 def main() :
     print('\nRunning upload_newversion :')
 
-    # Push pythonLP
+    # Push subtree
     subprocess.run(["git", "subtree", "push", "--prefix=libsLP/template_name", "template_name", "main"], cwd=path.parent, stdout=subprocess.PIPE, text=True)
     print('     pushed newversion to individual repository)
 

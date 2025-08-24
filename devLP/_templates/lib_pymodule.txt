@@ -40,18 +40,22 @@ def main() :
     print(f'     date : {date}')
     os.mkdir(module_path)
 
+    # Function to copy file
+    def copy_file(from_path, to_path) :
+        string = from_path.read_text()
+        string = string.replace('template_modulename', name)
+        string = string.replace('template_moduledate', date)
+        string = string.replace('template_moduledescription', description)
+        string = string.replace('template_modulelib', "template_name")
+        string = string.replace('template_modulelowerlib', "template_lowername")
+        string = string.replace('template_moduleequals', "="*len(name))
+        string = string.replace('template_modulelibequals', "="*len("template_name"))
+        to_path.write_text(string)
+        
     # Write python module
     python_path = path / '_templates/lib_module.txt'
     newpython_path = module_path / f'{name}.py'
-    with open(python_path, "r") as file :
-        string = file.read()
-    string = string.replace('template_modulename', name)
-    string = string.replace('template_moduledate', date)
-    string = string.replace('template_moduledescription', description)
-    string = string.replace('template_modulelib', template_name)
-    string = string.replace('template_modulelowerlib', template_lowername)
-    with open(newpython_path, "w") as file :
-        file.write(string)
+    copy_file(python_path, newpython_path)
     with open(module_path / "__init__.py", "w") as file :
         file.write("")
     print('     Module file written [to complete]')
@@ -59,15 +63,7 @@ def main() :
     # Add test
     python_path = path / '_templates/lib_test.txt'
     newpython_path = module_path / f'test_{name}.py'
-    with open(python_path, "r") as file :
-        string = file.read()
-    string = string.replace('template_modulename', name)
-    string = string.replace('template_moduledate', date)
-    string = string.replace('template_moduledescription', description)
-    string = string.replace('template_modulelib', template_name)
-    string = string.replace('template_modulelowerlib', template_lowername)
-    with open(newpython_path, "w") as file :
-        file.write(string)
+    copy_file(python_path, newpython_path)
     print('     Test file written [to complete]')
 
     # Add module to json file
@@ -83,6 +79,20 @@ def main() :
     with open(json_path, "w") as file :
         json.dump(data, file, indent=4, sort_keys=True)
     print("     Module json updated")
+
+    # Create documentation
+    if name[0] == (name.lower())[0] : # if function
+        rst_path = path / '_templates/lib_docaddfunction.rst'
+    else : # Class
+        rst_path = path / '_templates/lib_docaddclass.rst'
+    newrst_path = path.parent / f'libsLP/template_name/docs/source/{name}.rst'
+    copy_file(rst_path, newrst_path)
+
+    allmodules_path = path.parent / f'libsLP/template_name/docs/source/modules.rst'
+    with open(allmodules_path, "a") as file :
+        file.write(f"    {name}")
+
+    print('     Documentation rst file added')
 
     # End
     print('add_module finished!\n')

@@ -1,13 +1,29 @@
 [project]
 name = "devlp"
 version = "0.1.0"
-description = "Automation scripts for python developpment"
+description = "Automation scripts for python development"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [ "pytest", "sphinx", "sphinx-rtd-theme", "toml", "pywin32", "nbconvert", "requests",]
+dependencies = [
+    "pytest",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx_copybutton",
+    "toml",
+    "pywin32",
+    "nbconvert",
+    "requests",
+]
+
 [[project.authors]]
 name = "LancelotPincet"
 email = "40608570+LancelotPincet@users.noreply.github.com"
+
+[tool.uv]
+# Keep your current environment requirement
+required-environments = [
+  "sys_platform == 'win32' and (platform_machine == 'AMD64' or platform_machine == 'x86_64')",
+]
 
 [build-system]
 requires = [ "uv_build>=0.8.8,<0.9.0",]
