@@ -68,7 +68,7 @@ def main() :
 
     # Add module to json file
     modjson = {}
-    modjson['module'] = f"{name}_LP/{name}"
+    modjson['module'] = f"modules/{name}_LP/{name}"
     modjson['object'] = name
     modjson['description'] = description
     modjson['date'] = date

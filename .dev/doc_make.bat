@@ -25,6 +25,7 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
+call "%CURRENT_DIR%\.venv\Scripts\activate.bat"
 
 REM Check Sphinx
 if "%SPHINXBUILD%" == "" (
@@ -32,8 +33,8 @@ if "%SPHINXBUILD%" == "" (
 )
 
 REM Folders
-set SOURCEDIR=".\docs\source"
-set BUILDDIR=".\docs\build"
+set SOURCEDIR=".\libsLP\coreLP\docs\source"
+set BUILDDIR=".\libsLP\coreLP\docs\build"
 
 REM Check if sphinx-build is available
 %SPHINXBUILD% --version >NUL 2>NUL

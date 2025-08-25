@@ -7,3 +7,4 @@ Here are the references to the various modules to import in **coreLP**.
    :maxdepth: 1
    :caption: Modules
 
+    getmodule

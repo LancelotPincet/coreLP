@@ -14,6 +14,8 @@ Create new script for coreLP
 from devlp import path
 from datetime import datetime
 import os
+import toml
+import json
 
 
 
@@ -69,6 +71,20 @@ def main() :
     with open(toml_path, "w") as file:
         toml.dump(data, file)
     print(f'     Script was added to project')
+
+    # Add script to json file
+    scrjson = {}
+    scrjson['script'] = f"scripts/{name}_LP/{name}"
+    scrjson['object'] = name
+    scrjson['description'] = description
+    scrjson['date'] = date
+    json_path = path.parent / f'libsLP/coreLP/src/corelp/scripts.json'
+    with open(json_path, "r") as file :
+        data = json.load(file)
+    data[name] = scrjson
+    with open(json_path, "w") as file :
+        json.dump(data, file, indent=4, sort_keys=True)
+    print("     Script json updated")
 
     # Create documentation
     rst_path = path / '_templates/lib_docaddscript.rst'

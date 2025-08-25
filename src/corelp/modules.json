@@ -1,1 +1,8 @@
-{}
+{
+    "getmodule": {
+        "date": "2025-08-25",
+        "description": "This function is to be used in a library __init__ file. It creates lazy imports of the module imported and defines __getattr__ and __all__ for this library.",
+        "module": "modules/getmodule_LP/getmodule",
+        "object": "getmodule"
+    }
+}
