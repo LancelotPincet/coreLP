@@ -1,8 +1,26 @@
 {
+    "debug": {
+        "date": "2025-08-25",
+        "description": "This function will give and create the debug folder for a given python file.",
+        "module": "modules/debug_LP/debug",
+        "object": "debug"
+    },
+    "folder": {
+        "date": "2025-08-25",
+        "description": "This function creates a new folder, while crushing previous instances if already exists.",
+        "module": "modules/folder_LP/folder",
+        "object": "folder"
+    },
     "getmodule": {
         "date": "2025-08-25",
         "description": "This function is to be used in a library __init__ file. It creates lazy imports of the module imported and defines __getattr__ and __all__ for this library.",
         "module": "modules/getmodule_LP/getmodule",
         "object": "getmodule"
+    },
+    "test": {
+        "date": "2025-08-25",
+        "description": "This function will launch the testfile for the current file using pytest library.",
+        "module": "modules/test_LP/test",
+        "object": "test"
     }
 }

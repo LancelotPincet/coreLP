@@ -15,11 +15,12 @@ This function is to be used in a library __init__ file. It creates lazy imports 
 # %% Libraries
 from pathlib import Path
 import json
+import importlib
 
 
 
 # %% Function
-def getmodule(file) -> None :
+def getmodule(file) :
     '''
     This function is to be used in a library __init__ file. It creates lazy imports of the module imported and defines __getattr__ and __all__ for this library.
     
@@ -31,7 +32,7 @@ def getmodule(file) -> None :
     Returns
     -------
     _getattr : function
-        Function to replace __init__.py __getattr__ variable.
+        Function to replace __getattr__ variable.
     _all : list
         list of module names corresponding to __all__.
 
@@ -44,12 +45,37 @@ def getmodule(file) -> None :
     # Get paths
     file = Path(file)
     libfolder = file.parent
+    name = libfolder.name
     modulesjson = libfolder / 'modules.json'
-    
+    scriptsjson = libfolder / 'modules.json'
 
+    # Get dicts
+    with open(modulesjson, "r") as file :
+        modules = json.load(file)
+    with open(scriptsjson, "r") as file :
+        scripts = json.load(file)
 
+    # Objects to return
+    _lazy = {}
+    _all = [module for module in modules] + [script for script in scripts]
+    def _getattr(attr) :
+        
+        # Cached
+        if attr in _lazy:
+            return _lazy[attr]
 
-    return None
+        module = modules[attr]
+        path2module = module["module"]
+        obj_name = module["object"]
+
+        mod = importlib.import_module(path2module, name)
+        obj = getattr(mod, obj, None)
+        if obj is None :
+            raise AttributeError(f"module {name}.{path2module} has no attribute {obj_name}")
+        _lazy[attr] = obj  # Cache it
+        return obj
+
+    return _getattr, _all
 
 
 
