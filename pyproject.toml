@@ -1,25 +1,22 @@
 [project]
-name = "pythonlp"
+name = "corelp"
 version = "0.1.0"
-description = "Developpment workspace of Lancelot PINCET"
+description = "A library that gathers core functions for python programming."
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies =  [
-  "devlp",
+dependencies = [
+    "pytest>=8.4.1",
+    "sphinx>=8.2.3",
+    "sphinx-rtd-theme>=3.0.2",
+    "toml>=0.10.2",
 ]
+[[project.authors]]
+name = "LancelotPincet"
+email = "40608570+LancelotPincet@users.noreply.github.com"
 
-[tool.uv]
-environments = [
-  "sys_platform == 'linux' and platform_machine == 'x86_64'",
-  "sys_platform == 'win32' and (platform_machine == 'AMD64' or platform_machine == 'x86_64')",
-]
+[build-system]
+requires = [ "uv_build>=0.8.8,<0.9.0",]
+build-backend = "uv_build"
 
-[tool.uv.sources]
-devlp = { workspace = true }
-
-[tool.uv.workspace]
-members = [
-    "devLP",
-    "libsLP/*",
-    "scriptsLP/*",
-]
+["tool.uv"]
+required-environments = [ "sys_platform == 'linux' and platform_machine == 'x86_64'", "sys_platform == 'win32' and (platform_machine == 'AMD64' or platform_machine == 'x86_64')",]
