@@ -51,7 +51,8 @@ def test(file) :
         return None
     
     # Testing
-    subprocess.run(["pytest", test_name], cwd=module_folder, check=True, stdout=subprocess.PIPE)
+    if test_name.exists() :
+        subprocess.run(["pytest", test_name], cwd=module_folder, check=True, stdout=subprocess.PIPE)
 
 
 

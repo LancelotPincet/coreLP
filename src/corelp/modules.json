@@ -17,6 +17,12 @@
         "module": "modules/getmodule_LP/getmodule",
         "object": "getmodule"
     },
+    "print": {
+        "date": "2025-08-25",
+        "description": "This function improves python print to give other functionalities.",
+        "module": "modules/print_LP/print",
+        "object": "print"
+    },
     "test": {
         "date": "2025-08-25",
         "description": "This function will launch the testfile for the current file using pytest library.",
