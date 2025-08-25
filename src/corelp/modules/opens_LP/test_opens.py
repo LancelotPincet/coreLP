@@ -6,18 +6,17 @@
 # Library       : coreLP
 
 """
-This file allows to test folder
+This file allows to test opens
 
-folder : This function creates a new folder, while crushing previous instances if already exists.
+opens : This function opens a large portion of various files kinds and accepts bulk opening from folder.
 """
 
 
 
 # %% Libraries
-from corelp import print, debug
+from corelp import print
 import pytest
-from corelp import folder
-path = debug(__file__)
+from corelp import opens
 
 
 
@@ -27,7 +26,7 @@ def instance() :
     '''
     Create a new instance at each test function
     '''
-    return folder()
+    return opens()
 
 
 
@@ -38,9 +37,9 @@ def instance() :
 ])
 def test_returns(args, kwargs, expected, message) -> None :
     '''
-    Test folder return values
+    Test opens return values
     '''
-    assert folder(*args, **kwargs) == expected, message
+    assert opens(*args, **kwargs) == expected, message
 
 
 
@@ -51,10 +50,10 @@ def test_returns(args, kwargs, expected, message) -> None :
 ])
 def test_errors(args, kwargs, error, error_message) -> None :
     '''
-    Test folder error values
+    Test opens error values
     '''
     with pytest.raises(error, match=error_message) :
-        folder(*args, **kwargs)
+        opens(*args, **kwargs)
 
 
 

@@ -17,11 +17,41 @@
         "module": "modules/getmodule_LP/getmodule",
         "object": "getmodule"
     },
+    "main": {
+        "date": "2025-08-25",
+        "description": "This decorator is to put above your main function for scripts to improve user-friendliness",
+        "module": "modules/main_LP/main",
+        "object": "main"
+    },
+    "opens": {
+        "date": "2025-08-25",
+        "description": "This function opens a large portion of various files kinds and accepts bulk opening from folder.",
+        "module": "modules/opens_LP/opens",
+        "object": "opens"
+    },
     "print": {
         "date": "2025-08-25",
         "description": "This function improves python print to give other functionalities.",
         "module": "modules/print_LP/print",
         "object": "print"
+    },
+    "prop": {
+        "date": "2025-08-25",
+        "description": "This function serves as an improved property decorator.",
+        "module": "modules/prop_LP/prop",
+        "object": "prop"
+    },
+    "section": {
+        "date": "2025-08-25",
+        "description": "This decorator defines sections in scripts and helps caching results.",
+        "module": "modules/section_LP/section",
+        "object": "section"
+    },
+    "selfkwargs": {
+        "date": "2025-08-25",
+        "description": "This function sets all attributes defined in kwargs dictionnary to self instance.",
+        "module": "modules/selfkwargs_LP/selfkwargs",
+        "object": "selfkwargs"
     },
     "test": {
         "date": "2025-08-25",

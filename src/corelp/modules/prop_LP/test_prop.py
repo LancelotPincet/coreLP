@@ -6,18 +6,17 @@
 # Library       : coreLP
 
 """
-This file allows to test debug
+This file allows to test prop
 
-debug : This function will give and create the debug folder for a given python file.
+prop : This function serves as an improved property decorator.
 """
 
 
 
 # %% Libraries
-from corelp import print, debug
+from corelp import print
 import pytest
-from corelp import debug
-path = debug(__file__)
+from corelp import prop
 
 
 
@@ -27,7 +26,7 @@ def instance() :
     '''
     Create a new instance at each test function
     '''
-    return debug()
+    return prop()
 
 
 
@@ -38,9 +37,9 @@ def instance() :
 ])
 def test_returns(args, kwargs, expected, message) -> None :
     '''
-    Test debug return values
+    Test prop return values
     '''
-    assert debug(*args, **kwargs) == expected, message
+    assert prop(*args, **kwargs) == expected, message
 
 
 
@@ -51,10 +50,10 @@ def test_returns(args, kwargs, expected, message) -> None :
 ])
 def test_errors(args, kwargs, error, error_message) -> None :
     '''
-    Test debug error values
+    Test prop error values
     '''
     with pytest.raises(error, match=error_message) :
-        debug(*args, **kwargs)
+        prop(*args, **kwargs)
 
 
 

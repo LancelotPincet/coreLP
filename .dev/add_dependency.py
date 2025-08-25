@@ -26,7 +26,7 @@ def main() :
         ok = input(f'     "{name}" will be added to coreLP ? [y]/n >>> ')
         if ok.lower() in ["", "y", "yes", "true"] :
             todefine = False
-    subprocess.run(["uv", "add", name], cwd=path / 'libsLP/coreLP', check=True, stdout=subprocess.PIPE)
+    subprocess.run(["uv", "add", name], cwd=path.parent / 'libsLP/coreLP', check=True, stdout=subprocess.PIPE)
 
     # End
     print('add_dependency finished!\n')

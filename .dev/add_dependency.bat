@@ -25,6 +25,5 @@ if /i "%DIRNAME%"=="pythonLP" (
 )
 
 :run_script
-cd ./libsLP/coreLP
 uv run libsLP/coreLP/.dev/add_dependency.py
 pause

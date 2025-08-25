@@ -37,11 +37,6 @@ def debug(file, new=True) :
     debug_folder : Path
         Path to the debug folder.
 
-    Raises
-    ------
-    SyntaxError
-        If user answers *no* to crush existing folder when warning asked.
-
     Examples
     --------
     debug_folder = debug(__file__)
@@ -51,12 +46,12 @@ def debug(file, new=True) :
     file = Path(file)
     module_name = file.name
     lib_name = file.parents[2].name
-    debug_parent = Path.home() / f'pythonLP / .debug'
+    debug_parent = Path.home() / f'pythonLP/.debug'
     debug_folder = debug_parent / f'{lib_name}.{module_name}'
 
     # Create folders
     if not debug_parent.exists() : # Create parent folder if does not exist yet
-        os.mkdirs(debug_parent)
+        os.makedirs(debug_parent)
     return folder(debug_folder, False, new=new)
 
 

@@ -1,9 +1,9 @@
 # pythonLP
-**/.venv/
-**/.icons/
-**/.libs_links/
-**/.links/
-**/.debug/
+.venv/
+.icons/
+.libs_links/
+.links/
+.debug/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -33,3 +33,6 @@ uv.lock
 build/
 *.log
 *.doctree
+
+# pytest
+.pytest_cache

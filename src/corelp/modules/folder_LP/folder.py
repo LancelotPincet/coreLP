@@ -38,6 +38,11 @@ def folder(path, /, warning=True, *, new=True) :
     folder_path : Path
         Path object to created folder.
 
+    Raises
+    ------
+    SyntaxError
+        If user answers *no* to crush existing folder when warning asked.
+
     Examples
     --------
     folder_path = folder(path)
@@ -72,10 +77,10 @@ def folder(path, /, warning=True, *, new=True) :
                     shutil.rmtree(directory, onexc=remove_protection)
                 else:
                     os.remove(directory)
-        shutil.rmtree(folder, onexc=remove_protection)
+        shutil.rmtree(path, onexc=remove_protection)
     
     # End
-    os.mkdirs(path)
+    os.makedirs(path)
     return path
 
 

@@ -36,6 +36,11 @@ def getmodule(file) :
     _all : list
         list of module names corresponding to __all__.
 
+    Raises
+    ------
+    AttributeError
+        When trying to import a module which is not in the library.
+
     Examples
     --------
     # In __init__.py file
@@ -64,12 +69,15 @@ def getmodule(file) :
         if attr in _lazy:
             return _lazy[attr]
 
-        module = modules[attr]
-        path2module = module["module"]
+        try :
+            module = modules[attr]
+        except KeyError:
+            raise AttributeError(f'module {name} has no attribute {attr}')
+        path2module = module["module"].replace('/', '.')
         obj_name = module["object"]
 
-        mod = importlib.import_module(path2module, name)
-        obj = getattr(mod, obj, None)
+        mod = importlib.import_module(f"{name}.{path2module}")
+        obj = getattr(mod, obj_name, None)
         if obj is None :
             raise AttributeError(f"module {name}.{path2module} has no attribute {obj_name}")
         _lazy[attr] = obj  # Cache it

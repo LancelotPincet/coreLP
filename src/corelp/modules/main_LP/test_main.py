@@ -6,18 +6,17 @@
 # Library       : coreLP
 
 """
-This file allows to test print
+This file allows to test main
 
-print : This function improves python print to give other functionalities.
+main : This decorator is to put above your main function for scripts to improve user-friendliness
 """
 
 
 
 # %% Libraries
-from corelp import print, debug
-import pytest
 from corelp import print
-path = debug(__file__)
+import pytest
+from corelp import main
 
 
 
@@ -27,7 +26,7 @@ def instance() :
     '''
     Create a new instance at each test function
     '''
-    return print()
+    return main()
 
 
 
@@ -38,9 +37,9 @@ def instance() :
 ])
 def test_returns(args, kwargs, expected, message) -> None :
     '''
-    Test print return values
+    Test main return values
     '''
-    assert print(*args, **kwargs) == expected, message
+    assert main(*args, **kwargs) == expected, message
 
 
 
@@ -51,10 +50,10 @@ def test_returns(args, kwargs, expected, message) -> None :
 ])
 def test_errors(args, kwargs, error, error_message) -> None :
     '''
-    Test print error values
+    Test main error values
     '''
     with pytest.raises(error, match=error_message) :
-        print(*args, **kwargs)
+        main(*args, **kwargs)
 
 
 

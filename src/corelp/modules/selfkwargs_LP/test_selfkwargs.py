@@ -6,18 +6,17 @@
 # Library       : coreLP
 
 """
-This file allows to test getmodule
+This file allows to test selfkwargs
 
-getmodule : This function is to be used in a library __init__ file. It creates lazy imports of the module imported and defines __getattr__ and __all__ for this library.
+selfkwargs : This function sets all attributes defined in kwargs dictionnary to self instance.
 """
 
 
 
 # %% Libraries
-from corelp import print, debug
+from corelp import print
 import pytest
-from corelp import getmodule
-path = debug(__file__)
+from corelp import selfkwargs
 
 
 
@@ -27,7 +26,7 @@ def instance() :
     '''
     Create a new instance at each test function
     '''
-    return getmodule()
+    return selfkwargs()
 
 
 
@@ -38,9 +37,9 @@ def instance() :
 ])
 def test_returns(args, kwargs, expected, message) -> None :
     '''
-    Test getmodule return values
+    Test selfkwargs return values
     '''
-    assert getmodule(*args, **kwargs) == expected, message
+    assert selfkwargs(*args, **kwargs) == expected, message
 
 
 
@@ -51,10 +50,10 @@ def test_returns(args, kwargs, expected, message) -> None :
 ])
 def test_errors(args, kwargs, error, error_message) -> None :
     '''
-    Test getmodule error values
+    Test selfkwargs error values
     '''
     with pytest.raises(error, match=error_message) :
-        getmodule(*args, **kwargs)
+        selfkwargs(*args, **kwargs)
 
 
 

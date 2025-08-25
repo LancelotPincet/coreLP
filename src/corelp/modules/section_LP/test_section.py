@@ -6,18 +6,17 @@
 # Library       : coreLP
 
 """
-This file allows to test test
+This file allows to test section
 
-test : This function will launch the testfile for the current file using pytest library.
+section : This decorator defines sections in scripts and helps caching results.
 """
 
 
 
 # %% Libraries
-from corelp import print, debug
+from corelp import print
 import pytest
-from corelp import test
-path = debug(__file__)
+from corelp import section
 
 
 
@@ -27,7 +26,7 @@ def instance() :
     '''
     Create a new instance at each test function
     '''
-    return test()
+    return section()
 
 
 
@@ -38,9 +37,9 @@ def instance() :
 ])
 def test_returns(args, kwargs, expected, message) -> None :
     '''
-    Test test return values
+    Test section return values
     '''
-    assert test(*args, **kwargs) == expected, message
+    assert section(*args, **kwargs) == expected, message
 
 
 
@@ -51,10 +50,10 @@ def test_returns(args, kwargs, expected, message) -> None :
 ])
 def test_errors(args, kwargs, error, error_message) -> None :
     '''
-    Test test error values
+    Test section error values
     '''
     with pytest.raises(error, match=error_message) :
-        test(*args, **kwargs)
+        section(*args, **kwargs)
 
 
 
