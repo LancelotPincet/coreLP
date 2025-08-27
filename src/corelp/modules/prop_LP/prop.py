@@ -34,44 +34,44 @@ def prop(*, cache=False, link=None) :
 
     Examples
     --------
-    class MyClass :
+    >>> from corelp import prop
+    >>> class MyClass :
 
-        # Set default value
-        @prop()
-        def defaultattr(self) :
-            return "MyDefaultValue" # --> is overriden if "_defaultattr" exists
+    ...     # Set default value
+    ...     @prop()
+    ...     def defaultattr(self) :
+    ...         return "MyDefaultValue" # --> is overriden if "_defaultattr" exists
 
-        # Set initialization value
-        @prop(cache=True)
-        def cachedattr(self) :
-            return "MyCachedValue" # --> called once and cached in "_cachedattr"
+    ...     # Set initialization value
+    ...     @prop(cache=True)
+    ...     def cachedattr(self) :
+    ...         return "MyCachedValue" # --> called once and cached in "_cachedattr"
 
-        # Override setter value
-        @prop()
-        def overridesetter(self) :
-            return "MyDefaultValue"
-        @overridesetter.setter()
-        def overridesetter(self, value) :
-            return str(value) # --> will apply this function to value before caching it to "_overridesetter"
+    ...     # Override setter value
+    ...     @prop()
+    ...     def overridesetter(self) :
+    ...         return "MyDefaultValue"
+    ...     @overridesetter.setter()
+    ...     def overridesetter(self, value) :
+    ...         return str(value) # --> will apply this function to value before caching it to "_overridesetter"
 
 
 
-    instance = MyClass() # Creates instance of MyClass
-    class MyTwin :
+    >>> instance = MyClass() # Creates instance of MyClass
+    >>> class MyTwin :
 
-        # The following properties do the same thing
+    ...     # The following properties do the same thing
 
-        mytwin = instance
-        # Links on attribute name
-        @prop(link="mytwin") # --> links to self.mytwin
-        def attrlink(self) :
-            return "defaultattr" # --> calls the "defaultattr" attribute of the linked object
+    ...     mytwin = instance
+    ...     # Links on attribute name
+    ...     @prop(link="mytwin") # --> links to self.mytwin
+    ...     def attrlink(self) :
+    ...         return "defaultattr" # --> calls the "defaultattr" attribute of the linked object
 
-        # Links on object
-        @prop(link=instance) # --> links to an object
-        def objectlink(self) :
-            return "defaultattr" # --> calls the "defaultattr" attribute of the linked object
-
+    ...     # Links on object
+    ...     @prop(link=instance) # --> links to an object
+    ...     def objectlink(self) :
+    ...         return "defaultattr" # --> calls the "defaultattr" attribute of the linked object
     '''
     
     if link is not None :

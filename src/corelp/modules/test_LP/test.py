@@ -35,10 +35,10 @@ def test(file) :
 
     Examples
     --------
-    # %% Test function run
-    if __name__ == "__main__":
-        from corelp import test
-        test(__file__)
+    >>> # %% Test function run
+    ... if __name__ == "__main__":
+    ...     from corelp import test
+    ...     test(__file__)
     '''
 
     # Get paths

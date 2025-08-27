@@ -39,7 +39,8 @@ def debug(file, new=True) :
 
     Examples
     --------
-    debug_folder = debug(__file__)
+    >>> from corelp import debug
+    >>> debug_folder = debug(__file__)
     '''
 
     # Get paths

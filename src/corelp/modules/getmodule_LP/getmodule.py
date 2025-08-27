@@ -43,8 +43,9 @@ def getmodule(file) :
 
     Examples
     --------
-    # In __init__.py file
-    __getattr__, __all__ = getmodule(__file__)
+    >>> from corelp import getmodule
+    >>> # In __init__.py file
+    ... __getattr__, __all__ = getmodule(__file__)
     '''
 
     # Get paths
