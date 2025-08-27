@@ -42,20 +42,25 @@ def kwargsself(self) :
     ...         selkwargs(self, kwargs) # Sets all the keyword arguments to self
     
     >>> instance = MyClass(a=1, b=2)
-    >>> print(instance.a) # should print : 1
-    >>> print(instance.b) # should print : 2
+    >>> print(instance.a)
+    1
+    >>> print(instance.b)
+    2
 
     >>> # Store state
     ... kwargs = kwargsself(instance)
-    >>> print(kwargs) # should print : {"a": 1, "b": 2}
+    >>> print(kwargs)
+    {"a": 1, "b": 2}
 
     >>> # Change state
     ... instance.a = 0
-    >>> print(instance.a) # should print : 0
+    >>> print(instance.a)
+    0
 
     >>> # Restore state
     ... selfkwargs(instance, kwargs)
-    >>> print(instance.a) # should print : 1
+    >>> print(instance.a)
+    1
     '''
 
     if hasattr(self, "__dict__") :

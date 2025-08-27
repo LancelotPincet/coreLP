@@ -1,4 +1,4 @@
-coreLP.prop module
+corelp.prop module
 ==================
 
 .. autofunction:: corelp.prop

@@ -1,4 +1,4 @@
-coreLP.folder module
+corelp.folder module
 ====================
 
 .. autofunction:: corelp.folder

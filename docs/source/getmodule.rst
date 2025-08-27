@@ -1,4 +1,4 @@
-coreLP.getmodule module
+corelp.getmodule module
 =======================
 
 .. autofunction:: corelp.getmodule

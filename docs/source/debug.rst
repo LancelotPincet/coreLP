@@ -1,4 +1,4 @@
-coreLP.debug module
+corelp.debug module
 ===================
 
 .. autofunction:: corelp.debug

@@ -1,4 +1,4 @@
-coreLP.test module
+corelp.test module
 ==================
 
 .. autofunction:: corelp.test

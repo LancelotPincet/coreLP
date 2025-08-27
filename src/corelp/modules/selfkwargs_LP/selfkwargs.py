@@ -34,8 +34,10 @@ def selfkwargs(self, kwargs) :
     ...         selkwargs(self, kwargs) # Sets all the keyword arguments to self
     
     >>> instance = MyClass(a=1, b=2)
-    >>> print(instance.a) # should print : 1
-    >>> print(instance.b) # should print : 2
+    >>> print(instance.a)
+    1
+    >>> print(instance.b)
+    2
     '''
 
     for key, value in kwargs.items() :

@@ -37,6 +37,6 @@ TODO
 
 If you encounter problems or have questions:
 
-- Read the :doc:`User Guide <userguide>`
-- Check the :doc:`Reference Guide <referenceguide>`
+- Read the :doc:`User Guide <user_guide>`
+- Check the :doc:`Reference Guide <reference_guide>`
 - Open an issue on the `GitHub repository <https://github.com/LancelotPincet/coreLP>`_

@@ -1,4 +1,4 @@
-coreLP.kwargsself module
+corelp.kwargsself module
 ========================
 
 .. autofunction:: corelp.kwargsself
