@@ -19,11 +19,23 @@ This function overrides python built in print function to add functionnalities.
 # %% Libraries
 from corelp import prop
 from dataclasses import dataclass
+from datetime import datetime, timedelta
 from rich import print as richprint
 from rich.console import Console
 from rich.theme import Theme
+from rich.markdown import Markdown
+from rich.traceback import Traceback
+from rich.progress import (
+    Progress,
+    BarColumn,
+    TextColumn,
+    TaskProgressColumn,
+    TimeElapsedColumn,
+    TimeRemainingColumn,
+    ProgressColumn,
+)
+import traceback as tb_module
 from time import perf_counter
-import contextlib
 from pathlib import Path
 pyprint = print
 
@@ -73,27 +85,6 @@ class Print() :
     >>> print.print(mystring) # rich console print
     >>> print.log(mystring) # rich console log
 
-    Tabulation
-    ----------
-    ntabs : int
-        Number of tabulations.
-    nspaces : str
-        Number of spaces per tabulation.
-    space : str
-        String corresponding to one space.
-    lasted : float
-        Duration of last tab sequence.
-    tabulation : property
-        Current tabulation.
-
-    >>> print.ptab() # adds tab
-    >>> print(mystring) # with one tab
-    >>> print.mtab() # removes tab
-    >>> print(mystring) # with no tab
-    >>> with print.tab() :
-    ...     print(mystring) # with one tab, duration of with statement measured in "lasted" attribute
-    ... print(mystring) # with no tab
-    
     Logging
     -------
     file : Path
@@ -104,26 +95,41 @@ class Print() :
 
     Console
     -------
+    theme : dict
+        Dictionnary containing the added styles.
     console : Console
         Rich library console object to use with printing mode "console".
 
     >>> print.add_theme({"success" : "green"}) # defining new kind of style
     >>> print(mystring, style="sucess") # Writes in green
+    >>> try :
+    ...     1/0
+    ... except Exception :
+    ...     print.error() # Prints pretty error
+    >>> print.export_html("log.html") # Creates html with all the logs
+
+    CLOCK
+    -------
+    progress : Progress
+        Current Progress object from rich library.
+    bars : dict
+        Stores the current bars existing in progress object.
+
+    >>> from time import sleep
+    >>> for i in print.clock(15, "Outer loop") : # First argument is iterable, if int --> range(int)
+    ...     for j in print.clock(10, "Inner loop") 
+    ...         sleep(1.)
     '''
 
     # Main function
-    def __call__(self, *args, verbose=None, ntabs=None, file=None, mode='a', end='\n', **kwargs) :
+    def __call__(self, string, verbose=None, file=None, mode='a', end='\n', **kwargs) :
         # Muting
         verbose = verbose if verbose is not None else self.verbose
         if not verbose :
             return None
         
-        # Tabulation
-        ntabs = ntabs if ntabs is not None else self.ntabs
-        string = self.getstring(*args, end=end)
-
-        # printing action
-        self.print(string, **kwargs)
+        # Printing markdown
+        self.print(Markdown(string), **kwargs)
 
         # Writting to file
         file = file if file is not None else self.file
@@ -139,6 +145,7 @@ class Print() :
 
 
     # PRINT
+
     @property
     def print(self) :
         return self.console.print
@@ -147,58 +154,6 @@ class Print() :
         return self.console.log
     pyprint = pyprint # python print
     richprint = richprint # rich print
-
-
-
-    # TABULATIONS
-
-    ntabs : int = 0 # Numbers of tabulations 
-    nspaces : int = 5 # Number of spaces per tabulation
-    space : str = " " # One space string
-    lasted : float = None # duration of last tab sequence [s]
-
-    @property
-    def tabulation(self) :
-        return int(self.ntabs) * int(self.nspaces) * str(self.space)
-
-    def getstring(self, *args, end="\n") :
-        string = self.tabulation
-        string = string.join(str(arg) for arg in args)
-        string = string.replace('\n', '\n' + self.tabulation)
-        string += end
-        return string
-
-    def ptab(self) :
-        '''
-        "plus-tab" : Adds one tabulation
-        '''
-        self.ntabs += 1
-
-    def mtab(self) :
-        '''
-        "minus-tab" : Removes one tabulation
-        '''
-        self.ntabs -= 1
-        self.ntabs = max(0, self.ntabs)
-
-    @contextlib.contextmanager
-    def tab(self) :
-        self.ptab() #entering
-        tic = perf_counter()
-        try:
-            yield #return that gets picked up in the 'as'
-        except Exception as e:
-            toc = perf_counter()
-            self.mtab()
-            self.lasted = toc-tic
-            self(f'Error, lasted {self.lasted:.3f}s')
-            raise e #if error
-        else :
-            toc = perf_counter()
-            self.mtab() #if no error
-            self.lasted = toc-tic # duration of last tab
-        finally:
-            pass #exiting
 
 
 
@@ -220,15 +175,105 @@ class Print() :
     def add_theme(self, dic) :
         self.theme.update(dic)
         self._console = None
+
     @prop(cache=True)
     def console(self) :
         theme = Theme(self.theme)
-        return Console(theme=theme)
+        return Console(theme=theme, record=True)
+
+    def error(self) :
+        rich_tb = Traceback.from_exception(*tb_module.sys.exc_info())
+        self.console.print(rich_tb)
+    
+    def export_html(self, path) :
+        path = Path(path)
+        html_content = self.console.export_html(inline_styles=True)
+        with open(path, "w", encoding="utf-8") as file:
+            file.write(html_content)
+    
+
+
+    # CLOCK
+
+    def clock(self, iterable, title="Working...") :
+
+        # Get iterable
+        iterable = range(iterable) if isinstance(iterable, int) else iterable
+
+        # Detect if progressbar already exists
+        first_bar = getattr(self, "_progress", None) is None
+        progress = self.progress
+        bars = self.bars
+        
+        # Opens progress
+        if first_bar :
+            verbose = self.verbose
+            self.verbose = False
+            progress.start()
+        
+        # Create new task
+        task = bars.get(title, None)
+        if task is None : # No bar with this name exists
+            task = progress.add_task(title, total=len(iterable), avg_time=0.0)
+            bars[title] = task # store it
+        else :
+            progress.reset(task)
+        
+        # Loop
+        loop_counter = 0
+        start = perf_counter()
+        for item in iterable :
+            yield item
+            loop_counter += 1
+            elapsed = perf_counter() - start
+            avg_time = elapsed / loop_counter if loop_counter else 0
+            progress.update(task, advance=1, avg_time=avg_time)
+        
+        # Clean up
+        if first_bar :
+            progress.stop()
+            del(self.bars)
+            del(self.progress)
+            self.verbose = verbose
+
+    @prop(cache=True)
+    def progress(self) :
+        return Progress(
+        TextColumn("{task.description}"),
+        BarColumn(),
+        TaskProgressColumn(),
+        TextColumn("[magenta]/{task.total}[/]"),
+        TimeElapsedColumn(),
+        AvgLoopTimeColumn(),
+        TimeRemainingColumn(),
+        EndTimeColumn(),
+        transient=False
+        )
+    
+    @prop(cache=True)
+    def bars(self) :
+        return {}
 
 
 
 # Get instance
 print = Print() # Instance to use everywhere
+
+# Custom Progress bar columns
+class AvgLoopTimeColumn(ProgressColumn):
+    def render(self, task):
+        avg_time = task.fields.get("avg_time", None)
+        if avg_time is not None and task.completed > 0:
+            string = f"[yellow]↻ {avg_time:.2f}s[/]" if avg_time > 1 else f"[yellow]↻ {avg_time*1000:.2f}ms[/]"
+            return string
+        return ""
+class EndTimeColumn(ProgressColumn):
+    def render(self, task):
+        if task.time_remaining is not None:
+            end_time = datetime.now() + timedelta(seconds=task.time_remaining)
+            return f"[cyan]{end_time:%m-%d %H:%M:%S}[/] "
+        return ""
+
 
 
 # %% Test function run
