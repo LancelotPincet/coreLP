@@ -48,14 +48,6 @@ def prop(*, cache=False, link=None) :
     ...     def cachedattr(self) :
     ...         return "MyCachedValue" # --> called once and cached in "_cachedattr"
     ...
-    ...     # Override setter value
-    ...     @prop()
-    ...     def overridesetter(self) :
-    ...         return "MyDefaultValue"
-    ...     @overridesetter.setter()
-    ...     def overridesetter(self, value) :
-    ...         return str(value) # --> will apply this function to value before caching it to "_overridesetter"
-    ...
     ...
     ...
     >>> instance = MyClass() # Creates instance of MyClass
@@ -102,14 +94,6 @@ def defaultproperty(cache):
 
         prop = property(getter, setter, deleter)
 
-        # wrapper to allow user-defined setter logic
-        def setter_wrapper(setfunc):
-            def new_setter(self, value):
-                new_value = setfunc(self, value)
-                setattr(self, f'_{attribut}', new_value)
-            return property(getter, new_setter, deleter)
-
-        prop.setter = setter_wrapper
         return prop
     return decorator
 
@@ -132,6 +116,7 @@ def linkproperty(link):
 
         return prop
     return decorator
+
 
 
 # %% Test function run

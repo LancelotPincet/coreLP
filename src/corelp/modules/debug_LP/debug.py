@@ -46,10 +46,10 @@ def debug(file, new=True) :
 
     # Get paths
     file = Path(file)
-    module_name = file.name
+    module_name = file.stem.replace("test_", "")
     lib_name = file.parents[2].name
-    debug_parent = Path.home() / f'pythonLP/.debug'
-    debug_folder = debug_parent / f'{lib_name}.{module_name}'
+    debug_parent = Path.home() / 'pythonLP/.debug'
+    debug_folder = debug_parent / f'{lib_name}_{module_name}'
 
     # Create folders
     if not debug_parent.exists() : # Create parent folder if does not exist yet

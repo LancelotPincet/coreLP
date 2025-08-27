@@ -18,7 +18,7 @@ This function overrides python built in print function to add functionnalities.
 
 # %% Libraries
 from corelp import prop
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from rich import print as richprint
 from rich.console import Console
@@ -44,7 +44,7 @@ pyprint = print
 # %% Class
 @dataclass(slots=True, kw_only=True)
 class Print() :
-    f'''
+    '''
     This function overrides python built in print function to add functionnalities.
 
     Call
@@ -100,8 +100,8 @@ class Print() :
     console : Console
         Rich library console object to use with printing mode "console".
 
-    >>> print.add_theme({"success" : "green"}) # defining new kind of style
-    >>> print(mystring, style="sucess") # Writes in green
+    >>> print.theme = {"success" : "green"} # defining new kind of style
+    >>> print(mystring, style="success") # Writes in green
     >>> try :
     ...     1/0
     ... except Exception :
@@ -140,7 +140,7 @@ class Print() :
 
 
     # MUTING
-    verbose = True # True to print
+    verbose : bool = True # True to print
 
 
 
@@ -159,10 +159,10 @@ class Print() :
 
     # LOGGING
 
-    _file = None
+    _file : Path = None
     @property
     def file(self) :
-        return self.file
+        return self._file
     @file.setter
     def file(self, value) :
         self._file = Path(value)
@@ -171,11 +171,16 @@ class Print() :
 
     # CONSOLE
 
-    theme = {}
-    def add_theme(self, dic) :
-        self.theme.update(dic)
+    _theme = {}
+    @property
+    def theme(self) :
+        return self._theme
+    @theme.setter
+    def theme(self, value) :
+        self._theme.update(value)
         self._console = None
 
+    _console : Console = field(default=None, repr=False)
     @prop(cache=True)
     def console(self) :
         theme = Theme(self.theme)
@@ -184,6 +189,9 @@ class Print() :
     def error(self) :
         rich_tb = Traceback.from_exception(*tb_module.sys.exc_info())
         self.console.print(rich_tb)
+    
+    def print_locals(self) :
+        self.console.log(log_locals=True)
     
     def export_html(self, path) :
         path = Path(path)
@@ -236,6 +244,7 @@ class Print() :
             del(self.progress)
             self.verbose = verbose
 
+    _progress : Progress = field(default=None, repr=False)
     @prop(cache=True)
     def progress(self) :
         return Progress(
@@ -250,6 +259,7 @@ class Print() :
         transient=False
         )
     
+    _bars : dict = field(default=None, repr=False)
     @prop(cache=True)
     def bars(self) :
         return {}

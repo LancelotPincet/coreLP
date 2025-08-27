@@ -67,7 +67,7 @@ def kwargsself(self) :
         return {key: value for key, value in self.__dict__.items()}
 
     elif hasattr(self, "__slots__") :
-        return {key : self[key] for key in self.__slots__}
+        return {key : getattr(self, key) for key in self.__slots__}
 
     else :
         raise TypeError('Object has not __dict__ nore __slots__')

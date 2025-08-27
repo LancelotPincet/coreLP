@@ -54,7 +54,7 @@ def getmodule(file) :
     libfolder = file.parent
     name = libfolder.name
     modulesjson = libfolder / 'modules.json'
-    scriptsjson = libfolder / 'modules.json'
+    scriptsjson = libfolder / 'scripts.json'
 
     # Get dicts
     with open(modulesjson, "r") as file :

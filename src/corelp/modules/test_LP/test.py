@@ -13,14 +13,13 @@ This function will launch the testfile for the current file using pytest library
 
 
 # %% Libraries
-from corelp import debug
 from pathlib import Path
 import subprocess
 
 
 
 # %% Function
-def test(file) :
+def test(file, new=True) :
     '''
     This function will launch the testfile for the current file using pytest library.
     
@@ -28,10 +27,8 @@ def test(file) :
     ----------
     file : str
         __file__ string in the current python file to be tested.
-
-    Returns
-    -------
-    None
+    new : bool
+        True to create a new folder.
 
     Examples
     --------
@@ -54,8 +51,7 @@ def test(file) :
     
     # Testing
     if test_file.exists() :
-        debug_folder = debug(file).absolute()
-        subprocess.run(["pytest", test_name, f"--cache-dir={debug_folder}"], cwd=module_folder, check=True) #, stdout=subprocess.PIPE
+        subprocess.run(["pytest", "-s", test_name], cwd=module_folder, check=True)
 
 
 
