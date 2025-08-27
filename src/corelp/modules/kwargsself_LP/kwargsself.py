@@ -14,7 +14,7 @@ This function will return all the attributes of an object (self) into a dictionn
 
 # %% Function
 def kwargsself(self) :
-    f'''
+    '''
     This function will return all the attributes of an object (self) into a dictionnary (kwargs)
     
     Parameters
@@ -36,7 +36,7 @@ def kwargsself(self) :
     --------
     >>> from corelp import selfkwargs, kwargsself
     >>> # Typicall use is to store instance's state :
-    ... class MyClass :
+    >>> class MyClass :
     ...     def __init__(self, **kwargs) :
     ...         selkwargs(self, kwargs) # Sets all the keyword arguments to self
     >>> instance = MyClass(a=1, b=2)
@@ -46,17 +46,17 @@ def kwargsself(self) :
     2
     ...
     >>> # Store state
-    ... kwargs = kwargsself(instance)
+    >>> kwargs = kwargsself(instance)
     >>> print(kwargs)
     {"a": 1, "b": 2}
     ...
     >>> # Change state
-    ... instance.a = 0
+    >>> instance.a = 0
     >>> print(instance.a)
     0
     ...
     >>> # Restore state
-    ... selfkwargs(instance, kwargs)
+    >>> selfkwargs(instance, kwargs)
     >>> print(instance.a)
     1
     '''
