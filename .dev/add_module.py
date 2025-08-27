@@ -29,6 +29,11 @@ def main() :
         module_path = path.parent / f'libsLP/coreLP/src/corelp/modules/{name}_LP'
         if module_path.exists() :
             print('     This module already exists :/')
+            crush = input("     Do you want to crush existing module? y/[no] >>> ")
+            if str(crush).lower() in ["y", "yes", "true", "1"] :
+                crush = input("     Sure? y/[no] >>> ")
+                if str(crush).lower() in ["y", "yes", "true", "1"] :
+                    already_exists = False
         else :
             already_exists = False
     description = input('     what will the module do ? >>> ')
@@ -89,8 +94,12 @@ def main() :
     copy_file(rst_path, newrst_path)
 
     allmodules_path = path.parent / f'libsLP/coreLP/docs/source/modules.rst'
+    string = allmodules_path.read_text()
+    string = string.replace(f"   {name}\n", "")
+    with open(allmodules_path, "w") as file :
+        file.write(string)
     with open(allmodules_path, "a") as file :
-        file.write(f"    {name}")
+        file.write(f"   {name}\n")
 
     print('     Documentation rst file added')
 

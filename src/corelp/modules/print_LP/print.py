@@ -44,7 +44,7 @@ class Print() :
     def __init__(self) :
         pass
     
-    def __call__(*args, **kwargs) :
+    def __call__(self, *args, **kwargs) :
         '''
         TODO
     

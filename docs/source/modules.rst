@@ -7,4 +7,14 @@ Here are the references to the various modules to import in **coreLP**.
    :maxdepth: 1
    :caption: Modules
 
-    getmodule    test    debug    folder    print    script    main    section    selfkwargs    opens    prop
+   getmodule
+   test
+   debug
+   folder
+   print
+   script
+   main
+   section
+   selfkwargs
+   opens
+   prop
