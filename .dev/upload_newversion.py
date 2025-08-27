@@ -23,35 +23,35 @@ def main() :
 
     # Push subtree
     subprocess.run(["git", "subtree", "push", "--prefix=libsLP/coreLP", "coreLP", "main"], cwd=path.parent, stdout=subprocess.PIPE, text=True)
-    print('     pushed newversion to individual repository)
+    print('     pushed newversion to individual repository')
 
     # Build project
-    subprocess.run(["uv", "build"], cwd=path.parent\libsLP\coreLP, stdout=subprocess.PIPE, text=True)
+    subprocess.run(["uv", "build"], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
     print('     project built')
 
     # Get PyPI tokens
-    with open(Path.home() / 'LancelotPincet_uv-publish.testpypi_token) as file :
+    with open(Path.home() / 'LancelotPincet_uv-publish.testpypi_token') as file :
         test_token = file.read()
-    print(f'     Got TestPyPI token : {test_token})
-    with open(Path.home() / 'LancelotPincet_uv-publish.pypi_token) as file :
+    print(f'     Got TestPyPI token : {test_token}')
+    with open(Path.home() / 'LancelotPincet_uv-publish.pypi_token') as file :
         token = file.read()
-    print(f'     Got PyPI token : {token})
+    print(f'     Got PyPI token : {token}')
 
     # Publish TestPyPI
-    subprocess.run(["uv", "publish", "--token", test_token, "--publish-url", "https://test.pypi.org/legacy/"], cwd=path.parent\libsLP\coreLP, stdout=subprocess.PIPE, text=True)
-    print("     published to TestPyPI)
-    subprocess.run(["uv", "run", "--with", coreLP, "--no-project", "--", "python", "-c", '"import corelp"'], cwd=path.parent\libsLP\coreLP, stdout=subprocess.PIPE, text=True)
+    subprocess.run(["uv", "publish", "--token", test_token, "--publish-url", "https://test.pypi.org/legacy/"], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
+    print("     published to TestPyPI")
+    subprocess.run(["uv", "run", "--with", "coreLP", "--no-project", "--", "python", "-c", '"import corelp"'], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
     print('     test from TestPyPI import successful')
     
     # Publish PyPI
-    subprocess.run(["uv", "publish", "--token", token], cwd=path.parent\libsLP\coreLP, stdout=subprocess.PIPE, text=True)
-    print("     published to PyPI)
-    subprocess.run(["uv", "run", "--with", coreLP, "--no-project", "--", "python", "-c", '"import corelp"'], cwd=path.parent\libsLP\coreLP, stdout=subprocess.PIPE, text=True)
+    subprocess.run(["uv", "publish", "--token", token], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
+    print("     published to PyPI")
+    subprocess.run(["uv", "run", "--with", "coreLP", "--no-project", "--", "python", "-c", '"import corelp"'], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
     print('     test from PyPI import successful')
     
     # Bump version number
-    subprocess.run(["uv", "version", "--bump", "patch"], cwd=path.parent\libsLP\coreLP, stdout=subprocess.PIPE, text=True)
-    print("     bumped patch version)
+    subprocess.run(["uv", "version", "--bump", "patch"], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
+    print("     bumped patch version")
 
     # End
     print('upload_newversion finished!\n')
