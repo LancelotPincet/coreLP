@@ -11,7 +11,7 @@ Upload new realease for coreLP
 
 
 # %% Libraries
-from devlp import path
+from devlp import path, create_folder
 import subprocess
 from pathlib import Path
 
@@ -26,7 +26,8 @@ def main() :
     print('     pushed newversion to individual repository')
 
     # Build project
-    subprocess.run(["uv", "build"], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
+    create_folder(path.parent / "libsLP/coreLP/dist", parent_is_idev=False)
+    subprocess.run(["uv", "build", ".", "--out-dir", "."], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
     print('     project built')
 
     # Get PyPI tokens
