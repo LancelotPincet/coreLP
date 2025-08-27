@@ -35,28 +35,26 @@ def kwargsself(self) :
     Examples
     --------
     >>> from corelp import selfkwargs, kwargsself
-
     >>> # Typicall use is to store instance's state :
     ... class MyClass :
     ...     def __init__(self, **kwargs) :
     ...         selkwargs(self, kwargs) # Sets all the keyword arguments to self
-    
     >>> instance = MyClass(a=1, b=2)
     >>> print(instance.a)
     1
     >>> print(instance.b)
     2
-
+    ...
     >>> # Store state
     ... kwargs = kwargsself(instance)
     >>> print(kwargs)
     {"a": 1, "b": 2}
-
+    ...
     >>> # Change state
     ... instance.a = 0
     >>> print(instance.a)
     0
-
+    ...
     >>> # Restore state
     ... selfkwargs(instance, kwargs)
     >>> print(instance.a)

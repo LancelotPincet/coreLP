@@ -102,7 +102,7 @@ The **second option** is to install Spyder and Jupyter in the *.venv*.
    uv add spyder
 
 Then you can call these in a terminal to open directly the softwares with the *.venv*
-However installing *Spyder* with *uv* (=*pip* installation) can sometimes be difficult with dependencies.
+However installing *Spyder* with *uv* (= *pip* installation) can sometimes be difficult with dependencies.
 
 Other editors
 ~~~~~~~~~~~~~

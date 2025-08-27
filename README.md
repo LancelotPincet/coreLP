@@ -11,9 +11,8 @@ Docs          : https://coreLP.readthedocs.io
 
 **A library that gathers core functions for python programming.**
 
-1. New to **coreLP**? Check out the [Beginner Guide](#beginner-guide) to get up and running
-2. Want a deeper understanding of key concepts in **coreLP**? Dive into the [User Guide](#user-guide) to have a full understanding of the tool
-3. Have a specific question? Consult the [Reference Guide](#reference-guide) to have detailed info on the functions
+coreLP is available on [PyPI](https://pypi.org/project/coreLP) for pip installs.
+For more information, do not hesitate to consult the [Documentation](https://coreLP.readthedocs.io).
 
 ---
 
