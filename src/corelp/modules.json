@@ -17,6 +17,12 @@
         "module": "modules/getmodule_LP/getmodule",
         "object": "getmodule"
     },
+    "kwargsself": {
+        "date": "2025-08-27",
+        "description": "This function will return all the attributes of an object (self) into a dictionnary (kwargs)",
+        "module": "modules/kwargsself_LP/kwargsself",
+        "object": "kwargsself"
+    },
     "main": {
         "date": "2025-08-25",
         "description": "This decorator is to put above your main function for scripts to improve user-friendliness",
@@ -30,7 +36,7 @@
         "object": "opens"
     },
     "print": {
-        "date": "2025-08-25",
+        "date": "2025-08-27",
         "description": "This function improves python print to give other functionalities.",
         "module": "modules/print_LP/print",
         "object": "print"
@@ -48,8 +54,8 @@
         "object": "section"
     },
     "selfkwargs": {
-        "date": "2025-08-25",
-        "description": "This function sets all attributes defined in kwargs dictionnary to self instance.",
+        "date": "2025-08-27",
+        "description": "This function takes a dictionnary and sets all its values to an object (self).",
         "module": "modules/selfkwargs_LP/selfkwargs",
         "object": "selfkwargs"
     },

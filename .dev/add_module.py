@@ -55,7 +55,7 @@ def main() :
         string = string.replace('template_modulelib', "coreLP")
         string = string.replace('template_modulelowerlib', "corelp")
         string = string.replace('template_moduleequals', "="*len(name))
-        string = string.replace('template_modulelibequals', "="*len("coreLP"))
+        string = string.replace('template_modlibeq', "="*len("coreLP"))
         to_path.write_text(string)
         
     # Write python module

@@ -12,92 +12,123 @@ This function serves as an improved property decorator.
 
 
 
-# %% Libraries
-from corelp import *
-
-
-
 # %% Function
-def prop(**kwargs) :
+def prop(*, cache=False, link=None) :
     '''
     This function serves as an improved property decorator.
+    By default, calls the function as a normal property.
+    However if the readonly attribute of same name (starting with "_") exists and is not None, it returns this value.
+    This function can also be used to link the property to another object attribute, then the return value should be this linked name.
     
     Parameters
     ----------
-    a : int or float
-        TODO.
+    cache : bool
+        True to set readonly attribute at first call.
+    link : bool
+        True to link property to another object attribute.
 
     Returns
     -------
-    b : int or float
-        TODO.
-
-    Raises
-    ------
-    TypeError
-        TODO.
+    decorator : property
+        This is the decorator to apply.
 
     Examples
     --------
-    >>> prop(TODO)
-    TODO
+    class MyClass :
+
+        # Set default value
+        @prop()
+        def defaultattr(self) :
+            return "MyDefaultValue" # --> is overriden if "_defaultattr" exists
+
+        # Set initialization value
+        @prop(cache=True)
+        def cachedattr(self) :
+            return "MyCachedValue" # --> called once and cached in "_cachedattr"
+
+        # Override setter value
+        @prop()
+        def overridesetter(self) :
+            return "MyDefaultValue"
+        @overridesetter.setter()
+        def overridesetter(self, value) :
+            return str(value) # --> will apply this function to value before caching it to "_overridesetter"
+
+
+
+    instance = MyClass() # Creates instance of MyClass
+    class MyTwin :
+
+        # The following properties do the same thing
+
+        mytwin = instance
+        # Links on attribute name
+        @prop(link="mytwin") # --> links to self.mytwin
+        def attrlink(self) :
+            return "defaultattr" # --> calls the "defaultattr" attribute of the linked object
+
+        # Links on object
+        @prop(link=instance) # --> links to an object
+        def objectlink(self) :
+            return "defaultattr" # --> calls the "defaultattr" attribute of the linked object
+
     '''
-
-    return None
-
-
-
-# %% Class
-class prop() :
-    '''
-    This function serves as an improved property decorator.
     
-    Parameters
-    ----------
-    a : int or float
-        TODO.
+    if link is not None :
+        return linkproperty(link)
+    return defaultproperty(cache)
 
-    Attributes
-    ----------
-    _attr : int or float
-        TODO.
 
-    Examples
-    --------
-    >>> prop(TODO)
-    TODO
-    '''
 
-    def __init__(self) :
-        pass
-    
-    def method(self) :
-        '''
-        TODO
-    
-        Parameters
-        ----------
-        a : int or float
-            TODO.
+def defaultproperty(cache):
+    def decorator(func) :
+        attribut = func.__name__
 
-        Returns
-        -------
-        b : int or float
-            TODO.
+        def getter(self):
+            _attribut = getattr(self, f'_{attribut}',None)
+            if _attribut is not None :
+                return _attribut
+            result = func(self)
+            if cache :
+                setattr(self, f'_{attribut}', result)
+            return result
 
-        Raises
-        ------
-        TypeError
-            TODO.
+        def setter(self, value):
+            setattr(self, f'_{attribut}', value)
 
-        Examples
-        --------
-        >>> self.method(TODO)
-        TODO
-        '''
+        def deleter(self):
+            setattr(self, f'_{attribut}', None)
 
-        return None
+        prop = property(getter, setter, deleter)
 
+        # wrapper to allow user-defined setter logic
+        def setter_wrapper(setfunc):
+            def new_setter(self, value):
+                new_value = setfunc(self, value)
+                setattr(self, f'_{attribut}', new_value)
+            return property(getter, new_setter, deleter)
+
+        prop.setter = setter_wrapper
+        return prop
+    return decorator
+
+
+
+def linkproperty(link):
+    def decorator(func) :
+
+        def getter(self):
+            obj = getattr(self, link) if isinstance(link, str) else link
+            attribut = func(self)
+            return getattr(obj, f'{attribut}')
+
+        def setter(self, value):
+            obj = getattr(self, link) if isinstance(link, str) else link
+            attribut = func(self)
+            setattr(obj, f'{attribut}', value)
+
+        return property(getter, setter)
+    return decorator
 
 
 # %% Test function run

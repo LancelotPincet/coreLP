@@ -1,102 +1,45 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Date          : 2025-08-25
+# Date          : 2025-08-27
 # Author        : Lancelot PINCET
 # GitHub        : https://github.com/LancelotPincet
 # Library       : coreLP
 # Module        : selfkwargs
 
 """
-This function sets all attributes defined in kwargs dictionnary to self instance.
+This function takes a dictionnary and sets all its values to an object (self).
 """
 
 
 
-# %% Libraries
-from corelp import *
-
-
-
 # %% Function
-def selfkwargs(**kwargs) :
+def selfkwargs(self, kwargs) :
     '''
-    This function sets all attributes defined in kwargs dictionnary to self instance.
+    This function takes a dictionnary (kwargs) and sets all its values to an object (self).
     
     Parameters
     ----------
-    a : int or float
-        TODO.
-
-    Returns
-    -------
-    b : int or float
-        TODO.
-
-    Raises
-    ------
-    TypeError
-        TODO.
+    self : object
+        Object instance where to set attributes.
+    kwargs : object
+        Dictionnary defining which attributes to set and its values.
 
     Examples
     --------
-    >>> selfkwargs(TODO)
-    TODO
+    from corelp import selfkwargs
+
+    # Typicall use is in __init__ function :
+    class MyClass :
+        def __init__(self, **kwargs) :
+            selkwargs(self, kwargs) # Sets all the keyword arguments to self
+    
+    instance = MyClass(a=1, b=2)
+    print(instance.a) # should print : 1
+    print(instance.b) # should print : 2
     '''
 
-    return None
-
-
-
-# %% Class
-class selfkwargs() :
-    '''
-    This function sets all attributes defined in kwargs dictionnary to self instance.
-    
-    Parameters
-    ----------
-    a : int or float
-        TODO.
-
-    Attributes
-    ----------
-    _attr : int or float
-        TODO.
-
-    Examples
-    --------
-    >>> selfkwargs(TODO)
-    TODO
-    '''
-
-    def __init__(self) :
-        pass
-    
-    def method(self) :
-        '''
-        TODO
-    
-        Parameters
-        ----------
-        a : int or float
-            TODO.
-
-        Returns
-        -------
-        b : int or float
-            TODO.
-
-        Raises
-        ------
-        TypeError
-            TODO.
-
-        Examples
-        --------
-        >>> self.method(TODO)
-        TODO
-        '''
-
-        return None
+    for key, value in kwargs.items() :
+        setattr(self, key, value)
 
 
 

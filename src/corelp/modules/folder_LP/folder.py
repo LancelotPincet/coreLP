@@ -57,7 +57,7 @@ def folder(path, /, warning=True, *, new=True) :
         
         # Decide if crushing
         if warning :
-            print('**********************')
+            print('\n**********************')
             print("FOLDER WILL BE DELETED")
             print(str(path))
             erase = input('Continue? [y]/n >>> ')

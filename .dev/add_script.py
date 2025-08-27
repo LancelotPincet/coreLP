@@ -52,7 +52,7 @@ def main() :
         string = string.replace('template_scriptlib', "coreLP")
         string = string.replace('template_scriptlowerlib', "corelp")
         string = string.replace('template_scriptequals', "="*len(name))
-        string = string.replace('template_scriptlibequals', "="*len("coreLP"))
+        string = string.replace('template_scrlibeq', "="*len("coreLP"))
         to_path.write_text(string)
         
     # Write python script

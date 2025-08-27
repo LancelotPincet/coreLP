@@ -11,10 +11,11 @@ Here are the references to the various modules to import in **coreLP**.
    test
    debug
    folder
-   print
    script
    main
    section
-   selfkwargs
    opens
    prop
+   print
+   selfkwargs
+   kwargsself
