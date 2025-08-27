@@ -27,7 +27,7 @@ def main() :
 
     # Build project
     create_folder(path.parent / "libsLP/coreLP/dist", parent_is_dev=False)
-    subprocess.run(["uv", "build", ".", "--out-dir", "."], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
+    subprocess.run(["uv", "build", ".", "--out-dir", "dist"], cwd=path.parent / "libsLP/coreLP", stdout=subprocess.PIPE, text=True)
     print('     project built')
 
     # Get PyPI tokens
