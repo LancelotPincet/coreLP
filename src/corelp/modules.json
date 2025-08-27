@@ -23,6 +23,12 @@
         "module": "modules/kwargsself_LP/kwargsself",
         "object": "kwargsself"
     },
+    "print": {
+        "date": "2025-08-27",
+        "description": "This function overrides python built in print function to add functionnalities.",
+        "module": "modules/print_LP/print",
+        "object": "print"
+    },
     "prop": {
         "date": "2025-08-25",
         "description": "This function serves as an improved property decorator.",
