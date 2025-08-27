@@ -43,7 +43,8 @@ def main() :
     print(f'     name : {name}')
     print(f'     description : {description}')
     print(f'     date : {date}')
-    os.mkdir(module_path)
+    if not module_path.exists() :
+        os.mkdir(module_path)
 
     # Function to copy file
     def copy_file(from_path, to_path) :
