@@ -46,6 +46,7 @@ def folder(path, /, warning=True, *, new=True) :
     Examples
     --------
     >>> from corelp import folder
+    ...
     >>> folder_path = folder(path) # Creates folder
     >>> folder_path = folder(path) # Launch warning before crushing
     >>> folder_path = folder(path, warning=False) # Crushes without warning

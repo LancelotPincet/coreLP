@@ -27,10 +27,12 @@ def selfkwargs(self, kwargs) :
     Examples
     --------
     >>> from corelp import selfkwargs
+    ...
     >>> # Typicall use is in __init__ function :
     >>> class MyClass :
     ...     def __init__(self, **kwargs) :
     ...         selkwargs(self, kwargs) # Sets all the keyword arguments to self
+    ...
     >>> instance = MyClass(a=1, b=2)
     >>> print(instance.a)
     1

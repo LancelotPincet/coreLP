@@ -44,6 +44,7 @@ def getmodule(file) :
     Examples
     --------
     >>> from corelp import getmodule
+    ...
     >>> # In __init__.py file
     ... __getattr__, __all__ = getmodule(__file__)
     '''

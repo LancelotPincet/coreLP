@@ -35,6 +35,7 @@ def prop(*, cache=False, link=None) :
     Examples
     --------
     >>> from corelp import prop
+    ...
     >>> class MyClass :
     ...
     ...     # Set default value

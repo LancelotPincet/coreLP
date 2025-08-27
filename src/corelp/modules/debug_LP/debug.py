@@ -40,6 +40,7 @@ def debug(file, new=True) :
     Examples
     --------
     >>> from corelp import debug
+    ...
     >>> debug_folder = debug(__file__)
     '''
 
