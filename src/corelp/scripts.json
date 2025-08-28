@@ -1,8 +1,1 @@
-{
-    "my_script": {
-        "date": "2025-08-28",
-        "description": "just a test",
-        "object": "my_script",
-        "script": "scripts/my_script_LP/my_script"
-    }
-}
+{}

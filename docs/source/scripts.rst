@@ -7,4 +7,3 @@ Here are the references to the various scripts provided with **coreLP**.
    :maxdepth: 1
    :caption: Scripts
 
-   my_script
