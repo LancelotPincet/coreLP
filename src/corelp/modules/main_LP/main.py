@@ -27,30 +27,54 @@ import types
 
 # %% Function
 def main(*, new=False) :
-    '''
+    f'''
     This function can decorate the main function of a script.
+    User inputs parameters shoud be put in the beginning of the main file, and the decorated function will recognize them.
+    Decorated function can change the values of these parameters with keyword arguments when called.
+    Section can be created bellow the mainfunction.
     
-    Parameters
-    ----------
-    a : int or float
-        TODO.
+    Decorator parameter
+    -------------------
+    new : bool
+        True to create a new folder at each call by default.
 
-    Returns
-    -------
-    b : int or float
-        TODO.
-
-    Raises
-    ------
-    TypeError
-        TODO.
-
+    Global parameters
+    -----------------
+    import_path : Path or str or None
+        Path where to import script data to process. If None, will manually ask user to select it. If not existent, will be ignored.
+    export_path : Path or str or None
+        Path where to export script data to process.
+        A new folder will be created inside at the call time as name.
+        If None, will save in import_path. If not existent, will be ignored.
+        If a previous call was already made in this same folder, and new is False, will try to reload data from this last folder.
+    
     Examples
     --------
     >>> from corelp import main
     ...
-    >>> main() # TODO
+    >>> import_path = None # will be asked via a GUI
+    >>> export_path = None # will create inside import_path
+    >>> new = False # True to create a new export folder, False to reload precalculated data
+    >>> main_string = "Hello from main!" # User input parameter
+    ...
+    >>> @main(new=True) # if previous new is not defined, new is defined here
+    ... def myscript() :
+    ...     print(main_string) # By default prints "Hello from main!"
+    ...     result = mysection() # Section defined bellow, result can be reloaded from previous run
+    ...     return result
+    ...
+    ... @main.section()
+    ... def mysection() :
+    ...     print("Hello from section!")
+    ...     return True # Will be saved into export_path and can be reuploaded at next run with same inputs
+    ...
+    >>> # Launch
+    >>> if __name__ == "__main__" :
+    ...     myscript() # prints "Hello from main!"
+    ...     myscript(main_string = "Hello changed!!") # prints "Hello changed!!" and loads section result from first run
     '''
+
+
 
     def decorator(func) :
         name = func.__name__
