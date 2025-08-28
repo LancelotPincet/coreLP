@@ -11,12 +11,15 @@ A library that gathers core functions for python programming.
 
 
 
+from pathlib import Path
+
 # %% Lazy imports
 if __name__ == "__main__":
     from modules.getmodule_LP.getmodule import getmodule # type: ignore
 else :
     from .modules.getmodule_LP.getmodule import getmodule
 __getattr__, __all__ = getmodule(__file__)
+icon = Path(__file__).parent / "icon_pythonLP.ico"
 
 
 

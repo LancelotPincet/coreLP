@@ -50,7 +50,7 @@ class Print() :
     Call
     ----
     >>> from corelp import print
-    >>> mystring = "Hello *world*!\nThis is 1 print **example**"
+    >>> mystring = "Hello *world*!\\nThis is 1 print **example**"
     ...
     >>> print(mystring)
 
@@ -108,7 +108,7 @@ class Print() :
     ...     print.error() # Prints pretty error
     >>> print.export_html("log.html") # Creates html with all the logs
 
-    CLOCK
+    Clock
     -------
     progress : Progress
         Current Progress object from rich library.
@@ -129,6 +129,7 @@ class Print() :
             return None
         
         # Printing markdown
+        string = str(string) + end
         self.print(Markdown(string), **kwargs)
 
         # Writting to file
@@ -194,6 +195,8 @@ class Print() :
         self.console.log(log_locals=True)
     
     def export_html(self, path) :
+        if path is None :
+            return
         path = Path(path)
         html_content = self.console.export_html(inline_styles=True)
         with open(path, "w", encoding="utf-8") as file:

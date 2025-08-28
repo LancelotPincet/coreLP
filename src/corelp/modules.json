@@ -1,4 +1,10 @@
 {
+    "Section": {
+        "date": "2025-08-28",
+        "description": "This class defines decorator instances allowing to create section functions.",
+        "module": "modules/Section_LP/Section",
+        "object": "Section"
+    },
     "debug": {
         "date": "2025-08-25",
         "description": "This function will give and create the debug folder for a given python file.",
@@ -22,6 +28,12 @@
         "description": "This function will return all the attributes of an object (self) into a dictionnary (kwargs)",
         "module": "modules/kwargsself_LP/kwargsself",
         "object": "kwargsself"
+    },
+    "main": {
+        "date": "2025-08-28",
+        "description": "This function can decorate the main function of a script.",
+        "module": "modules/main_LP/main",
+        "object": "main"
     },
     "print": {
         "date": "2025-08-27",

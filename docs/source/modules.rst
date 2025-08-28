@@ -12,6 +12,8 @@ Here are the references to the various modules to import in **coreLP**.
    debug
    folder
    prop
+   print
    selfkwargs
    kwargsself
-   print
+   Section
+   main
