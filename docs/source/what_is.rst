@@ -6,7 +6,7 @@ The source code can be consulted on its `GitHub repository <https://github.com/L
 However for simply using the features, you can install it in your Python environment using `pip <https://pypi.org/project/coreLP>`_.
 And for information, do not hesitate to consult the `documentation <https://coreLP.readthedocs.io>`_.
 
-**coreLP is A library that gathers core functions for python programming.**
+**coreLP: A library that gathers core functions for python programming.**
 
 1. Context and motivations
 --------------------------

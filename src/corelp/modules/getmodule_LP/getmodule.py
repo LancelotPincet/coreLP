@@ -72,10 +72,16 @@ def getmodule(file) :
             return _lazy[attr]
 
         try :
-            module = modules[attr]
+            module = modules.get(attr, None)
+            funcstring = "module"
+            if module is None :
+                module = scripts.get(attr, None)
+                funcstring = "script"
+            if module is None :
+                raise KeyError(f"{attr} was not found in json files")
         except KeyError:
             raise AttributeError(f'module {name} has no attribute {attr}')
-        path2module = module["module"].replace('/', '.')
+        path2module = module[funcstring].replace('/', '.')
         obj_name = module["object"]
 
         mod = importlib.import_module(f"{name}.{path2module}")

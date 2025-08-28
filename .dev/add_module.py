@@ -27,6 +27,7 @@ def main() :
     while already_exists :
         name = input('     New module name ? >>> ')
         module_path = path.parent / f'libsLP/coreLP/src/corelp/modules/{name}_LP'
+        script_path = path.parent / f'libsLP/coreLP/src/corelp/scripts/{name}_LP'
         if module_path.exists() :
             print('     This module already exists :/')
             crush = input("     Do you want to crush existing module? y/[no] >>> ")
@@ -34,6 +35,8 @@ def main() :
                 crush = input("     Sure? y/[no] >>> ")
                 if str(crush).lower() in ["y", "yes", "true", "1"] :
                     already_exists = False
+        elif script_path.exists() :
+            print('     This module already exists as a script :/')
         else :
             already_exists = False
     description = input('     what will the module do ? >>> ')

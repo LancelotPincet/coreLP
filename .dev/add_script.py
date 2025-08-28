@@ -28,20 +28,27 @@ def main() :
     while already_exists :
         name = input('     New script name ? >>> ')
         script_path = path.parent / f'libsLP/coreLP/src/corelp/scripts/{name}_LP'
+        module_path = path.parent / f'libsLP/coreLP/src/corelp/modules/{name}_LP'
         if script_path.exists() :
             print('     This script already exists :/')
+            crush = input("     Do you want to crush existing script? y/[no] >>> ")
+            if str(crush).lower() in ["y", "yes", "true", "1"] :
+                crush = input("     Sure? y/[no] >>> ")
+                if str(crush).lower() in ["y", "yes", "true", "1"] :
+                    already_exists = False
+        elif module_path.exists() :
+            print('     This script already exists as a module :/')
         else :
             already_exists = False
     description = input('     what will the script do ? >>> ')
     date = datetime.now().strftime("%Y-%m-%d")
-    with open(path.parent / '.python-version') as file :
-        version = file.read()
 
     # Print informations
     print(f'     name : {name}')
     print(f'     description : {description}')
     print(f'     date : {date}')
-    os.mkdir(script_path)
+    if not module_path.exists() :
+        os.mkdir(script_path)
 
     # Function to copy file
     def copy_file(from_path, to_path) :
@@ -92,8 +99,12 @@ def main() :
     copy_file(rst_path, newrst_path)
 
     allscripts_path = path.parent / f'libsLP/coreLP/docs/source/scripts.rst'
+    string = allscripts_path.read_text()
+    string = string.replace(f"   {name}\n", "")
+    with open(allscripts_path, "w") as file :
+        file.write(string)
     with open(allscripts_path, "a") as file :
-        file.write(f"    {name}")
+        file.write(f"   {name}\n")
 
     print('     Documentation rst file added')
 

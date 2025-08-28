@@ -74,20 +74,20 @@ class Section() :
             @wraps(func)
             def wrapper(*args, **kwargs):
                 wrapper.path = self.path
-                print(f'### {name} section\n')
+                print(f'\n### {name} section\n')
 
                 # Creating hash
-                print('Call hash:\n')
+                print('**Call hash:**')
                 bound = inspect.signature(func).bind(*args, **kwargs)
                 bound.apply_defaults()
                 serialized = pickle.dumps(bound.arguments)
                 args_hash = hashlib.md5(serialized).hexdigest()
                 result_file = self.path / f'{name}/{args_hash}.pkl'
-                print(f'*{args_hash}*')
+                print(f'*{args_hash}*\n')
 
                 # Checking already calculated exists
                 if result_file.exists() and not new :
-                    print('Loading from **precalculated** results...\n')
+                    print('**Loading from **precalculated** results...**')
                     with open(result_file, 'rb') as f:
                         result = pickle.load(f)
                     print('...loaded\n')
@@ -95,13 +95,13 @@ class Section() :
                 # New calculations
                 else :
                     folder(self.path / name, warning=False)
-                    print('Calculating results...')
+                    print('**Calculating results:**')
                     print_status = kwargsself(print)
                     print.file = self.path / f'{name}/{name}_log.md'
                     result = func(*args, **kwargs)
                     selfkwargs(print, print_status)
                     print('...calculated\n')
-                    print('Saving results...\n')
+                    print('**Saving results:**')
                     with open(result_file, 'wb') as f:
                         pickle.dump(result, f)
                     print('...saved\n')

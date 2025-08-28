@@ -159,8 +159,8 @@ def main(*, new=False) :
             if epath != "None" :
                 print(f'export_path : {epath}\n')
 
-            #Applying test
-            print("---\n")
+            #Applying function
+            print("\n---\n")
             print('## Launched script\n')
             tic = time.perf_counter()
             try :
