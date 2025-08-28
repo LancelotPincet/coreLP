@@ -27,7 +27,7 @@ import types
 
 # %% Function
 def main(*, new=False) :
-    f'''
+    '''
     This function can decorate the main function of a script.
     User inputs parameters shoud be put in the beginning of the main file, and the decorated function will recognize them.
     Decorated function can change the values of these parameters with keyword arguments when called.
