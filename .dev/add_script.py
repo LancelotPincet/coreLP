@@ -47,7 +47,7 @@ def main() :
     print(f'     name : {name}')
     print(f'     description : {description}')
     print(f'     date : {date}')
-    if not module_path.exists() :
+    if not script_path.exists() :
         os.mkdir(script_path)
 
     # Function to copy file
