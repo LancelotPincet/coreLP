@@ -17,6 +17,7 @@ main : This function can decorate the main function of a script.
 # %% Libraries
 from corelp import print, debug, main
 from time import sleep
+import pytest
 debug_folder = debug(__file__)
 
 
@@ -25,8 +26,11 @@ debug_folder = debug(__file__)
 search = False # True to apply manual search
 global import_path
 global export_path
-import_path = None if search else debug_folder
-export_path = None if search else debug_folder
+import_path = None if search else debug_folder # Path to the imported data
+export_path = import_path # Path to the exported data
+new = False # True to create new result folder at each run
+bulk = None # function(import_path) that returns a dictionnary of {import_subfolder:export_subfolder} for multiple decorated function run.
+overnight= False # If True and exception occurs, will skip and pass to the next run in bulk processing.
 myparam = "Hello from main!"
 apply_error = False
 
@@ -38,6 +42,7 @@ def mainfunc() :
         1/0
     print(myparam)
     result = section_1()
+    print(f"import_path = {import_path}")
     return result
 
 @mainfunc.section()
@@ -58,7 +63,8 @@ def test_function() :
     sleep(2) # Ensure new folder
     mainfunc(new=True)
     sleep(2) # Ensure new folder
-    mainfunc(apply_error=True)
+    with pytest.raises(ZeroDivisionError, match="division by zero") :
+        mainfunc(apply_error=True)
 
 
 

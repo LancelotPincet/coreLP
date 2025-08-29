@@ -49,6 +49,20 @@ class Print() :
 
     Call
     ----
+    string : object
+        will take the __str__() of the object and print it.
+    verbose : bool
+        True to do print, False will just immediately return None.
+    return_string : bool
+        True to return the string after transformation, False for default behavior None.
+    file : str or Path or None
+        Override the file attribute (see below) if not None.
+    mode : str
+        defines the mode to write in file (most common are "w" for write and "a" for append).
+    end : str
+        defines the mode how the string ends, default is "\\n".
+    **kwargs :
+        all other key-word attributes will be passed to the console print.
     >>> from corelp import print
     >>> mystring = "Hello *world*!\\nThis is 1 print **example**"
     ...
@@ -122,7 +136,7 @@ class Print() :
     '''
 
     # Main function
-    def __call__(self, string, verbose=None, file=None, mode='a', end='\n', **kwargs) :
+    def __call__(self, string, verbose=None, *, return_string=False, file=None, mode='a', end='\n', **kwargs) :
         # Muting
         verbose = verbose if verbose is not None else self.verbose
         if not verbose :
@@ -135,9 +149,12 @@ class Print() :
         # Writting to file
         file = file if file is not None else self.file
         if file is not None :
-            with open(file, mode) as file :
+            with open(Path(file), mode) as file :
                 file.write(string)
 
+        # Return
+        if return_string :
+            return string
 
 
     # MUTING

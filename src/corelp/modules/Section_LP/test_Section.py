@@ -16,7 +16,6 @@ Section : This class defines decorator instances allowing to create section func
 
 # %% Libraries
 from corelp import debug, Section
-import pytest
 debug_folder = debug(__file__)
 
 

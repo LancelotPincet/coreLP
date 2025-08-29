@@ -47,6 +47,12 @@
         "module": "modules/prop_LP/prop",
         "object": "prop"
     },
+    "rfrom": {
+        "date": "2025-08-29",
+        "description": "This function allows to do a relative import that works in module and script modes.",
+        "module": "modules/rfrom_LP/rfrom",
+        "object": "rfrom"
+    },
     "selfkwargs": {
         "date": "2025-08-27",
         "description": "This function takes a dictionnary and sets all its values to an object (self).",
