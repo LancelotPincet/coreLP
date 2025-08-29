@@ -155,10 +155,6 @@ def main() :
                 md_file = None
                 html_file = None
 
-            # Updating sections
-            wrapper.section.path = epath
-            wrapper.section.new = _new
-
             # Defining bulk processing
             if _bulk is None :
                 subfolders = {"" : ""}
@@ -186,6 +182,10 @@ def main() :
                 if not expath.exists() :
                     os.mkdir(expath)
                 
+                # Updating sections
+                wrapper.section.path = expath
+                wrapper.section.new = _new
+
                 # Define import_path and export_path in function's globals
                 exec_globals["import_path"] = impath
                 exec_globals["export_path"] = expath

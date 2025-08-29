@@ -227,6 +227,7 @@ class Print() :
 
         # Get iterable
         iterable = range(iterable) if isinstance(iterable, int) else iterable
+        iterable = list(iterable)
 
         # Detect if progressbar already exists
         first_bar = getattr(self, "_progress", None) is None
@@ -237,6 +238,11 @@ class Print() :
         if first_bar :
             verbose = self.verbose
             self.verbose = False
+
+            # Write to file
+            if self.file is not None :
+                with open(Path(self.file), "a") as file :
+                    file.write(title)
             progress.start()
         
         # Create new task
