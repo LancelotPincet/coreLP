@@ -242,7 +242,7 @@ class Print() :
             # Write to file
             if self.file is not None :
                 with open(Path(self.file), "a") as file :
-                    file.write(title)
+                    file.write(f'{title}...\n')
             progress.start()
         
         # Create new task

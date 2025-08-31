@@ -33,6 +33,9 @@ def main() :
         data = toml.load(file)
     dependencies = data['project']['dependencies'] + [name]
     data['project']['dependencies'] = sorted(dependencies)
+    if name.lower().endswith("lp") :
+        sources = data['tool']['uv']['sources']
+        sources[name.lower()] = {"workspace": True}
     with open(proj_path, "w") as file :
         toml.dump(data, file)
     print('     Pyproject file filled')
