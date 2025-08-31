@@ -31,7 +31,7 @@ def main() :
     proj_path = path.parent / 'libsLP/coreLP/pyproject.toml'
     with open(proj_path, "r") as file :
         data = toml.load(file)
-    dependencies = data['project']['dependencies'] + [name]
+    dependencies = data['project']['dependencies'] + [name.lower()]
     data['project']['dependencies'] = sorted(dependencies)
     if name.lower().endswith("lp") :
         sources = data['tool']['uv']['sources']
