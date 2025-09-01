@@ -183,6 +183,7 @@ def main() :
                     os.mkdir(expath)
                 
                 # Updating sections
+                wrapper.section.parent_path = epath
                 wrapper.section.path = expath
                 wrapper.section.new = _new
 

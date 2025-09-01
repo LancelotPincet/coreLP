@@ -20,6 +20,7 @@ from pathlib import Path
 from functools import wraps
 import hashlib
 import inspect
+import os
 
 
 
@@ -38,6 +39,8 @@ class Section() :
         True to ignore pre-calculated data and crush them.
     num : int
         Index of section, after one call, adds 1 for next call.
+    parent_path : str or Path
+        Path to the parent folder if bulk processing.
 
     Examples
     --------
@@ -72,14 +75,17 @@ class Section() :
     path : Path | str = None
     new :bool = False
     num :int = 0
+    parent_path : Path | str = None
 
     # Init
     def __post_init__(self) :
         if self.path is not None :
             self.path = Path(self.path)
+        if self.parent_path is not None :
+            self.parent_path = Path(self.parent_path)
 
     # Decorator
-    def __call__(self, *, new=None, num=None):
+    def __call__(self, *, new=None, num=None, symlink=None):
         if new is None :
             new = self.new
         if num is None :
@@ -124,11 +130,34 @@ class Section() :
                         pickle.dump(result, f)
                     print('...saved\n')
 
+                    # Create symlink
+                    if symlink is not None :
+                        print('**Creating symlinks:**')
+                        for link in symlink :
+                            print(f"- {link}")
+                            link_path = Path(link)
+                            link_folder = self.parent_path / link_path.stem
+                            new_stem = str(self.subfolder.as_posix()).replace('/', '--')
+                            if not link_folder.exists() :
+                                folder(link_folder, warning=False)
+                            link_from = wrapper.path / link_path
+                            link_to = link_folder / f"{new_stem}{link_path.suffix}"
+                            if link_to.exists() or link_to.is_symlink():
+                                link_to.unlink()
+                            if os.name == "nt":
+                                link_to.symlink_to(link_from, link_from.is_dir())
+                            else:
+                                link_to.symlink_to(link_from)
+                        print('...created\n')
+
+
                 return result
             return wrapper
         return decorator
 
-
+    @property
+    def subfolder(self) :
+        return self.path.relative_to(self.parent_path)
 
 
 
