@@ -145,7 +145,11 @@ class Section() :
                             if link_to.exists() or link_to.is_symlink():
                                 link_to.unlink()
                             if os.name == "nt":
-                                link_to.symlink_to(link_from, link_from.is_dir())
+                                try :
+                                    link_to.symlink_to(link_from, link_from.is_dir())
+                                except OSError :
+                                    print("Windows does not allow to create symlink, aborting. Consider using Windows in Developper mode.")
+                                    break
                             else:
                                 link_to.symlink_to(link_from)
                         print('...created\n')
