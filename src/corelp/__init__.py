@@ -11,7 +11,7 @@ A library that gathers core functions for python programming.
 
 
 
-from pathlib import Path
+from pathlib import Path as PathlibPath
 
 # %% Lazy imports
 if __name__ == "__main__":
@@ -19,7 +19,7 @@ if __name__ == "__main__":
 else :
     from .modules.getmodule_LP.getmodule import getmodule
 __getattr__, __all__ = getmodule(__file__)
-icon = Path(__file__).parent / "icon_pythonLP.ico"
+icon = PathlibPath(__file__).parent / "icon_pythonLP.ico"
 
 
 

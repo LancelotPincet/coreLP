@@ -13,9 +13,8 @@ This function can decorate the main function of a script.
 
 
 # %% Libraries
-from corelp import print, Section, folder, selfkwargs, kwargsself, icon
+from corelp import print, Section, folder, selfkwargs, kwargsself, icon, Path
 import time
-from pathlib import Path
 import functools
 import os
 from datetime import datetime
