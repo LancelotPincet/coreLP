@@ -18,6 +18,21 @@ import os
 
 
 
+# %% Detect if running inside WSL
+def _is_wsl() -> bool:
+    """True if WSL."""
+    if os.name != "posix":
+        return False
+    try:
+        with open("/proc/version", "r") as f:
+            return "microsoft" in f.read().lower()
+    except FileNotFoundError:
+        return False
+
+
+IS_WSL = _is_wsl()
+
+
 # %% Function
 def Path(path, *args, **kwargs) :
     '''
@@ -35,27 +50,38 @@ def Path(path, *args, **kwargs) :
 
     Examples
     --------
-    >>> from corelp import Path
-    >>> import os
-    ...
-    >>> os.name == "nt"
-    False
-    >>> Path("C:\\Users\\MyName\\Documents\\")
-    PosixPath('/mnt/c/Users/MyName/Documents/')
+    >>> Path("C:\\Users\\Name\\Documents")
+    PosixPath('/mnt/c/Users/Name/Documents')   # under WSL
+    >>> Path("/home/user/project")
+    PosixPath('/home/user/project')            # under Linux
+    >>> Path("C:\\Users\\Name\\Documents")
+    WindowsPath('C:/Users/Name/Documents')     # under Windows
     '''
 
-    if os.name == "nt" : #os is windows (keep windows)
+    # Windows case → no conversion
+    if os.name == "nt":
         return PathlibPath(path, *args, **kwargs)
 
+    # Conversion in string
+    pathstring = str(path).replace("\\", "/")
 
-    pathstring = str(path)
-    pathstring = pathstring.replace("\\", "/")
-
-    if ':' not in pathstring : # input is a linux path
+    # If not in WSL → no touching
+    if not IS_WSL:
         return PathlibPath(pathstring, *args, **kwargs)
 
-    drive, rest = pathstring.split(':', 1)
-    pathstring = f"/mnt/{drive.lower()}{rest}"
+    # Detection of UNC Windows paths (\\server\share)
+    if pathstring.startswith("//"):
+        unc_path = pathstring.lstrip("/")
+        pathstring = f"/mnt/unc/{unc_path}"
+        return PathlibPath(pathstring, *args, **kwargs)
+
+    # Conversion of paths Windows with disk (C:/Users/...)
+    if ":" in pathstring:
+        drive, rest = pathstring.split(":", 1)
+        pathstring = f"/mnt/{drive.lower()}{rest}"
+        return PathlibPath(pathstring, *args, **kwargs)
+
+    # Else → already a native/relative Linux path
     return PathlibPath(pathstring, *args, **kwargs)
     
 
