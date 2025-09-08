@@ -44,15 +44,20 @@ def Path(path, *args, **kwargs) :
     PosixPath('/mnt/c/Users/MyName/Documents/')
     '''
 
-    if os.name == "nt" :
+    if os.name == "nt" : #os is windows (keep windows)
         return PathlibPath(path, *args, **kwargs)
+
 
     pathstring = str(path)
     pathstring = pathstring.replace("\\", "/")
+
+    if ':' not in pathstring : # input is a linux path
+        return PathlibPath(pathstring, *args, **kwargs)
+
     drive, rest = pathstring.split(':', 1)
     pathstring = f"/mnt/{drive.lower()}{rest}"
     return PathlibPath(pathstring, *args, **kwargs)
-
+    
 
 
 # %% Test function run
