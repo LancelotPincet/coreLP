@@ -4,14 +4,7 @@ version = "1.0.12"
 description = "A library that gathers core functions for python programming."
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
- "joblib",
- "pytest",
- "rich",
- "sphinx",
- "sphinx-rtd-theme",
- "toml",
-]
+dependencies = [ "corelp", "joblib", "pytest", "rich", "sphinx", "sphinx-rtd-theme", "toml",]
 [[project.authors]]
 name = "LancelotPincet"
 email = "40608570+LancelotPincet@users.noreply.github.com"

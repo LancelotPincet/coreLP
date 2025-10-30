@@ -1,9 +1,9 @@
 # pythonLP
-.venv/
-.icons/
-.libs_links/
-.links/
-.debug/
+**/.venv/
+**/.icons/
+**/.libs_links/
+**/.links/
+**/.debug/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -19,6 +19,7 @@ __pycache__/
 desktop.ini
 .DS_Store
 Thumbs.db
+*Zone.Identifier
 
 # Build artifacts
 build/
