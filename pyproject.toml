@@ -13,12 +13,6 @@ email = "40608570+LancelotPincet@users.noreply.github.com"
 requires = [ "uv_build>=0.8.8,<0.9.0",]
 build-backend = "uv_build"
 
-["tool.uv"]
-required-environments = [ "sys_platform == 'linux' and platform_machine == 'x86_64'", "sys_platform == 'win32' and (platform_machine == 'AMD64' or platform_machine == 'x86_64')",]
-
-[project.scripts]
-my_script = "coreLP.scripts.my_script_LP.my_script:my_script"
-
 [tool.uv]
 required-environments = [ "sys_platform == 'linux' and platform_machine == 'x86_64'", "sys_platform == 'win32' and (platform_machine == 'AMD64' or platform_machine == 'x86_64')",]
 
