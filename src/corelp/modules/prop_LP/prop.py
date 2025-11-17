@@ -13,7 +13,7 @@ This function serves as an improved property decorator.
 
 
 # %% Function
-def prop(*, cache=False, link=None) :
+def prop(*, cache=False, variable=False, link=None) :
     '''
     This function serves as an improved property decorator.
     By default, calls the function as a normal property.
@@ -24,6 +24,8 @@ def prop(*, cache=False, link=None) :
     ----------
     cache : bool
         True to set readonly attribute at first call.
+    variable : bool
+        True to create a getter that will always use the _attr as a variable.
     link : bool
         True to link property to another object attribute.
 
@@ -69,17 +71,17 @@ def prop(*, cache=False, link=None) :
     
     if link is not None :
         return linkproperty(link)
-    return defaultproperty(cache)
+    return defaultproperty(cache, variable)
 
 
 
-def defaultproperty(cache):
+def defaultproperty(cache, variable):
     def decorator(func) :
         attribut = func.__name__
 
         def getter(self):
             _attribut = getattr(self, f'_{attribut}',None)
-            if _attribut is not None :
+            if _attribut is not None and not variable :
                 return _attribut
             result = func(self)
             if cache :
