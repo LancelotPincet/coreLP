@@ -3,7 +3,13 @@
 Quick start
 ===========
 
-To get a first grasp of **coreLP**, you will need to know a bit of Python.
+In this section, we will get a first grasp of **coreLP**.
+
+1. First, we will see the :ref:`basics <basics>` behind the library design.
+2. Then, we will explore a :ref:`simple example <simple_example>` to showcase the syntax.
+3. Finally, we will talk about how you can get :ref:`help <getting_help>` around this library.
+
+To do these first steps, you will need to know a bit of Python.
 For a refresher, see the `Python tutorial <https://docs.python.org/3/tutorial/>`_.
 
 .. _basics:
@@ -11,17 +17,18 @@ For a refresher, see the `Python tutorial <https://docs.python.org/3/tutorial/>`
 1. Basics
 ---------
 
+TODO
+
 To import ``coreLP``, just use :
 
 .. code-block:: python
 
    import corelp
 
-TODO
-
 .. code-block:: python
 
    # TODO
+
 
 .. _simple_example:
 
@@ -34,6 +41,7 @@ TODO
 
     import corelp
     # TODO
+
 
 .. _getting_help:
 
