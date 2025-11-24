@@ -64,7 +64,7 @@ class Print() :
     **kwargs :
         all other key-word attributes will be passed to the console print.
     >>> from corelp import print
-    >>> mystring = "Hello *world*!\\nThis is 1 print **example**"
+    >>> mystring = "Hello \*world\*!\nThis is 1 print \*\*example\*\*"
     ...
     >>> print(mystring)
 
@@ -123,7 +123,7 @@ class Print() :
     >>> print.export_html("log.html") # Creates html with all the logs
 
     Clock
-    -------
+    -----
     progress : Progress
         Current Progress object from rich library.
     bars : dict

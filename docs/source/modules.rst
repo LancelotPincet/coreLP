@@ -1,3 +1,5 @@
+.. _modules:
+
 Modules
 =======
 
@@ -7,15 +9,15 @@ Here are the references to the various modules to import in **coreLP**.
    :maxdepth: 1
    :caption: Modules
 
-   getmodule
-   test
+   Path
+   Section
    debug
    folder
-   prop
-   print
-   selfkwargs
+   getmodule
    kwargsself
-   Section
    main
+   print
+   prop
    rfrom
-   Path
+   selfkwargs
+   test
