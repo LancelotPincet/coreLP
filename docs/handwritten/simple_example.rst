@@ -2,5 +2,5 @@ TODO
 
 .. code-block:: python
 
-    import corelp
+    import template_lowername
     # TODO

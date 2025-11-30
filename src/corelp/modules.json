@@ -70,5 +70,11 @@
         "description": "This function will launch the testfile for the current file using pytest library.",
         "module": "modules/test_LP/test",
         "object": "test"
+    },
+    "user_inputs": {
+        "date": "2025-11-30",
+        "description": "Gets last user inputs dictionnary from global variables.",
+        "module": "modules/user_inputs_LP/user_inputs",
+        "object": "user_inputs"
     }
 }

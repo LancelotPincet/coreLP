@@ -1,10 +1,10 @@
 TODO
 
-To import ``coreLP``, just use :
+To import ``template_name``, just use :
 
 .. code-block:: python
 
-   import corelp
+   import template_lowername
 
 .. code-block:: python
 
