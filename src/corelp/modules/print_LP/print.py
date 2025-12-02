@@ -44,96 +44,95 @@ pyprint = print
 # %% Class
 @dataclass(slots=True, kw_only=True)
 class Print() :
-    '''
-    This function overrides python built in print function to add functionnalities.
+    r"""
+    Enhanced replacement for the built-in :func:`print` function, adding muting,
+    logging, rich formatting, and progress utilities.
 
-    Call
-    ----
+    This class is callable and behaves like :func:`print`, with extra arguments.
+
+    Parameters
+    ----------
     string : object
-        will take the __str__() of the object and print it.
-    verbose : bool
-        True to do print, False will just immediately return None.
-    return_string : bool
-        True to return the string after transformation, False for default behavior None.
-    file : str or Path or None
-        Override the file attribute (see below) if not None.
-    mode : str
-        defines the mode to write in file (most common are "w" for write and "a" for append).
-    end : str
-        defines the mode how the string ends, default is "\\n".
+        The object to print. Its :meth:`__str__` representation is used.
+    verbose : bool, optional
+        If ``True`` (default), printing is performed.  
+        If ``False``, printing is skipped unless overridden.
+    return_string : bool, optional
+        If ``True``, return the processed string instead of ``None``.
+    file : str or pathlib.Path or None, optional
+        If provided, overrides the configured log file.
+    mode : {"w", "a"}, optional
+        File mode used when writing logs. Default is ``"a"``.
+    end : str, optional
+        End-of-line character(s). Defaults to ``"\n"``.
     **kwargs :
-        all other key-word attributes will be passed to the console print.
-    >>> from corelp import print
-    >>> mystring = "Hello \*world\*!\nThis is 1 print \*\*example\*\*"
-    ...
-    >>> print(mystring)
+        Additional keyword arguments passed to :func:`print` or Rich's :func:`Console.print`.
 
-    Muting
-    ------
+    Examples
+    --------
+    Basic usage::
+
+        >>> from corelp import print
+        >>> s = "Hello *world*!\nThis is a print **example**"
+        >>> print(s)
+
+    Muting::
+
+        >>> print.verbose = False
+        >>> print(s)                 # muted
+        >>> print(s, verbose=True)   # forced printing
+        >>> print.verbose = True
+        >>> print(s)                 # prints again
+        >>> print(s, verbose=False)  # forced mute
+
+    Access to underlying print functions::
+
+        >>> print.pyprint(s)   # built-in print
+        >>> print.richprint(s) # rich.print
+        >>> print.print(s)     # Console.print
+        >>> print.log(s)       # Console.log
+
+    Logging::
+
+        >>> print.file = "log.txt"
+        >>> print("Hello")     # also writes to file
+
+    Console styling::
+
+        >>> print.theme = {"success": "green"}
+        >>> print("Done!", style="success")
+        >>> try:
+        ...     1/0
+        ... except Exception:
+        ...     print.error()
+        >>> print.export_html("log.html")
+
+    Progress / Clock::
+
+        >>> from time import sleep
+        >>> for i in print.clock(15, "Outer"):
+        ...     for j in print.clock(10, "Inner"):
+        ...         sleep(1)
+
+    Attributes
+    ----------
     verbose : bool
-        True to do prints, False to mute all prints
-    
-    >>> print.verbose = False # Muting
-    >>> print(mystring) # Does not print
-    >>> print(mystring, verbose=True) # Forces printing even with muting
-    >>> print(mystring) # Does not print
-    ...
-    >>> print.verbose = True # Unmuting
-    >>> print(mystring) # Does print
-    >>> print(mystring, verbose=False) # Forces no printing even without muting
-    >>> print(mystring) # Does print
-
-    Prints
-    ------
-    pyprint : function
-        python built-in print function (to still have access after override).
-    richprint : function
-        rich library print function.
-    print : function
-        rich library console print function (for enhancing styles).
-    log : function
-        rich library console log function (for debugging).
-
-    >>> print.pyprint(mystring) # python print
-    >>> print.richprint(mystring) # python print
-    >>> print.print(mystring) # rich console print
-    >>> print.log(mystring) # rich console log
-
-    Logging
-    -------
-    file : Path
-        Path to file.
-
-    >>> print.file = "log.txt" # defining log file
-    >>> print(mystring) # Also writes into file
-
-    Console
-    -------
-    theme : dict
-        Dictionnary containing the added styles.
-    console : Console
-        Rich library console object to use with printing mode "console".
-
-    >>> print.theme = {"success" : "green"} # defining new kind of style
-    >>> print(mystring, style="success") # Writes in green
-    >>> try :
-    ...     1/0
-    ... except Exception :
-    ...     print.error() # Prints pretty error
-    >>> print.export_html("log.html") # Creates html with all the logs
-
-    Clock
-    -----
-    progress : Progress
-        Current Progress object from rich library.
+        Global muting switch.
+    pyprint : callable
+        Built-in Python :func:`print`.
+    richprint : callable
+        :mod:`rich` print function.
+    console : rich.console.Console
+        The Rich console instance used for styled printing.
+    file : pathlib.Path or None
+        Path to the log file.
+    progress : rich.progress.Progress
+        Active Rich progress manager.
     bars : dict
-        Stores the current bars existing in progress object.
-
-    >>> from time import sleep
-    >>> for i in print.clock(15, "Outer loop") : # First argument is iterable, if int --> range(int)
-    ...     for j in print.clock(10, "Inner loop") 
-    ...         sleep(1.)
-    '''
+        Dictionary storing active progress bars.
+    theme : dict
+        Custom Rich style definitions.
+    """
 
     # Main function
     def __call__(self, string, verbose=None, *, return_string=False, file=None, mode='a', end='\n', **kwargs) :

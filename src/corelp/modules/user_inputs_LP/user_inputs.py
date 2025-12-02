@@ -21,27 +21,32 @@ import inspect
 _user_inputs = {} # User inputs cache
 
 def user_inputs() :
-    r'''
-    Gets last user inputs dictionnary from global variables.
-    This function should not be used by storing varriable, DO NOT DO THIS : variable = user_inputs()
-    Please use directly: function(**user_inputs())
-    
+    r"""
+    Return a dictionary of variables defined by the user in the interactive
+    environment.
+
+    This function is intended for use inside other functions via
+    ``function(**user_inputs())``.  
+    **It should not be used to store its return value**, e.g. **do not do**::
+
+        variable = user_inputs()
+
+    Instead, call it directly when needed.
+
     Returns
     -------
-    inputs : dict
-        Dictionnary corresponding to user inputs.
+    dict
+        A dictionary containing the user's currently defined variables.
 
     Examples
     --------
     >>> from corelp import user_inputs
-    ...
-    >>> user_inputs() # Initialization [first call to remove imports etc.]
-    ...
-    >>> # User inputs
-    >>> a = 1
-    ...
-    >>> user_inputs() # Returns {'a': 1}
-    '''
+    >>> user_inputs()       # First call (initializes and clears import-related variables)
+    {}
+    >>> a = 1               # User defines a variable
+    >>> user_inputs()       # Now returns: {'a': 1}
+    {'a': 1}
+    """
 
     frame = inspect.currentframe().f_back
     current_vars = {**frame.f_globals, **frame.f_locals}
