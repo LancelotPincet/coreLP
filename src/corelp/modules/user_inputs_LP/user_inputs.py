@@ -14,6 +14,7 @@ Gets last user inputs dictionnary from global variables.
 
 # %% Libraries
 import inspect
+from IPython import get_ipython
 
 
 
@@ -48,12 +49,29 @@ def user_inputs() :
     {'a': 1}
     """
 
-    frame = inspect.currentframe().f_back
-    current_vars = {**frame.f_globals, **frame.f_locals}
-    current_vars = {k: v for k, v in current_vars.items() if not k.startswith("_")}
-    inputs = {k: v for k, v in current_vars.items() if k not in _user_inputs or _user_inputs[k] != v}
-    _user_inputs.update(inputs)
-    return inputs
+    # ---- Detect execution environment ----
+    ipy = get_ipython()
+
+    if ipy is not None:
+        # Running in IPython or Jupyter
+        ns = ipy.user_ns
+    else:
+        # Running in normal Python script
+        frame = inspect.currentframe().f_back
+        ns = {**frame.f_globals, **frame.f_locals}
+
+    # ---- Filter user variables (ignore internals starting with "_") ----
+    ns = {k: v for k, v in ns.items() if not k.startswith("_")}
+
+    # ---- Return only new or updated variables ----
+    updated = {
+        k: v
+        for k, v in ns.items()
+        if k not in _user_inputs or _user_inputs[k] is not v
+    }
+
+    _user_inputs.update(updated)
+    return updated
 
 
 
