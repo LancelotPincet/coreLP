@@ -174,8 +174,12 @@ def main() :
             # Bulk processing
             results = {} # {export_subfolder : fucntion result}
             for import_subfolder, export_subfolder in subfolders.items() :
-                impath = ipath / import_subfolder
-                expath = epath / export_subfolder
+                if ipath != "None" :
+                    impath = ipath / import_subfolder
+                    exec_globals["import_path"] = impath
+                if epath != "None" :
+                    expath = epath / export_subfolder
+                    exec_globals["export_path"] = expath
 
                 # Create export subfolder
                 if not expath.exists() :
@@ -185,10 +189,6 @@ def main() :
                 wrapper.section.parent_path = epath
                 wrapper.section.path = expath
                 wrapper.section.new = _new
-
-                # Define import_path and export_path in function's globals
-                exec_globals["import_path"] = impath
-                exec_globals["export_path"] = expath
 
                 #Applying function
                 print("\n---\n")
