@@ -21,7 +21,7 @@ import os
 
 
 # %% Function
-def debug(file, new=True) :
+def debug(file, new=True, *, project_index=2) :
     '''
     This function will give and create the debug folder for a given python file.
     
@@ -31,6 +31,8 @@ def debug(file, new=True) :
         __file__ string in the current python file to be debugged.
     new : bool
         True to create new folder at each call.
+    project_index : int
+        Index of parent of file containing project name, by default 2 : projectlp / modules / module_LP / file.py.
 
     Returns
     -------
@@ -47,7 +49,7 @@ def debug(file, new=True) :
     # Get paths
     file = Path(file)
     module_name = file.stem.replace("test_", "")
-    lib_name = file.parents[2].name
+    lib_name = file.parents[project_index].name # lib_name / modules / module_LP / file.py
     debug_parent = Path.home() / 'pythonLP/.debug'
     debug_folder = debug_parent / f'{lib_name}_{module_name}'
 
