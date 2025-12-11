@@ -25,7 +25,7 @@ def prop(*, cache=False, variable=False, link=None) :
     cache : bool
         True to set readonly attribute at first call.
     variable : bool
-        True to create a getter that will always use the _attr as a variable.
+        True to create a getter that will always use the _attr as a variable. [defines only setter, getter is normal]
     link : bool
         True to link property to another object attribute.
 
