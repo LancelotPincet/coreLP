@@ -103,16 +103,23 @@ def defaultproperty(cache, variable):
 
 def linkproperty(link):
     def decorator(func) :
+        attribut = func.__name__
 
         def getter(self):
             obj = getattr(self, link) if isinstance(link, str) else link
-            attribut = func(self)
-            return getattr(obj, f'{attribut}')
+            if obj is None : # If link failed, uses default _attribut
+                return getattr(self, attribut, None)
+            else :
+                obj_attribut = func(self)
+                return getattr(obj, f'{obj_attribut}')
 
         def setter(self, value):
             obj = getattr(self, link) if isinstance(link, str) else link
-            attribut = func(self)
-            setattr(obj, f'{attribut}', value)
+            if obj is None : # If link failed, uses default _attribut
+                setattr(self, f'_{attribut}', value)
+            else :
+                obj_attribut = func(self)
+                setattr(obj, f'{obj_attribut}', value)
 
         prop = property(getter, setter)
 
