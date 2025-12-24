@@ -156,7 +156,7 @@ class Section() :
                                 print("Windows does not allow to create symlink, aborting. Consider using Windows in Developper mode.")
                                 break
                         else:
-                            link_to.symlink_to(link_from)
+                            link_to.symlink_to(link_from, link_from.is_dir())
                     print('...created\n')
 
 
