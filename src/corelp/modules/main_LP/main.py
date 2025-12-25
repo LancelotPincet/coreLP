@@ -192,7 +192,7 @@ def main() :
 
                 #Applying function
                 print("\n---\n")
-                subfolder_string = f"{export_subfolder }" if export_subfolder != "" else ""
+                subfolder_string = f"{export_subfolder}" if export_subfolder != "" else ""
                 print(f'## Launched script {subfolder_string}\n')
                 tic = time.perf_counter()
                 try :
@@ -202,7 +202,7 @@ def main() :
                 except Exception as e :
                     toc = time.perf_counter()
                     print.error()
-                    print(f'\n## **{subfolder_string}took {toc-tic:.2f}s**')
+                    print(f'\n## **{subfolder_string} took {toc-tic:.2f}s**')
                     print("\n---\n")
                     if not _overnight :
                         raise e
@@ -210,7 +210,7 @@ def main() :
                 # No error
                 else :
                     toc = time.perf_counter()
-                    print(f'\n## **{subfolder_string}took {toc-tic:.2f}s**')
+                    print(f'\n## **{subfolder_string} took {toc-tic:.2f}s**')
                     print("\n---\n")
 
             # END
