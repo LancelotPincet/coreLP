@@ -19,7 +19,7 @@ if __name__ == "__main__":
 else :
     from .modules.getmodule_LP.getmodule import getmodule
 __getattr__, __all__ = getmodule(__file__)
-icon = PathlibPath(__file__).parent / "icon_pythonLP.ico"
+icon = PathlibPath(__file__).parent / "icon_pythonLP.png"
 
 
 

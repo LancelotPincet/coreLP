@@ -141,8 +141,8 @@ class Section() :
                     for link in symlink :
                         print(f"- {link}")
                         link_path = Path(link)
-                        link_folder = self.parent_path / link_path.stem
-                        new_stem = str(self.subfolder.as_posix()).replace('/', '--')
+                        link_folder = self.parent_path.parent / f'_outputs/{link_path.stem}'
+                        new_stem = str(self.subfolder.as_posix()).replace('/', '--').replace(' ', '_')
                         if not link_folder.exists() :
                             folder(link_folder, warning=False)
                         link_from = wrapper.path / link_path
@@ -156,7 +156,7 @@ class Section() :
                                 print("Windows does not allow to create symlink, aborting. Consider using Windows in Developper mode.")
                                 break
                         else:
-                            link_to.symlink_to(link_from, link_from.is_dir())
+                            link_to.symlink_to(link_from)
                     print('...created\n')
 
 

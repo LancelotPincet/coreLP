@@ -114,7 +114,9 @@ def main() :
             if ipath is None :
                 root = tk.Tk()
                 root.title("Select import path")
-                root.iconbitmap(default=icon)
+                img = tk.PhotoImage(file=icon)
+                root.iconphoto(True, img)
+                root._icon_img = img  # keep reference
                 root.withdraw()
                 ipath = filedialog.askdirectory(title=f'Select import path for {name}')
                 root.destroy()
@@ -122,21 +124,19 @@ def main() :
                     print('Searching for import_path was cancelled', style='red')
                     raise ValueError('Searching for import_path was cancelled')
             epath = exec_globals.get('export_path', "None")
-            if epath is None :
-                epath = ipath
             if ipath != "None" :
                 ipath = Path(ipath)
             if epath != "None" :
-                epath = Path(epath)
+                epath = ipath.parent if epath is None else Path(epath)
 
             # Creating new export path
             prefix = name.replace('.', '_')
             if epath != "None" :
                 if _new :
-                    epath = folder(epath / (f'{prefix}_' + datetime.now().strftime("%Y-%m-%d-%Hh%Mmin%Ss")), warning=False)
+                    base_path = folder(epath / (f'{prefix}_' + datetime.now().strftime("%Y-%m-%d-%Hh%Mmin%Ss")), warning=False)
                 else :
                     #Searching for newest old folder
-                    efolder = None
+                    base_folder = None
                     _date = None
                     for f in epath.iterdir() :
                         if (not f.is_dir()) or (not f.name.startswith(f'{prefix}_')) :
@@ -144,10 +144,22 @@ def main() :
                         date_str = f.name.split('_')[-1]
                         date = datetime.strptime(date_str, "%Y-%m-%d-%Hh%Mmin%Ss")
                         if _date is None or date > _date :
-                            _date, efolder = date, f
-                    epath = efolder if efolder is not None else epath / (f'{prefix}_' + datetime.now().strftime("%Y-%m-%d-%Hh%Mmin%Ss"))
+                            _date, base_folder = date, f
+                    base_path = base_folder if base_folder is not None else epath / (f'{prefix}_' + datetime.now().strftime("%Y-%m-%d-%Hh%Mmin%Ss"))
+                epath = base_path / 'export_folder'
                 if not epath.exists():
                     os.makedirs(epath) #creates folders until end
+                if ipath != "None" :
+                    ilink = base_path / 'import_folder'
+                    if ilink.exists() or ilink.is_symlink():
+                        ilink.unlink()
+                    if os.name == "nt":
+                        try :
+                            ilink.symlink_to(ipath, ipath.is_dir())
+                        except OSError :
+                            print("Windows does not allow to create symlink, aborting. Consider using Windows in Developper mode.")
+                    else:
+                        ilink.symlink_to(ipath)
                 md_file = epath / (name+'_log.md')
                 html_file = epath / (name+'_log.html')
             else :
