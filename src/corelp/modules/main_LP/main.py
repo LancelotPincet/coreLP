@@ -118,7 +118,12 @@ def main() :
                 root.iconphoto(True, img)
                 root._icon_img = img  # keep reference
                 root.withdraw()
+                root.update_idletasks()
+                root.attributes("-topmost", True)
                 root.update()
+                root.deiconify()
+                root.lift()
+                root.focus_force()
                 ipath = filedialog.askdirectory(title=f'Select import path for {name}')
                 root.destroy()
                 if not ipath :
