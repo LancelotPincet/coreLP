@@ -14,12 +14,10 @@ Gets last user inputs dictionnary from global variables.
 
 # %% Libraries
 import inspect
-from IPython import get_ipython
 
 
 
 # %% Function
-_user_inputs = {} # User inputs cache
 
 def user_inputs() :
     r"""
@@ -49,16 +47,8 @@ def user_inputs() :
     {'a': 1}
     """
 
-    # ---- Detect execution environment ----
-    ipy = get_ipython()
-
-    if ipy is not None:
-        # Running in IPython or Jupyter
-        ns = ipy.user_ns
-    else:
-        # Running in normal Python script
-        frame = inspect.currentframe().f_back
-        ns = {**frame.f_globals, **frame.f_locals}
+    frame = inspect.currentframe().f_back
+    ns = {**frame.f_globals, **frame.f_locals}
 
     # ---- Filter user variables (ignore internals starting with "_") ----
     ns = {k: v for k, v in ns.items() if not k.startswith("_")}
@@ -67,12 +57,13 @@ def user_inputs() :
     updated = {
         k: v
         for k, v in ns.items()
-        if k not in _user_inputs or _user_inputs[k] is not v
+        if k not in user_inputs.cache or user_inputs.cache[k] is not v
     }
 
-    _user_inputs.update(updated)
+    user_inputs.cache.update(updated)
     return updated
 
+user_inputs.cache = {}
 
 
 # %% Test function run

@@ -14,7 +14,7 @@ This class defines decorator instances allowing to create section functions.
 
 # %% Libraries
 from corelp import print, folder, selfkwargs, kwargsself
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import pickle
 import joblib
 from pathlib import Path
