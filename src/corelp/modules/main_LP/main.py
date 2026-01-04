@@ -25,7 +25,7 @@ import types
 
 
 # %% Function
-def main() :
+def main(*, import_path:str=None, export_path:str=None, new:bool=True, bulk=None, overnight:bool=False, run_name:str=None) :
     '''
     This function can decorate the main function of a script.
     User inputs parameters shoud be put in the beginning of the main file, and the decorated function will recognize them.

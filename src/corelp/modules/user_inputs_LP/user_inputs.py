@@ -19,13 +19,14 @@ import inspect
 
 # %% Function
 
-def user_inputs(start:bool=False, stop:bool=False) :
+def user_inputs(reset=False) :
     r"""
-    Return a dictionary of variables defined by the user in the interactive
-    environment.
+    Return a dictionary of variables defined by the user in the interactive environment.
 
-    This function is intended for use inside a main script and should be called twice, once before the user inputs, once after.
-    Second call will return a dictionnary of the user inputs.
+    Parameters
+    ----------
+    reset : bool
+        True to set as first call.
 
     Returns
     -------
@@ -35,7 +36,7 @@ def user_inputs(start:bool=False, stop:bool=False) :
     Examples
     --------
     >>> from corelp import user_inputs
-    >>> user_inputs()       # First call (initializes and clears import-related variables)
+    >>> user_inputs(True)       # First call (initializes and clears import-related variables)
     None
     >>> a = 1               # User defines a variable
     >>> user_inputs()       # Now returns: {'a': 1}
@@ -45,13 +46,11 @@ def user_inputs(start:bool=False, stop:bool=False) :
     ns = {**frame.f_globals, **frame.f_locals}
 
     # ---- Filter user variables (ignore internals starting with "_") ----
-    ns = {k: v for k, v in ns.items() if not k.startswith("_")}
+    ns = {key: value for key, value in ns.items() if not key.startswith("_")}
 
     # Validate status
-    if user_inputs.cache is not None and start :
+    if reset :
         user_inputs.cache = None
-    if user_inputs.cache is None and stop :
-        user_inputs.cache = {}
 
     # Case when user_inputs is on top : cache = None
     if user_inputs.cache is None :

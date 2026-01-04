@@ -52,8 +52,8 @@ class Print() :
 
     Parameters
     ----------
-    string : object
-        The object to print. Its :meth:`__str__` representation is used.
+    *strings : tuple
+        The objects to print. Its :meth:`__str__` representation is used.
     verbose : bool, optional
         If ``True`` (default), printing is performed.  
         If ``False``, printing is skipped unless overridden.
@@ -135,14 +135,17 @@ class Print() :
     """
 
     # Main function
-    def __call__(self, string, verbose=None, *, return_string=False, file=None, mode='a', end='\n', **kwargs) :
+    def __call__(self, *strings, verbose=None, return_string=False, file=None, mode='a', end='\n', **kwargs) :
+
         # Muting
         verbose = verbose if verbose is not None else self.verbose
         if not verbose :
             return None
         
+        # Formatting string
+        string = ", ".join([str(string) for string in strings]) + end
+
         # Printing markdown
-        string = str(string) + end
         self.print(Markdown(string), **kwargs)
 
         # Writting to file
@@ -170,7 +173,7 @@ class Print() :
     def log(self) :
         return self.console.log
     pyprint = pyprint # python print
-    richprint = richprint # rich print
+    richprint = richprint # rich prints
 
 
 
@@ -281,7 +284,8 @@ class Print() :
         AvgLoopTimeColumn(),
         TimeRemainingColumn(),
         EndTimeColumn(),
-        transient=False
+        transient=False,
+        console=self.console
         )
     
     _bars : dict = field(default=None, repr=False)
