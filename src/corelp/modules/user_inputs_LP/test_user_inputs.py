@@ -34,7 +34,8 @@ def test_user_inputs() :
         raise ValueError(f'{inputs} should be dict(a=1)')
     user_inputs() #init
     b = 2
-    if user_inputs() != {'b': 2} :
+    inputs = user_inputs()
+    if inputs != {'b': 2} :
         raise ValueError(f'{inputs} should be dict(b=2)')
 
 
