@@ -46,7 +46,7 @@ def user_inputs() :
     >>> user_inputs()       # Now returns: {'a': 1}
     {'a': 1}
     """
-
+    print('tetet')
     frame = inspect.currentframe().f_back
     ns = {**frame.f_globals, **frame.f_locals}
 
