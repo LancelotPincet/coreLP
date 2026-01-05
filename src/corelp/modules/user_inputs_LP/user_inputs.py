@@ -25,8 +25,8 @@ def user_inputs(reset=False) :
 
     Parameters
     ----------
-    reset : bool
-        True to set as first call.
+    reset : bool or str
+        True to set as first call, String value to define a group of parameters
 
     Returns
     -------
@@ -50,6 +50,7 @@ def user_inputs(reset=False) :
 
     # Validate status
     if reset :
+        user_inputs.current_group = reset if isinstance(reset, str) else None
         user_inputs.cache = None
 
     # Case when user_inputs is on top : cache = None
@@ -60,10 +61,23 @@ def user_inputs(reset=False) :
     # Case when user_inputs is at bottom : cache = dict
     else :
         updated = { key: value for key, value in ns.items() if key not in user_inputs.cache or user_inputs.cache[key] is not value}
+        values = {key: value for key, value in updated.items() if not key.endswith('_')}
+        comments = {key: value for key, value in updated.items() if key.endswith('_')}
+        
+        # Group values
+        if user_inputs.current_group is not None :
+            user_inputs.groups_values[user_inputs.current_group] = values
+            user_inputs.groups_comments[user_inputs.current_group] = comments
+
+        # End
+        user_inputs.current_group = None
         user_inputs.cache = None
-        return updated
+        return values
 
 user_inputs.cache = None
+user_inputs.current_group = None
+user_inputs.groups_values = {}
+user_inputs.groups_comments = {}
 
 
 
