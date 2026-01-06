@@ -51,8 +51,6 @@ def main() :
         The import_subfolders and export_subfolder are defined from import_path and export_path respectively (they are not absolute from root path).
     overnight : bool
         If True and exception occurs, will skip and pass to the next run in bulk processing. To use for example for overnight bulk processing.
-    run_name : str or None
-        Prefix to use for the output folder, if None takes the name of function decorated.
     
     Examples
     --------
@@ -180,7 +178,7 @@ def main() :
             print_status = kwargsself(print)
             print.console = None
             print.file = md_file
-            print(f'\n\n\n# BEGIN {name}\n')
+            print(f'\n\n\n# **BEGIN {name}\n**')
             print(f"{time.ctime()}")
             if ipath != "None" :
                 print(f'import_path : {ipath}\n')
@@ -209,7 +207,7 @@ def main() :
                 #Applying function
                 print("\n---\n")
                 subfolder_string = f"{export_subfolder}" if export_subfolder != "" else ""
-                print(f'## Launched script {subfolder_string}\n')
+                print(f'## **Launched script {subfolder_string}**\n')
                 tic = time.perf_counter()
                 try :
                     results[export_subfolder] = new_func()
@@ -231,7 +229,7 @@ def main() :
 
             # END
             print(time.ctime())
-            print(f'# END {name}\n\n')
+            print(f'# **END {name}**\n\n')
             print.export_html(html_file)
             selfkwargs(print, print_status)
             if _bulk is None :

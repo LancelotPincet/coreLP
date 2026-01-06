@@ -99,17 +99,17 @@ class Section() :
             @wraps(func)
             def wrapper(*args, **kwargs):
                 wrapper.path = self.path / f"{num:03}_{name}"
-                print(f'\n#### {num}. {name.replace("_"," ")} section\n')
+                print(f'\n#### **{num}. {name.replace("_"," ")} section**\n')
 
                 # Creating hash
                 if cache :
-                    print('**Call hash:**')
+                    print('**Call hash:**', do_stdout=False)
                     bound = inspect.signature(func).bind(*args, **kwargs)
                     bound.apply_defaults()
                     serialized = pickle.dumps(bound.arguments)
                     args_hash = hashlib.md5(serialized).hexdigest()
                     result_file = wrapper.path / f'{args_hash}.pkl'
-                    print(f'*{args_hash}*\n')
+                    print(f'*{args_hash}*\n', do_stdout=False)
 
                     # Checking already calculated exists
                     if result_file.exists() and not new :

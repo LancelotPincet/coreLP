@@ -20,6 +20,7 @@ This function overrides python built in print function to add functionnalities.
 from corelp import prop
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
+from numpy._core.numeric import True_
 from rich import print as richprint
 from rich.console import Console
 from rich.theme import Theme
@@ -135,7 +136,7 @@ class Print() :
     """
 
     # Main function
-    def __call__(self, *strings, verbose=None, return_string=False, file=None, mode='a', end='\n', **kwargs) :
+    def __call__(self, *strings, verbose=None, do_stdout=True, do_file=True, return_string=False, file=None, mode='a', end='\n', **kwargs) :
 
         # Muting
         verbose = verbose if verbose is not None else self.verbose
@@ -146,13 +147,16 @@ class Print() :
         string = ", ".join([str(string) for string in strings]) + end
 
         # Printing markdown
-        self.print(Markdown(string), **kwargs)
+        if do_stdout :
+            string2print = Markdown(string) if self.apply_markdown else string
+            self.print(string2print, **kwargs)
 
         # Writting to file
-        file = file if file is not None else self.file
-        if file is not None :
-            with open(Path(file), mode) as file :
-                file.write(string)
+        if do_file :
+            file = file if file is not None else self.file
+            if file is not None :
+                with open(Path(file), mode) as file :
+                    file.write(string)
 
         # Return
         if return_string :
@@ -174,6 +178,7 @@ class Print() :
         return self.console.log
     pyprint = pyprint # python print
     richprint = richprint # rich prints
+    apply_markdown : bool = field(default=True, repr=False) # True to apply rich markdown formatting in prints
 
 
 
