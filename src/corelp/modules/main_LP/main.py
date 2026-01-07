@@ -178,7 +178,7 @@ def main() :
             print_status = kwargsself(print)
             print.console = None
             print.file = md_file
-            print(f'\n\n\n# **BEGIN {name}\n**')
+            print(f'\n\n\n# **BEGIN {name}**\n')
             print(f"{time.ctime()}")
             if ipath != "None" :
                 print(f'import_path : {ipath}\n')
