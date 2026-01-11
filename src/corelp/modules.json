@@ -5,12 +5,6 @@
         "module": "modules/Path_LP/Path",
         "object": "Path"
     },
-    "Section": {
-        "date": "2025-08-28",
-        "description": "This class defines decorator instances allowing to create section functions.",
-        "module": "modules/Section_LP/Section",
-        "object": "Section"
-    },
     "debug": {
         "date": "2025-08-25",
         "description": "This function will give and create the debug folder for a given python file.",
@@ -35,18 +29,6 @@
         "module": "modules/kwargsself_LP/kwargsself",
         "object": "kwargsself"
     },
-    "main": {
-        "date": "2025-08-28",
-        "description": "This function can decorate the main function of a script.",
-        "module": "modules/main_LP/main",
-        "object": "main"
-    },
-    "print": {
-        "date": "2025-08-27",
-        "description": "This function overrides python built in print function to add functionnalities.",
-        "module": "modules/print_LP/print",
-        "object": "print"
-    },
     "prop": {
         "date": "2025-08-25",
         "description": "This function serves as an improved property decorator.",
@@ -70,11 +52,5 @@
         "description": "This function will launch the testfile for the current file using pytest library.",
         "module": "modules/test_LP/test",
         "object": "test"
-    },
-    "user_inputs": {
-        "date": "2025-11-30",
-        "description": "Gets last user inputs dictionnary from global variables.",
-        "module": "modules/user_inputs_LP/user_inputs",
-        "object": "user_inputs"
     }
 }

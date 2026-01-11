@@ -15,7 +15,7 @@ rfrom : This function allows to do a relative import that works in module and sc
 
 
 # %% Libraries
-from corelp import print, debug
+from corelp import debug
 import pytest
 from corelp import rfrom
 debug_folder = debug(__file__)

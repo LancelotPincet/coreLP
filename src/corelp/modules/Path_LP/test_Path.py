@@ -15,7 +15,7 @@ Path : This function is a wrapper around the pathlib.Path and returns a compatib
 
 
 # %% Libraries
-from corelp import print, debug
+from corelp import debug
 import pytest
 from corelp import Path
 debug_folder = debug(__file__)
