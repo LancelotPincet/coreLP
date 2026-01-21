@@ -11,15 +11,29 @@ A library that gathers core functions for python programming.
 
 
 
-from pathlib import Path as PathlibPath
+# %% Source code
+sources = {
+'Path': 'corelp.modules.Path_LP.Path',
+'debug': 'corelp.modules.debug_LP.debug',
+'folder': 'corelp.modules.folder_LP.folder',
+'getmodule': 'corelp.modules.getmodule_LP.getmodule',
+'kwargsself': 'corelp.modules.kwargsself_LP.kwargsself',
+'print': 'corelp.modules.print_LP.print',
+'prop': 'corelp.modules.prop_LP.prop',
+'rfrom': 'corelp.modules.rfrom_LP.rfrom',
+'selfkwargs': 'corelp.modules.selfkwargs_LP.selfkwargs',
+'test': 'corelp.modules.test_LP.test'
+}
+
+
 
 # %% Lazy imports
+
 if __name__ == "__main__":
     from modules.getmodule_LP.getmodule import getmodule # type: ignore
 else :
     from .modules.getmodule_LP.getmodule import getmodule
-__getattr__, __all__ = getmodule(__file__)
-icon = PathlibPath(__file__).parent / "icon_pythonLP.png"
+__getattr__, __all__ = getmodule(sources)
 
 
 
