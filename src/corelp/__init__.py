@@ -18,7 +18,6 @@ sources = {
 'folder': 'corelp.modules.folder_LP.folder',
 'getmodule': 'corelp.modules.getmodule_LP.getmodule',
 'kwargsself': 'corelp.modules.kwargsself_LP.kwargsself',
-'print': 'corelp.modules.print_LP.print',
 'prop': 'corelp.modules.prop_LP.prop',
 'rfrom': 'corelp.modules.rfrom_LP.rfrom',
 'selfkwargs': 'corelp.modules.selfkwargs_LP.selfkwargs',

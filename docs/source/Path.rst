@@ -1,5 +1,5 @@
 corelp.Path module
-==================
+template[libequals]============
 
 .. autoclass:: corelp.Path
    :members: 
