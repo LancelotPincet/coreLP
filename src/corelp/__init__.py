@@ -33,10 +33,3 @@ if __name__ == "__main__":
 else :
     from .modules.getmodule_LP.getmodule import getmodule
 __getattr__, __all__ = getmodule(sources)
-
-
-
-# %% Test function run
-if __name__ == "__main__":
-    from corelp import test
-    test(__file__)
