@@ -1,6 +1,6 @@
 [project]
 name = "corelp"
-version = "1.0.45"
+version = "1.0.46"
 description = "A library that gathers core functions for python programming."
 readme = "README.md"
 requires-python = ">=3.12"
