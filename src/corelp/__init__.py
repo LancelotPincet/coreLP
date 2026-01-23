@@ -27,9 +27,5 @@ sources = {
 
 
 # %% Lazy imports
-
-if __name__ == "__main__":
-    from modules.getmodule_LP.getmodule import getmodule # type: ignore
-else :
-    from .modules.getmodule_LP.getmodule import getmodule
+from corelp import getmodule
 __getattr__, __all__ = getmodule(sources)
