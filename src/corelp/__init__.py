@@ -33,6 +33,8 @@ from contextlib import contextmanager
 def resources_dir():
     with resources.as_file(resources.files("corelp.resources")) as path:
         yield path
+if False: 
+    import corelp.resources
 
 
 # %% Hidden imports
