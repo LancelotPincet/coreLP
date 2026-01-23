@@ -11,7 +11,7 @@ A library that gathers core functions for python programming.
 
 
 
-# %% Source code
+# %% Source import
 sources = {
 'Path': 'corelp.modules.Path_LP.Path',
 'debug': 'corelp.modules.debug_LP.debug',
@@ -27,8 +27,22 @@ sources = {
 
 
 
-# %% Lazy imports
+# %% Hidden imports
+if False :
+    import corelp.modules.Path_LP.Path
+    import corelp.modules.debug_LP.debug
+    import corelp.modules.folder_LP.folder
+    import corelp.modules.getmodule_LP.getmodule
+    import corelp.modules.icon_LP.icon
+    import corelp.modules.kwargsself_LP.kwargsself
+    import corelp.modules.prop_LP.prop
+    import corelp.modules.rfrom_LP.rfrom
+    import corelp.modules.selfkwargs_LP.selfkwargs
+    import corelp.modules.test_LP.test
 
+
+
+# %% Lazy imports
 if __name__ == "__main__":
     from modules.getmodule_LP.getmodule import getmodule # type: ignore
 else :
