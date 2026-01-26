@@ -1,7 +1,7 @@
-corelp.Path module
-template[libequals]============
+template_lowername.Path module
+template_equals============
 
-.. autoclass:: corelp.Path
+.. autoclass:: template_lowername.Path
    :members: 
    :show-inheritance:
    :undoc-members:

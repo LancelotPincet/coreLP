@@ -1,4 +1,4 @@
-corelp.debug module
-===================
+template_lowername.debug module
+template_equals=============
 
-.. autofunction:: corelp.debug
+.. autofunction:: template_lowername.debug

@@ -1,4 +1,4 @@
-corelp.rfrom module
-===================
+template_lowername.rfrom module
+template_equals=============
 
-.. autofunction:: corelp.rfrom
+.. autofunction:: template_lowername.rfrom

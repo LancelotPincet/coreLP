@@ -1,4 +1,4 @@
-corelp.prop module
-==================
+template_lowername.prop module
+template_equals============
 
-.. autofunction:: corelp.prop
+.. autofunction:: template_lowername.prop
