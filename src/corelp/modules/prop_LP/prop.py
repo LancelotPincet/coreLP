@@ -108,7 +108,7 @@ def linkproperty(link):
         def getter(self):
             obj = getattr(self, link) if isinstance(link, str) else link
             if obj is None : # If link failed, uses default _attribut
-                return getattr(self, attribut, None)
+                return getattr(self, f'_{attribut}', None)
             else :
                 obj_attribut = func(self)
                 return getattr(obj, f'{obj_attribut}')
