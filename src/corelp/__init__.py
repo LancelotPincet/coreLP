@@ -13,6 +13,7 @@ A library that gathers core functions for python programming.
 
 # %% Source import
 sources = {
+'AnyObject': 'corelp.modules.AnyObject_LP.AnyObject',
 'Path': 'corelp.modules.Path_LP.Path',
 'debug': 'corelp.modules.debug_LP.debug',
 'folder': 'corelp.modules.folder_LP.folder',

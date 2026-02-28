@@ -13,7 +13,7 @@ This function serves as an improved property decorator.
 
 
 # %% Function
-def prop(*, cache=False, variable=False, link=None) :
+def prop(*, cache=False, variable=False, iterable=None, dtype=None, link=None) :
     '''
     This function serves as an improved property decorator.
     By default, calls the function as a normal property.
@@ -26,6 +26,10 @@ def prop(*, cache=False, variable=False, link=None) :
         True to set readonly attribute at first call.
     variable : bool
         True to create a getter that will always use the _attr as a variable. [defines only setter, getter is normal]
+    iterable : int
+        If not None, allow to define a single number for a list of length this value. If list, just passes the list
+    dtype : type
+        Type to apply to value in setters
     link : bool
         True to link property to another object attribute.
 
@@ -71,11 +75,11 @@ def prop(*, cache=False, variable=False, link=None) :
     
     if link is not None :
         return linkproperty(link)
-    return defaultproperty(cache, variable)
+    return defaultproperty(cache, variable, iterable, dtype)
 
 
 
-def defaultproperty(cache, variable):
+def defaultproperty(cache, variable, iterable, dtype):
     def decorator(func) :
         attribut = func.__name__
 
@@ -84,11 +88,23 @@ def defaultproperty(cache, variable):
             if _attribut is not None and not variable :
                 return _attribut
             result = func(self)
-            if cache :
-                setattr(self, f'_{attribut}', result)
+            if cache or iterable :
+                setattr(self, attribut, result)
+                result = getattr(self, attribut)
             return result
 
         def setter(self, value):
+            if iterable is not None :
+                try :
+                    if len(value) != int(iterable) :
+                        raise ValueError(f'Cannot have {len(value)} values for this property')
+                    value = list(value)
+                except TypeError :
+                    value = [value] * int(iterable)
+                if dtype is not None :
+                    value = [dtype(v) for v in value]
+            elif dtype is not None :
+                value = dtype(value)
             setattr(self, f'_{attribut}', value)
 
         def deleter(self):
