@@ -11,14 +11,14 @@ Here are the references to the various modules to import in **coreLP**.
    :maxdepth: 1
    :caption: Modules
 
-   folder
-   prop
-   test
-   kwargsself
-   rfrom
-   Path
-   selfkwargs
-   icon
-   AnyObject
    getmodule
+   Path
+   folder
+   kwargsself
+   test
+   rfrom
+   prop
+   selfkwargs
+   AnyObject
+   icon
    debug
