@@ -1,7 +1,7 @@
-template_lowername.Path module
-template_equals============
+corelp.Path module
+==================
 
-.. autoclass:: template_lowername.Path
+.. autoclass:: corelp.Path
    :members: 
    :show-inheritance:
    :undoc-members:

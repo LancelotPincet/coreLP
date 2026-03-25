@@ -1,4 +1,4 @@
-template_lowername.icon module
-template_equals============
+corelp.icon module
+==================
 
-.. autofunction:: template_lowername.icon
+.. autofunction:: corelp.icon

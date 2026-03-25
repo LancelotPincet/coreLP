@@ -1,4 +1,4 @@
-template_lowername.folder module
-template_equals==============
+corelp.folder module
+====================
 
-.. autofunction:: template_lowername.folder
+.. autofunction:: corelp.folder

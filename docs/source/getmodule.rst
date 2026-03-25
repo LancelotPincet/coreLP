@@ -1,4 +1,4 @@
-template_lowername.getmodule module
-template_equals=================
+corelp.getmodule module
+=======================
 
-.. autofunction:: template_lowername.getmodule
+.. autofunction:: corelp.getmodule

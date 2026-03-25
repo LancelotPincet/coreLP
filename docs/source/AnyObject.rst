@@ -1,7 +1,7 @@
-template_lowername.AnyObject module
-template_equals=================
+corelp.AnyObject module
+=======================
 
-.. autoclass:: template_lowername.AnyObject
+.. autoclass:: corelp.AnyObject
    :members: 
    :show-inheritance:
    :undoc-members:

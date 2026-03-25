@@ -1,4 +1,4 @@
-template_lowername.kwargsself module
-template_equals==================
+corelp.kwargsself module
+========================
 
-.. autofunction:: template_lowername.kwargsself
+.. autofunction:: corelp.kwargsself

@@ -1,4 +1,4 @@
-template_lowername.test module
-template_equals============
+corelp.test module
+==================
 
-.. autofunction:: template_lowername.test
+.. autofunction:: corelp.test
