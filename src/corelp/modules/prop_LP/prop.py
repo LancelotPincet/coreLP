@@ -102,9 +102,9 @@ def defaultproperty(cache, variable, iterable, dtype):
                 except TypeError :
                     value = [value] * int(iterable)
                 if dtype is not None :
-                    value = [dtype(v) for v in value]
+                    value = [dtype(v) if v is not None else None for v in value]
             elif dtype is not None :
-                value = dtype(value)
+                value = dtype(value) if value is not None else None
             setattr(self, f'_{attribut}', value)
 
         def deleter(self):
