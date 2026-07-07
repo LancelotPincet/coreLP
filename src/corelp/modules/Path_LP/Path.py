@@ -19,9 +19,17 @@ import os
 
 
 # %% Detect if running inside WSL
+def _is_linux() -> bool:
+    """True if linux."""
+    if os.name == "posix":
+        return True
+    if os.name == "nt":
+        return False
+    raise ValueError(f"Unknown os.name: {os.name}")
+
 def _is_wsl() -> bool:
-    """True if WSL."""
-    if os.name != "posix":
+    """True if running inside WSL."""
+    if not _is_linux():
         return False
     try:
         with open("/proc/version", "r") as f:
@@ -29,14 +37,14 @@ def _is_wsl() -> bool:
     except FileNotFoundError:
         return False
 
-
+IS_LINUX = _is_linux()
 IS_WSL = _is_wsl()
 
 
 # %% Function
 def Path(path, *args, **kwargs) :
     '''
-    This function is a wrapper around the pathlib.Path and returns a compatible Path with a windows path copied inside Linux (for WSL)
+    This function is a wrapper around the pathlib.Path and returns a compatible Path (Windows, Linux, WSL)
     
     Parameters
     ----------
@@ -58,15 +66,28 @@ def Path(path, *args, **kwargs) :
     WindowsPath('C:/Users/Name/Documents')     # under Windows
     '''
 
-    # Windows case → no conversion
-    if os.name == "nt":
-        return PathlibPath(path, *args, **kwargs)
-
     # Conversion in string
     pathstring = str(path).replace("\\", "/")
 
+    # Windows case
+    if not IS_LINUX:
+        if ":" in pathstring: # from windows
+            return PathlibPath(pathstring, *args, **kwargs)
+        if pathstring.startswith("/mnt/"): # Windows WSL path
+            pathstring = pathstring.replace("/mnt/", "")
+            pathstring = pathstring[0].upper() + ":" + pathstring[1:]
+            return PathlibPath(pathstring, *args, **kwargs)
+        else : # from WSL
+            pathstring = r"//wsl.localhost/Ubuntu/{pathstring}"
+            return PathlibPath(path, *args, **kwargs)
+
     # If not in WSL → no touching
     if not IS_WSL:
+        return PathlibPath(pathstring, *args, **kwargs)
+
+    # WSL windows path
+    if pathstring.startswith("\\wsl.localhost\Ubuntu"):
+        pathstring = pathstring.replace("\\wsl.localhost\Ubuntu", "")
         return PathlibPath(pathstring, *args, **kwargs)
 
     # Detection of UNC Windows paths (\\server\share)
