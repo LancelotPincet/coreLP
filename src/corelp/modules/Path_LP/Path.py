@@ -86,8 +86,8 @@ def Path(path, *args, **kwargs) :
         return PathlibPath(pathstring, *args, **kwargs)
 
     # WSL windows path
-    if pathstring.startswith("\\wsl.localhost\Ubuntu"):
-        pathstring = pathstring.replace("\\wsl.localhost\Ubuntu", "")
+    if pathstring.startswith("//wsl.localhost/Ubuntu"):
+        pathstring = pathstring.replace("//wsl.localhost/Ubuntu", "")
         return PathlibPath(pathstring, *args, **kwargs)
 
     # Detection of UNC Windows paths (\\server\share)
