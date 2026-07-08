@@ -79,7 +79,7 @@ def Path(path, *args, **kwargs) :
             return PathlibPath(pathstring, *args, **kwargs)
         else : # from WSL
             pathstring = f"//wsl.localhost/Ubuntu/{pathstring}"
-            return PathlibPath(path, *args, **kwargs)
+            return PathlibPath(pathstring, *args, **kwargs)
 
     # If not in WSL → no touching
     if not IS_WSL:
