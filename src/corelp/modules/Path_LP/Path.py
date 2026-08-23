@@ -77,6 +77,8 @@ def Path(path, *args, **kwargs) :
             pathstring = pathstring.replace("/mnt/", "")
             pathstring = pathstring[0].upper() + ":" + pathstring[1:]
             return PathlibPath(pathstring, *args, **kwargs)
+        if pathstring.startswith("//wsl.localhost/Ubuntu"):
+            return PathlibPath(pathstring, *args, **kwargs)
         else : # from WSL
             pathstring = f"//wsl.localhost/Ubuntu/{pathstring}"
             return PathlibPath(pathstring, *args, **kwargs)
